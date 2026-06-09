@@ -28,7 +28,17 @@ SheetBot 是一款面向企业数据场景的 **AI Excel 与数据工作台**。
 
 下方视频展示 SheetBot 从自然语言操控表格、大文件分析到报表与汇报交付的核心流程。完整在线体验请访问 [SheetBot 官网](https://sheetbot.eeebit.com/)。
 
-<video src="docs-site/static/img/sheetbot-demo.mp4" controls width="100%"></video>
+> Gitee README 不支持内嵌 `<video>` 播放器，请点击下方封面在浏览器中播放演示视频。
+
+<p align="center">
+  <a href="https://gitee.com/yorkoliu/sheetbot/raw/master/docs-site/static/img/sheetbot-demo.mp4" target="_blank">
+    <img src="docs-site/static/img/sheetbot-demo-poster.svg" alt="SheetBot 平台演示" width="960">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://gitee.com/yorkoliu/sheetbot/raw/master/docs-site/static/img/sheetbot-demo.mp4"><b>▶ 点击观看 SheetBot 平台演示视频</b></a>
+</p>
 
 ### 主要功能
 
