@@ -3351,22 +3351,26 @@ function App() {
       flog.info('Save', 'uploading', { fileId: file.id, filename, bytes: blob.size })
       const resp = await withFreshAccessToken((token) =>
         filesApi.saveFileContent(token, file.id, blob, filename, {
-          // 优先用内容版本；若旧数据缺少 accessed_at，则回退到 updated_at，降低误拦截
-          expectedContentVersion: file.accessed_at || file.updated_at || null,
+          // 内容版本只能使用 accessed_at；缺失时让后端跳过并发校验（兼容旧 schema）。
+          expectedContentVersion: file.accessed_at || null,
           expectedUpdatedAt: file.updated_at || null,
         })
       )
       flog.info('Save', 'SUCCESS', resp)
       lastSavedSnapshotRef.current = wbSnapshot
-      // 同步最新版本戳，作为下一次并发保存门禁基线
+      // 同步最新版本戳：accessed_at 不存在时**不再回退** updated_at，避免下次保存交叉比对触发 409
       if (resp?.updated_at || resp?.accessed_at) {
-        setSelectedSidebarFile(prev => (prev?.id === file.id ? {
-          ...prev,
-          updated_at: resp.updated_at || prev.updated_at,
-          // 兼容旧后端未返回 accessed_at 的情况，回退使用 updated_at 维持版本推进
-          accessed_at: resp.accessed_at || resp.updated_at || prev.accessed_at,
-          file_size: resp.file_size,
-        } : prev))
+        const nextFile = {
+          ...(selectedSidebarFileRef.current?.id === file.id ? selectedSidebarFileRef.current : file),
+          updated_at: resp.updated_at || file.updated_at,
+          accessed_at: resp.accessed_at || file.accessed_at,
+          file_size: resp.file_size != null ? resp.file_size : file.file_size,
+        }
+        // 关键：立即更新 ref，下一次同步触发的 save 不会再读到旧 accessed_at（消除 setState 异步窗）
+        if (selectedSidebarFileRef.current?.id === file.id) {
+          selectedSidebarFileRef.current = nextFile
+        }
+        setSelectedSidebarFile(prev => (prev?.id === file.id ? nextFile : prev))
       }
       setSaveStatus('saved')
       if (!silent) pushSystemMessage('success', `已保存 (${(blob.size / 1024).toFixed(1)} KB)`)
@@ -3376,6 +3380,11 @@ function App() {
       flog.error('Save', 'FAILED', error)
       setSaveStatus('error')
       if (error?.status === 409) {
+        flog.warn('Save', '409 详情', {
+          client_content_version: error?.detail?.client_content_version,
+          server_content_version: error?.detail?.server_content_version,
+          server_updated_at: error?.detail?.server_updated_at,
+        })
         const msg = error?.detail?.message || '文件已被其他操作更新，当前保存已被安全拦截。请先刷新文件后再保存。'
         if (!silent) pushSystemMessage('error', msg)
         return false

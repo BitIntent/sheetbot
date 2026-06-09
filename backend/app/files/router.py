@@ -339,33 +339,39 @@ async def save_file_content(
     if not file_record:
         raise HTTPException(404, "文件不存在")
 
-    # 并发保护升级：
-    # - 优先使用内容版本戳 accessed_at（仅内容保存时更新，避免元数据改动误拦截）
-    # - 兼容旧前端：若未传新头，回退到旧的 updated_at 比较
+    # ============================================================================
+    # 并发保护策略（已收敛）：
+    # - 仅依赖 accessed_at（内容版本戳），不再用 updated_at 兜底做并发判定，
+    #   updated_at 会被元数据更新（rename/star/folder_move...）触发漂移，是误报的主要来源。
+    # - 兼容旧前端：旧前端可能把 updated_at 当作 X-Expected-Content-Version 传上来，
+    #   若其值恰等于服务端 updated_at，则视为旧客户端的 fallback，跳过版本校验。
+    # - 409 时记录详细日志，便于排查。
+    # ============================================================================
     client_expected_content_dt = _parse_client_content_version(expected_content_version)
     if client_expected_content_dt is not None:
         server_content_dt = _normalize_version_ts(file_record.accessed_at)
+        server_updated_dt = _normalize_version_ts(file_record.updated_at)
         client_content_dt = _normalize_version_ts(client_expected_content_dt)
         if client_content_dt != server_content_dt:
-            raise HTTPException(
-                status_code=409,
-                detail={
-                    "message": "文件内容已被其他操作更新，请先刷新后再保存，已阻止覆盖保存。",
-                    "server_content_version": server_content_dt.isoformat(),
-                    "server_updated_at": _to_utc(file_record.updated_at).isoformat(),
-                },
-            )
-    else:
-        client_expected_dt = _parse_client_updated_at(expected_updated_at)
-        if client_expected_dt is not None:
-            server_updated_dt = _normalize_version_ts(file_record.updated_at)
-            client_updated_dt = _normalize_version_ts(client_expected_dt)
-            if client_updated_dt != server_updated_dt:
+            if client_content_dt == server_updated_dt:
+                logger.info(
+                    "保存：旧前端 fallback 行为（X-Expected-Content-Version=updated_at），"
+                    f"跳过并发校验 file_id={file_id}"
+                )
+            else:
+                logger.warning(
+                    f"保存被并发校验拦截 file_id={file_id} "
+                    f"client_content={client_content_dt.isoformat()} "
+                    f"server_content={server_content_dt.isoformat()} "
+                    f"server_updated={server_updated_dt.isoformat()}"
+                )
                 raise HTTPException(
                     status_code=409,
                     detail={
-                        "message": "文件已被其他操作更新，请先刷新后再保存，已阻止覆盖保存。",
+                        "message": "文件内容已被其他操作更新，请先刷新后再保存，已阻止覆盖保存。",
+                        "server_content_version": server_content_dt.isoformat(),
                         "server_updated_at": server_updated_dt.isoformat(),
+                        "client_content_version": client_content_dt.isoformat(),
                     },
                 )
 

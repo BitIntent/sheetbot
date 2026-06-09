@@ -87,6 +87,7 @@ class FileTreeItem(BaseModel):
     row_count: Optional[int] = None
     col_count: Optional[int] = None
     updated_at: Optional[datetime] = None
+    accessed_at: Optional[datetime] = None
 
 
 class FileUploadResponse(BaseModel):
