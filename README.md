@@ -22,7 +22,13 @@ SheetBot 是一款面向企业数据场景的 **AI Excel 与数据工作台**。
 - 企业内部私有化部署 AI 表格与数据工作台
 - 将 AI 分析、报表、汇报能力集成到现有 ERP / CRM / OA / HR 系统
 - 面向财务、销售、运营、HR、教育、医疗等团队搭建自动化数据交付流程
-- 开发者基于 FastAPI + React + Univer + PPTist  二次开发企业级办公应用
+- 开发者基于 FastAPI + React + Univer + PPTist 二次开发企业级办公应用
+
+### 平台演示
+
+下方视频展示 SheetBot 从自然语言操控表格、大文件分析到报表与汇报交付的核心流程。完整在线体验请访问 [SheetBot 官网](https://sheetbot.eeebit.com/)。
+
+<video src="docs-site/static/img/sheetbot-demo.mp4" controls width="100%"></video>
 
 ### 主要功能
 
