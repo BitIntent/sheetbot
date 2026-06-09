@@ -1,0 +1,478 @@
+// ============================================================================
+// PPTist 浮层 / 弹窗 / Teleport — 浅色覆盖（与 SheetBot 工作台一致）
+// 加载于 pptist-dark-theme.scss 之后，覆盖硬编码深色块
+// ============================================================================
+
+$pl-surface: #ffffff;
+$pl-surface-muted: #f8fafc;
+$pl-border: #e4e9ef;
+$pl-border-strong: #d5dce6;
+$pl-text: #0f172a;
+$pl-text-secondary: #475569;
+$pl-text-muted: #64748b;
+$pl-accent: #217346;
+$pl-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+
+@mixin pl-popover-surface {
+  background: $pl-surface !important;
+  border: 1px solid $pl-border !important;
+  color: $pl-text !important;
+  box-shadow: $pl-shadow !important;
+}
+
+// ── Tippy / Popover ──
+.tippy-box[data-theme~='popover'] .popover-content {
+  @include pl-popover-surface;
+}
+
+.tippy-box[data-theme~='popover'] .popover-content .tabs {
+  border-bottom: 1px solid $pl-border !important;
+}
+
+.tippy-box[data-theme~='popover'] .popover-content .tabs .tab {
+  color: $pl-text-muted !important;
+  background: transparent !important;
+}
+
+.tippy-box[data-theme~='popover'] .popover-content .tabs .tab.active {
+  color: $pl-accent !important;
+  border-bottom: 2px solid $pl-accent !important;
+}
+
+.tippy-box[data-theme~='popover'] .element-animation-panel .animation-pool {
+  @include pl-popover-surface;
+}
+
+.tippy-box[data-theme~='popover'] .element-animation-panel .type-title {
+  color: $pl-text !important;
+  border-left: 4px solid $pl-accent !important;
+  background: $pl-surface-muted !important;
+}
+
+.tippy-box[data-theme~='popover'] .element-animation-panel .animation-box {
+  background: $pl-surface !important;
+  color: $pl-text !important;
+  border: 1px solid $pl-border-strong !important;
+}
+
+.tippy-box[data-theme~='popover'] .element-animation-panel .animation-box:hover {
+  border-color: $pl-accent !important;
+  background: rgba(33, 115, 70, 0.06) !important;
+}
+
+.tippy-box[data-theme~='popover'] .options {
+  @include pl-popover-surface;
+}
+
+.tippy-box[data-theme~='popover'] .option {
+  color: $pl-text-secondary !important;
+}
+
+.tippy-box[data-theme~='popover'] .option:hover:not(.disabled):not(.selected) {
+  background: $pl-surface-muted !important;
+}
+
+.tippy-box[data-theme~='popover'] .option.selected {
+  color: $pl-accent !important;
+  background: rgba(33, 115, 70, 0.08) !important;
+}
+
+.tippy-box[data-theme~='popover'] .popover-menu-item {
+  color: $pl-text-secondary !important;
+}
+
+.tippy-box[data-theme~='popover'] .popover-menu-item:hover {
+  background: $pl-surface-muted !important;
+  color: $pl-text !important;
+}
+
+// ── Modal 对话框 ──
+.modal .modal-mask {
+  background: rgba(15, 23, 42, 0.35) !important;
+}
+
+.modal .modal-content {
+  @include pl-popover-surface;
+  border-radius: 12px !important;
+}
+
+.modal .modal-content .close-btn {
+  color: $pl-text-muted !important;
+}
+
+.modal .modal-content .close-btn:hover {
+  color: $pl-text !important;
+}
+
+.modal .modal-content .input,
+.modal .modal-content .number-input,
+.modal .modal-content .select,
+.modal .modal-content .textarea {
+  background: $pl-surface !important;
+  border: 1px solid $pl-border-strong !important;
+  color: $pl-text !important;
+}
+
+.modal .modal-content .input input,
+.modal .modal-content .number-input input,
+.modal .modal-content .textarea {
+  background: transparent !important;
+  color: $pl-text !important;
+}
+
+.modal .modal-content .input input::placeholder,
+.modal .modal-content .number-input input::placeholder,
+.modal .modal-content .textarea::placeholder {
+  color: $pl-text-muted !important;
+}
+
+.modal .modal-content .button.default,
+.modal .modal-content .button.checkbox,
+.modal .modal-content .button.radio {
+  background: $pl-surface !important;
+  border: 1px solid $pl-border-strong !important;
+  color: $pl-text-secondary !important;
+}
+
+.modal .modal-content .button.default:hover,
+.modal .modal-content .button.checkbox:hover,
+.modal .modal-content .button.radio:hover {
+  border-color: $pl-accent !important;
+  color: $pl-accent !important;
+}
+
+.modal .modal-content .button.primary {
+  background: $pl-accent !important;
+  border-color: $pl-accent !important;
+  color: #ffffff !important;
+}
+
+.modal .modal-content .button.disabled,
+.modal .modal-content .input.disabled,
+.modal .modal-content .number-input.disabled,
+.modal .modal-content .select.disabled,
+.modal .modal-content .textarea.disabled {
+  background: $pl-surface-muted !important;
+  border-color: $pl-border !important;
+  color: $pl-text-muted !important;
+  opacity: 1 !important;
+}
+
+.modal .modal-content .checkbox {
+  color: $pl-text-secondary !important;
+}
+
+.modal .modal-content .checkbox .checkbox-input {
+  background: $pl-surface !important;
+  border-color: $pl-border-strong !important;
+}
+
+.modal .modal-content .checkbox .checkbox-label {
+  color: $pl-text-secondary !important;
+}
+
+.modal .modal-content .checkbox.disabled .checkbox-label {
+  color: $pl-text-muted !important;
+}
+
+// ── MoveablePanel / 符号 / 公式 ──
+.pptist-wrapper .moveable-panel {
+  @include pl-popover-surface;
+  border-radius: 10px !important;
+}
+
+.pptist-wrapper .moveable-panel .header {
+  border-bottom: 1px solid $pl-border !important;
+  color: $pl-text !important;
+}
+
+.pptist-wrapper .moveable-panel .title,
+.pptist-wrapper .moveable-panel .close-btn {
+  color: $pl-text-secondary !important;
+}
+
+.pptist-wrapper .moveable-panel .content {
+  color: $pl-text !important;
+}
+
+.pptist-wrapper .symbol-panel .emoji-type {
+  color: $pl-text-muted !important;
+}
+
+.pptist-wrapper .symbol-panel .emoji-type.active {
+  color: $pl-accent !important;
+  background: rgba(33, 115, 70, 0.08) !important;
+}
+
+.pptist-wrapper .symbol-panel .symbol-group + .symbol-group {
+  border-top: 1px solid $pl-border !important;
+}
+
+.pptist-wrapper .symbol-panel .symbol-item {
+  border-color: $pl-border-strong !important;
+}
+
+.pptist-wrapper .symbol-panel .symbol-item .symbol {
+  background: $pl-surface-muted !important;
+  color: $pl-text !important;
+}
+
+.pptist-wrapper .symbol-panel .close-btn {
+  color: $pl-text-muted !important;
+}
+
+.pptist-wrapper .symbol-panel .close-btn:hover,
+.pptist-wrapper .symbol-panel .symbol-item:hover {
+  color: $pl-accent !important;
+  border-color: $pl-accent !important;
+}
+
+.pptist-wrapper .latex-editor .preview,
+.pptist-wrapper .latex-editor .right,
+.pptist-wrapper .latex-editor .formula-item-content {
+  background: $pl-surface-muted !important;
+  border-color: $pl-border !important;
+  color: $pl-text !important;
+}
+
+.pptist-wrapper .latex-editor .placeholder,
+.pptist-wrapper .latex-editor .formula-title {
+  color: $pl-text-muted !important;
+}
+
+.pptist-wrapper .latex-editor .symbol-item:hover {
+  background: $pl-surface-muted !important;
+}
+
+.pptist-wrapper .latex-editor .footer .btn.button.default {
+  background: $pl-surface !important;
+  border-color: $pl-border-strong !important;
+  color: $pl-text-secondary !important;
+}
+
+.modal .modal-content .latex-editor,
+.modal .modal-content .latex-editor * {
+  color: $pl-text !important;
+}
+
+.modal .modal-content .latex-editor .right,
+.modal .modal-content .latex-editor .preview,
+.modal .modal-content .latex-editor .formula-item-content {
+  background: $pl-surface-muted !important;
+  border: 1px solid $pl-border !important;
+}
+
+.modal .modal-content .latex-editor .placeholder {
+  color: $pl-text-muted !important;
+}
+
+.modal .modal-content .latex-editor .tabs.card {
+  background: $pl-surface-muted !important;
+  border-bottom: 1px solid $pl-border !important;
+}
+
+.modal .modal-content .latex-editor .tabs.card .tab {
+  background: $pl-surface-muted !important;
+  color: $pl-text-secondary !important;
+  border-left: 1px solid $pl-border !important;
+  border-bottom: 1px solid $pl-border !important;
+}
+
+.modal .modal-content .latex-editor .tabs.card .tab:first-child {
+  border-left: none !important;
+}
+
+.modal .modal-content .latex-editor .tabs.card .tab.active {
+  background: $pl-surface !important;
+  color: $pl-text !important;
+  border-bottom: 2px solid $pl-accent !important;
+}
+
+.modal .modal-content .latex-editor .tabs:not(.card) {
+  border-bottom: 1px solid $pl-border !important;
+}
+
+.modal .modal-content .latex-editor .tabs:not(.card) .tab {
+  color: $pl-text-muted !important;
+}
+
+.modal .modal-content .latex-editor .tabs:not(.card) .tab.active {
+  color: $pl-accent !important;
+  border-bottom-color: $pl-accent !important;
+}
+
+.modal .modal-content .latex-editor .symbol-item:hover {
+  background: $pl-surface-muted !important;
+  border-radius: 4px !important;
+}
+
+.modal .modal-content .latex-editor .preview-content {
+  background: $pl-surface !important;
+}
+
+// ── 富文本 / 图表数据编辑器 ──
+.pptist-wrapper .rich-text-base .list-wrap {
+  color: $pl-text-secondary !important;
+}
+
+.pptist-wrapper .rich-text-base .list {
+  background: $pl-surface !important;
+  border: 1px solid $pl-border-strong !important;
+}
+
+.pptist-wrapper .rich-text-base .list-item span {
+  background: $pl-border-strong !important;
+}
+
+.pptist-wrapper .chart-data-editor .editor-content,
+.pptist-wrapper .chart-data-editor table td,
+.pptist-wrapper .chart-data-editor .col-header,
+.pptist-wrapper .chart-data-editor .row-header,
+.pptist-wrapper .chart-data-editor .all-header {
+  border-color: $pl-border-strong !important;
+}
+
+.pptist-wrapper .chart-data-editor .editor-content {
+  background: $pl-surface !important;
+}
+
+.pptist-wrapper .chart-data-editor .item {
+  color: $pl-text !important;
+}
+
+.pptist-wrapper .chart-data-editor table td.head {
+  background: rgba(33, 115, 70, 0.08) !important;
+}
+
+.pptist-wrapper .chart-data-editor .col-header,
+.pptist-wrapper .chart-data-editor .row-header,
+.pptist-wrapper .chart-data-editor .all-header {
+  background: $pl-surface-muted !important;
+}
+
+.pptist-wrapper .chart-data-editor .col-key,
+.pptist-wrapper .chart-data-editor .row-key,
+.pptist-wrapper .chart-data-editor .left,
+.pptist-wrapper .chart-data-editor .change {
+  color: $pl-text-secondary !important;
+}
+
+.modal .modal-content .chart-data-editor,
+.modal .modal-content .chart-data-editor * {
+  color: $pl-text !important;
+}
+
+.modal .modal-content .chart-data-editor .editor-content {
+  background: $pl-surface !important;
+  border-right: 1px solid $pl-border !important;
+  border-bottom: 1px solid $pl-border !important;
+}
+
+.modal .modal-content .chart-data-editor .col-header,
+.modal .modal-content .chart-data-editor .row-header,
+.modal .modal-content .chart-data-editor .all-header {
+  background: $pl-surface-muted !important;
+  border-color: $pl-border-strong !important;
+}
+
+.modal .modal-content .chart-data-editor table td {
+  border-color: $pl-border-strong !important;
+}
+
+.modal .modal-content .chart-data-editor table td.head {
+  background: rgba(33, 115, 70, 0.08) !important;
+}
+
+.modal .modal-content .chart-data-editor .item {
+  color: $pl-text !important;
+}
+
+.modal .modal-content .chart-data-editor .change {
+  color: $pl-text-muted !important;
+}
+
+// ── 导出对话框文案 ──
+.modal .modal-content .export-pptx-dialog .configs .title,
+.modal .modal-content .export-img-dialog .configs .title,
+.modal .modal-content .export-pdf-dialog .configs .title {
+  color: $pl-text !important;
+}
+
+.modal .modal-content .export-pptx-dialog .configs .title::after,
+.modal .modal-content .export-img-dialog .configs .title::after {
+  color: $pl-text-muted !important;
+}
+
+.modal .modal-content .export-pptx-dialog .configs .tip,
+.modal .modal-content .export-img-dialog .configs .tip,
+.modal .modal-content .export-pdf-dialog .configs .tip {
+  color: $pl-text-muted !important;
+}
+
+.modal .modal-content .export-pptx-dialog .radio-button,
+.modal .modal-content .export-img-dialog .radio-button,
+.modal .modal-content .export-pdf-dialog .radio-button,
+.modal .modal-content .export-pdf-dialog .select .selector,
+.modal .modal-content .export-pdf-dialog .select .icon {
+  color: $pl-text-secondary !important;
+}
+
+// ── 编辑器桥接容器 ──
+.pptist-editor-bridge,
+.pptist-bridge-container,
+.pres-editor-fullsize {
+  background: #f4f6f9 !important;
+}
+
+.pptist-wrapper .layout-header,
+.pptist-wrapper .layout-content {
+  background: #f4f6f9 !important;
+}
+
+.pptist-wrapper .layout-content-center {
+  background: #eef2f6 !important;
+}
+
+/* 幻灯片编辑区外围（画布底色，非幻灯片本身） */
+.pptist-wrapper .center-body,
+.pptist-wrapper .canvas {
+  background-color: #e8ecf1 !important;
+}
+
+// CanvasTool 内 scoped 深色 hover 兜底
+.pptist-wrapper .canvas-tool .insert-handler-item:not(.group-btn):hover,
+.pptist-wrapper .canvas-tool .insert-handler-item.active,
+.pptist-wrapper .canvas-tool .group-btn-main:hover,
+.pptist-wrapper .canvas-tool .left-handler .handler-item.active,
+.pptist-wrapper .canvas-tool .left-handler .handler-item:not(.disable):hover,
+.pptist-wrapper .canvas-tool .right-handler .handler-item:not(.disable):hover {
+  background: #eef2f6 !important;
+  color: #0f172a !important;
+}
+
+// ── 缩略图 / 备注区补充 ──
+.pptist-wrapper .remark,
+.pptist-wrapper .remark-editor {
+  color: $pl-text-secondary !important;
+}
+
+.pptist-wrapper .remark-editor textarea,
+.pptist-wrapper .remark-editor input {
+  background: $pl-surface !important;
+  color: $pl-text !important;
+  border-color: $pl-border-strong !important;
+}
+
+.pptist-wrapper .thumbnails .thumbnail-list {
+  background: $pl-surface !important;
+}
+
+// ── 搜索 / 图库 / AIPPT 等侧栏面板 ──
+.pptist-wrapper .search-panel,
+.pptist-wrapper .image-lib-panel,
+.pptist-wrapper .notes-panel,
+.pptist-wrapper .markup-panel {
+  background: $pl-surface !important;
+  color: $pl-text !important;
+  border-color: $pl-border !important;
+}

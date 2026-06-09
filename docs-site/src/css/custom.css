@@ -1,0 +1,82 @@
+:root {
+  --ifm-color-primary: #34d399;
+  --ifm-color-primary-dark: #2abf88;
+  --ifm-color-primary-darker: #22a36f;
+  --ifm-font-size-base: 17px;
+  --ifm-line-height-base: 1.75;
+}
+
+[data-theme='dark'] {
+  --ifm-background-color: #0a0a0a;
+  --ifm-navbar-background-color: #111111;
+  --ifm-color-emphasis-100: #1a1a1a;
+  --ifm-color-emphasis-200: #252525;
+}
+
+.navbar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.theme-doc-sidebar-container {
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.menu__link {
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.menu__list-item-collapsible .menu__link {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.markdown h1 {
+  font-size: 2.25rem;
+  line-height: 1.3;
+}
+
+.markdown h2 {
+  font-size: 1.65rem;
+  line-height: 1.35;
+}
+
+.markdown h3 {
+  font-size: 1.35rem;
+  line-height: 1.4;
+}
+
+.markdown p,
+.markdown li,
+.markdown td,
+.markdown th {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.theme-doc-toc-desktop .table-of-contents__link {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.theme-doc-toc-desktop .table-of-contents__link--active {
+  font-weight: 700;
+}
+
+.theme-doc-toc-desktop .table-of-contents li {
+  margin: 0.2rem 0;
+}
+
+/* 面包屑导航字体加大 2px */
+.breadcrumbs__link {
+  font-size: 19px;
+}
+
+.breadcrumbs__item {
+  font-size: 19px;
+}
+
+.markdown img {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}

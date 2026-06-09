@@ -1,0 +1,629 @@
+/* ============================================================================
+ * 浅色工作台覆盖层
+ * 覆盖 index.css 中遗留的深色 !important 规则，仅作用于主应用壳
+ * ============================================================================ */
+
+body {
+  background: var(--bg-primary) !important;
+  color: var(--text-secondary) !important;
+}
+
+.app-layout {
+  background: var(--bg-primary);
+}
+
+/* ===== 侧栏文件树：文件名与顶栏主菜单按钮同字号（13px） ===== */
+.sidebar-file-tree .tree-item.tree-file,
+.sidebar-file-tree .tree-item.tree-file .tree-item-name,
+.sidebar-file-tree .tree-item.tree-sheet-node {
+  font-size: 13px !important;
+}
+
+.sidebar-file-tree .tree-item.tree-file.active .tree-item-name {
+  font-weight: 600 !important;
+}
+
+/* PPTist 幻灯片编辑区外围衬底 */
+.pptist-wrapper .center-body,
+.pptist-wrapper .canvas {
+  background-color: #e8ecf1 !important;
+}
+
+/* PPT 模板画廊：防止首屏空列表或网格被裁切 */
+.pres-template-gallery .pres-tpl-grid {
+  display: grid !important;
+  visibility: visible !important;
+  min-height: 108px !important;
+}
+
+.pres-template-gallery .pres-tpl-card {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.content-excel-panel > .pres-view {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== 表格加载遮罩（对齐浅色工作台） ===== */
+.excel-loading-overlay {
+  background: rgba(244, 246, 249, 0.65) !important;
+}
+
+.excel-loading-badge {
+  border: 1px solid var(--border-secondary) !important;
+  background: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* ===== Excel 网格（DOM 模式） ===== */
+.excel-container {
+  background: #FFFFFF !important;
+  scrollbar-color: #C5CDD8 #F1F4F8 !important;
+}
+
+.excel-grid {
+  border-color: #E4E9EF !important;
+}
+
+.excel-corner {
+  background: #F7F8FA !important;
+  border-color: #E4E9EF !important;
+}
+
+.excel-header {
+  background: #F7F8FA !important;
+  border-color: #E4E9EF !important;
+  color: var(--text-secondary) !important;
+}
+
+.excel-header:hover {
+  background: #EEF2F6 !important;
+}
+
+.excel-row-header {
+  background: #F7F8FA !important;
+  border-color: #E4E9EF !important;
+  color: var(--text-tertiary) !important;
+}
+
+.excel-row-header:hover {
+  background: #EEF2F6 !important;
+}
+
+.excel-selection {
+  border-color: var(--accent-primary) !important;
+  background: rgba(33, 115, 70, 0.10) !important;
+}
+
+.excel-context-menu {
+  background: #FFFFFF !important;
+  border-color: var(--border-primary) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.excel-context-menu button {
+  color: var(--text-secondary) !important;
+}
+
+.excel-context-menu button:hover {
+  background: var(--hover-bg) !important;
+}
+
+.excel-context-menu .divider {
+  border-color: var(--border-primary) !important;
+}
+
+/* ===== AI 助手面板（战略性配色见 sheetbot-ai-panel.css） ===== */
+.ai-panel-header {
+  border-color: var(--border-primary) !important;
+}
+
+.ai-panel-title {
+  color: var(--text-primary) !important;
+}
+
+.ai-panel-header .close-btn {
+  color: var(--text-tertiary) !important;
+}
+
+.ai-panel-header .close-btn:hover {
+  color: var(--text-primary) !important;
+  background: var(--hover-bg) !important;
+}
+
+.ai-header-icon {
+  color: var(--accent-primary) !important;
+}
+
+.ai-view-badge {
+  background: var(--accent-bg) !important;
+  color: var(--accent-primary) !important;
+}
+
+.ai-close-btn {
+  color: var(--text-tertiary) !important;
+}
+
+.ai-close-btn:hover {
+  color: var(--text-primary) !important;
+}
+
+.ai-welcome {
+  color: var(--text-tertiary) !important;
+}
+
+.ai-welcome-icon {
+  color: var(--text-disabled) !important;
+}
+
+.ai-welcome-title {
+  color: var(--text-primary) !important;
+}
+
+.ai-welcome-hint {
+  color: var(--accent-primary) !important;
+}
+
+.ai-preset select {
+  background: var(--bg-secondary) !important;
+  border-color: var(--border-secondary) !important;
+  color: var(--text-secondary) !important;
+}
+
+.ai-hint {
+  color: var(--text-disabled) !important;
+}
+
+.ai-msg.user,
+.ai-message.user {
+  background: var(--accent-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+.ai-msg.assistant,
+.ai-message.assistant {
+  background: var(--bg-primary) !important;
+  color: var(--text-secondary) !important;
+  border-left-color: var(--accent-primary) !important;
+}
+
+.ai-msg code,
+.ai-message code,
+.ai-message.assistant code {
+  background: #EEF2F6 !important;
+  color: var(--accent-active) !important;
+}
+
+.ai-msg pre,
+.ai-message pre,
+.ai-message.assistant pre {
+  background: #F7F8FA !important;
+  border-color: var(--border-primary) !important;
+}
+
+.ai-msg pre code,
+.ai-message pre code {
+  color: var(--text-secondary) !important;
+}
+
+.ai-msg h1, .ai-msg h2, .ai-msg h3, .ai-msg h4,
+.ai-message h1, .ai-message h2, .ai-message h3, .ai-message h4,
+.ai-message.assistant h1, .ai-message.assistant h2,
+.ai-message.assistant h3, .ai-message.assistant h4 {
+  color: var(--text-primary) !important;
+}
+
+.ai-msg p, .ai-message p,
+.ai-message.assistant p,
+.ai-msg li, .ai-message li,
+.ai-message.assistant li {
+  color: var(--text-secondary) !important;
+}
+
+.ai-execution-status-bar {
+  background: var(--bg-tertiary) !important;
+  border-top-color: var(--border-primary) !important;
+}
+
+.ai-execution-status-bar .ai-exec-label {
+  color: var(--text-secondary) !important;
+}
+
+.ai-execution-status-bar .ai-exec-op {
+  color: var(--text-tertiary) !important;
+}
+
+.ai-input-area {
+  background: var(--bg-secondary) !important;
+  border-top-color: var(--border-primary) !important;
+}
+
+.ai-input-area textarea,
+.ai-input-area input {
+  background: var(--bg-primary) !important;
+  border-color: var(--border-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+.ai-input-area textarea:focus,
+.ai-input-area input:focus {
+  border-color: var(--accent-primary) !important;
+}
+
+.ai-send-btn {
+  background: var(--accent-primary) !important;
+  color: #FFFFFF !important;
+}
+
+.ai-send-btn:hover {
+  background: var(--accent-hover) !important;
+}
+
+/* ===== 预设指令卡片 ===== */
+.goal-preset-card {
+  background: var(--bg-secondary) !important;
+  border-color: var(--border-primary) !important;
+  color: var(--text-secondary) !important;
+}
+
+.goal-preset-card:hover {
+  border-color: var(--accent-primary) !important;
+  background: var(--accent-bg) !important;
+}
+
+.goal-preset-card .goal-preset-title {
+  color: var(--text-primary) !important;
+}
+
+.goal-preset-card .goal-preset-desc {
+  color: var(--text-tertiary) !important;
+}
+
+/* ===== 状态栏（StatusBar.jsx 使用 .status-bar） ===== */
+.status-bar {
+  background: var(--bg-tertiary) !important;
+  border-top: 1px solid var(--border-primary) !important;
+  color: var(--text-secondary) !important;
+}
+
+.status-item {
+  color: var(--text-secondary) !important;
+}
+
+.status-item.hint {
+  color: var(--text-tertiary) !important;
+}
+
+.status-stat {
+  background: transparent !important;
+  border: none !important;
+}
+
+.status-stat .stat-label,
+.status-stat .stat-value {
+  color: var(--text-tertiary) !important;
+}
+
+/* ===== 报表视角 chips ===== */
+.report-perspective-header {
+  color: var(--text-primary) !important;
+}
+
+.report-perspective-chip {
+  border-color: var(--border-secondary) !important;
+  background: var(--bg-primary) !important;
+  color: var(--text-secondary) !important;
+}
+
+.report-perspective-chip:hover {
+  border-color: var(--accent-primary) !important;
+  color: var(--accent-primary) !important;
+  background: var(--accent-bg) !important;
+}
+
+.report-perspective-hint {
+  color: var(--text-tertiary) !important;
+}
+
+.ai-perspective-icon {
+  color: var(--accent-primary) !important;
+}
+
+/* ===== AI 底部输入区 ===== */
+.ai-footer-area {
+  border-top-color: var(--border-primary) !important;
+  background: var(--bg-tertiary) !important;
+}
+
+.ai-operation-label {
+  color: var(--text-primary) !important;
+}
+
+.ai-footer-textarea {
+  background: var(--bg-secondary) !important;
+  border-color: var(--border-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+.ai-footer-textarea:focus {
+  border-color: var(--accent-primary) !important;
+}
+
+.ai-footer-textarea::placeholder {
+  color: var(--text-disabled) !important;
+}
+
+.ai-footer-textarea:disabled {
+  background: var(--bg-primary) !important;
+  color: var(--text-disabled) !important;
+}
+
+.ai-footer-send-btn {
+  background: var(--accent-primary) !important;
+}
+
+.ai-footer-send-btn:hover:not(:disabled) {
+  background: var(--accent-hover) !important;
+}
+
+.ai-footer-send-btn:disabled {
+  background: var(--border-primary) !important;
+  color: var(--text-disabled) !important;
+}
+
+/* ===== 预设指令列表（面板内配色由 sheetbot-ai-panel.css 接管） ===== */
+.goal-preset-row {
+  color: var(--text-secondary) !important;
+}
+
+.goal-preset-row:hover:not(:disabled) {
+  color: var(--text-primary) !important;
+}
+
+.goal-ai-suggest-wrap {
+  border-color: rgba(217, 119, 6, 0.35) !important;
+  background: linear-gradient(135deg, #FFFBEB 0%, #FEFCE8 100%) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.goal-ai-suggest-trigger {
+  color: #92400E !important;
+}
+
+.goal-ai-suggest-trigger:hover:not(:disabled) {
+  color: #78350F !important;
+}
+
+.goal-ai-suggest-icon {
+  color: #D97706 !important;
+  filter: none !important;
+}
+
+.goal-ai-suggest-title {
+  text-shadow: none !important;
+}
+
+.ai-panel .goal-ai-suggest-select,
+.goal-ai-suggest-select {
+  background-color: var(--bg-secondary) !important;
+  border: 1px solid var(--border-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+.ai-panel .goal-ai-suggest-select:focus,
+.goal-ai-suggest-select:focus {
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 0 0 2px rgba(33, 115, 70, 0.14) !important;
+}
+
+.ai-panel .goal-ai-suggest-select option,
+.goal-ai-suggest-select option {
+  background: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+.goal-ai-suggest-error {
+  color: #B91C1C !important;
+  background: #FEF2F2 !important;
+  border: 1px solid #FECACA !important;
+}
+
+.goal-preset-select {
+  background: var(--bg-secondary) !important;
+  border-color: var(--border-secondary) !important;
+  color: var(--text-secondary) !important;
+}
+
+/* ===== 浮层：通知 / 系统配置 / 用户中心 ===== */
+.notification-panel,
+.system-config-panel,
+.user-center-panel {
+  background: var(--bg-secondary) !important;
+  border-color: var(--border-primary) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.notification-panel-title,
+.system-config-panel-title,
+.user-center-panel-title {
+  color: var(--text-primary) !important;
+}
+
+.notification-panel-action,
+.system-config-panel-action,
+.user-center-panel-action {
+  color: var(--text-secondary) !important;
+}
+
+.notification-panel-action:hover,
+.system-config-panel-action:hover,
+.user-center-panel-action:hover {
+  background: var(--hover-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+.system-config-panel-body,
+.notification-panel-body,
+.user-center-panel-body {
+  color: var(--text-secondary) !important;
+}
+
+.system-config-field label,
+.config-field-label {
+  color: var(--text-primary) !important;
+}
+
+.system-config-field select,
+.system-config-field input {
+  background: var(--bg-primary) !important;
+  border-color: var(--border-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* ===== 大文件指示条 ===== */
+.ai-panel .large-file-indicator {
+  background: var(--bg-primary) !important;
+  border-color: var(--border-primary) !important;
+  color: var(--text-secondary) !important;
+}
+
+.ai-panel .large-file-indicator .file-name {
+  color: var(--text-primary) !important;
+}
+
+.ai-panel .large-file-indicator .file-info {
+  color: var(--text-tertiary) !important;
+}
+
+/* ===== 状态栏 ===== */
+.airtable-status-bar {
+  color: var(--text-secondary) !important;
+}
+
+/* ===== Univer 顶栏嵌入按钮（浅色） ===== */
+html.sheetbot-univer-ribbon-embed
+  .header-action-bar.univer-ribbon-embed
+  > button.header-univer-toolbar-icon-btn {
+  color: var(--text-secondary) !important;
+}
+
+html.sheetbot-univer-ribbon-embed
+  .header-action-bar.univer-ribbon-embed
+  > button.header-univer-toolbar-icon-btn:hover:not(:disabled) {
+  background: var(--hover-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+/* ===== 对话框 / 下拉 ===== */
+.new-dropdown,
+.excel-dialog,
+.find-replace-dialog {
+  background: var(--bg-secondary) !important;
+  border-color: var(--border-primary) !important;
+  color: var(--text-secondary) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.new-dropdown-item:hover {
+  background: var(--hover-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+/* ===== AI 执行状态条细节 ===== */
+.ai-execution-status-bar .ai-exec-progress {
+  background: var(--accent-primary) !important;
+}
+
+.ai-msg .thinking,
+.ai-message .thinking {
+  color: var(--text-tertiary) !important;
+}
+
+.ai-panel .ai-message.ai-message--prompt {
+  background: #FFFBEB !important;
+  border-color: rgba(217, 119, 6, 0.35) !important;
+  color: #78350F !important;
+}
+
+/* ===== 浅色滚动条 — 全局 + 平台视图（对齐 excel-container） ===== */
+body,
+.app-layout,
+.excel-container,
+.report-view,
+.pres-view,
+.collect-view,
+.connect-view,
+.bw-view,
+.report-content,
+.pres-template-gallery,
+.collect-building-body,
+.collect-builder-col,
+.collect-preview-col,
+.connect-home,
+.bw-body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sheetbot-scrollbar-thumb) var(--sheetbot-scrollbar-track);
+}
+
+body ::-webkit-scrollbar,
+.app-layout ::-webkit-scrollbar,
+.excel-container ::-webkit-scrollbar,
+.report-view ::-webkit-scrollbar,
+.pres-view ::-webkit-scrollbar,
+.collect-view ::-webkit-scrollbar,
+.connect-view ::-webkit-scrollbar,
+.bw-view ::-webkit-scrollbar {
+  width: var(--sheetbot-scrollbar-size);
+  height: var(--sheetbot-scrollbar-size);
+}
+
+body ::-webkit-scrollbar-track,
+.app-layout ::-webkit-scrollbar-track,
+.excel-container ::-webkit-scrollbar-track,
+.report-view ::-webkit-scrollbar-track,
+.pres-view ::-webkit-scrollbar-track,
+.collect-view ::-webkit-scrollbar-track,
+.connect-view ::-webkit-scrollbar-track,
+.bw-view ::-webkit-scrollbar-track {
+  background: var(--sheetbot-scrollbar-track);
+}
+
+body ::-webkit-scrollbar-thumb,
+.app-layout ::-webkit-scrollbar-thumb,
+.excel-container ::-webkit-scrollbar-thumb,
+.report-view ::-webkit-scrollbar-thumb,
+.pres-view ::-webkit-scrollbar-thumb,
+.collect-view ::-webkit-scrollbar-thumb,
+.connect-view ::-webkit-scrollbar-thumb,
+.bw-view ::-webkit-scrollbar-thumb {
+  background: var(--sheetbot-scrollbar-thumb);
+  border-radius: 4px;
+}
+
+body ::-webkit-scrollbar-thumb:hover,
+.app-layout ::-webkit-scrollbar-thumb:hover,
+.excel-container ::-webkit-scrollbar-thumb:hover,
+.report-view ::-webkit-scrollbar-thumb:hover,
+.pres-view ::-webkit-scrollbar-thumb:hover,
+.collect-view ::-webkit-scrollbar-thumb:hover,
+.connect-view ::-webkit-scrollbar-thumb:hover,
+.bw-view ::-webkit-scrollbar-thumb:hover {
+  background: var(--sheetbot-scrollbar-thumb-hover);
+}
+
+body ::-webkit-scrollbar-corner,
+.app-layout ::-webkit-scrollbar-corner,
+.excel-container ::-webkit-scrollbar-corner,
+.report-view ::-webkit-scrollbar-corner,
+.pres-view ::-webkit-scrollbar-corner,
+.collect-view ::-webkit-scrollbar-corner,
+.connect-view ::-webkit-scrollbar-corner,
+.bw-view ::-webkit-scrollbar-corner {
+  background: var(--sheetbot-scrollbar-track);
+}

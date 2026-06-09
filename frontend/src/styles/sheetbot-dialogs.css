@@ -1,0 +1,196 @@
+/* ============================================================================
+ * 系统对话框 — 浅色统一规范
+ * 覆盖 index.css 中遗留深色 fallback（--panel-bg / #1e1e1e 等）
+ * ============================================================================ */
+
+/* ---- 通用遮罩 ---- */
+.unsaved-confirm-overlay,
+.fm-overlay,
+.help-modal-overlay,
+.report-modal-overlay,
+.report-share-overlay,
+.upload-mode-overlay,
+.announcement-modal-overlay,
+.collect-edit-modal-mask {
+  background: rgba(15, 23, 42, 0.45) !important;
+  backdrop-filter: blur(2px);
+}
+
+/* ---- 未保存确认 ---- */
+.unsaved-confirm-dialog {
+  background: var(--bg-secondary, #FFFFFF) !important;
+  border: 1px solid var(--border-primary, #E4E9EF) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--shadow-md, 0 8px 24px rgba(15, 23, 42, 0.12)) !important;
+}
+
+.unsaved-confirm-title {
+  color: var(--text-primary, #0F172A) !important;
+  font-size: 17px !important;
+}
+
+.unsaved-confirm-body {
+  color: var(--text-secondary, #334155) !important;
+}
+
+.unsaved-btn {
+  border-color: var(--border-secondary, #D5DCE6) !important;
+  font-weight: 500;
+}
+
+.unsaved-btn.cancel {
+  background: var(--bg-secondary, #FFFFFF) !important;
+  color: var(--text-secondary, #334155) !important;
+}
+
+.unsaved-btn.cancel:hover {
+  background: var(--hover-bg, #EEF2F6) !important;
+  color: var(--text-primary, #0F172A) !important;
+}
+
+.unsaved-btn.discard {
+  color: #DC2626 !important;
+  border-color: #FCA5A5 !important;
+  background: #FEF2F2 !important;
+}
+
+.unsaved-btn.discard:hover {
+  background: #FEE2E2 !important;
+}
+
+.unsaved-btn.save {
+  background: var(--accent-primary, #217346) !important;
+  color: #FFFFFF !important;
+  border-color: transparent !important;
+}
+
+.unsaved-btn.save:hover {
+  background: var(--accent-hover, #1B5F3A) !important;
+  filter: none !important;
+}
+
+/* ---- 自定义公式弹窗 ---- */
+.fm-dialog {
+  background: var(--bg-secondary, #FFFFFF) !important;
+  border-color: var(--border-primary, #E4E9EF) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.fm-title {
+  color: var(--text-primary, #0F172A) !important;
+}
+
+.fm-close {
+  color: var(--text-tertiary, #475569) !important;
+}
+
+.fm-close:hover {
+  color: var(--text-primary, #0F172A) !important;
+  background: var(--hover-bg, #EEF2F6) !important;
+}
+
+.fm-list,
+.fm-list-toolbar,
+.fm-detail-toolbar,
+.fm-header {
+  border-color: var(--border-primary, #E4E9EF) !important;
+}
+
+.fm-list-item {
+  color: var(--text-secondary, #334155) !important;
+}
+
+.fm-list-item:hover {
+  background: var(--hover-bg, #EEF2F6) !important;
+}
+
+.fm-list-item.active {
+  color: var(--accent-primary, #217346) !important;
+}
+
+.fm-placeholder-title {
+  color: var(--text-secondary, #334155) !important;
+}
+
+/* ---- 帮助 / 报表弹窗 ---- */
+.help-modal,
+.report-modal {
+  background: var(--bg-secondary, #FFFFFF) !important;
+  border: 1px solid var(--border-primary, #E4E9EF) !important;
+  color: var(--text-secondary, #334155) !important;
+}
+
+.help-modal-header h2,
+.help-modal-header h3,
+.report-modal-header h2 {
+  color: var(--text-primary, #0F172A) !important;
+}
+
+.help-modal-content,
+.help-modal-sidebar {
+  color: var(--text-secondary, #334155) !important;
+}
+
+.report-modal-close,
+.help-modal-close {
+  color: var(--text-tertiary, #475569) !important;
+}
+
+.report-modal-close:hover {
+  background: var(--hover-bg, #EEF2F6) !important;
+  color: var(--text-primary, #0F172A) !important;
+}
+
+/* ---- 上传模式选择 ---- */
+.upload-mode-dialog {
+  box-shadow: var(--shadow-md) !important;
+}
+
+.upload-mode-card {
+  background: var(--bg-primary) !important;
+  border-color: var(--border-primary) !important;
+  color: var(--text-secondary) !important;
+}
+
+.upload-mode-card:hover {
+  border-color: var(--accent-primary) !important;
+  background: var(--accent-bg) !important;
+}
+
+.upload-mode-card-title {
+  color: var(--text-primary) !important;
+}
+
+/* ---- 公告弹窗 ---- */
+.announcement-modal {
+  background: var(--bg-secondary, #FFFFFF) !important;
+  border-color: var(--border-primary, #E4E9EF) !important;
+}
+
+.announcement-modal-title {
+  color: var(--text-primary, #0F172A) !important;
+}
+
+.announcement-modal-text {
+  color: var(--text-secondary, #334155) !important;
+}
+
+.announcement-modal-close:hover {
+  background: var(--hover-bg, #EEF2F6) !important;
+}
+
+/* ---- 收集编辑弹窗 ---- */
+.collect-edit-modal {
+  background: var(--bg-secondary, #FFFFFF) !important;
+  border: 1px solid var(--border-primary, #E4E9EF) !important;
+  color: var(--text-secondary, #334155) !important;
+}
+
+.collect-edit-modal-header {
+  border-bottom: 1px solid var(--border-primary, #E4E9EF) !important;
+  color: var(--text-primary, #0F172A) !important;
+}
+
+.collect-edit-modal-footer {
+  border-top: 1px solid var(--border-primary, #E4E9EF) !important;
+}

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# 允许搜索引擎抓取静态资源，确保页面可完整渲染
+Allow: /images/
+Allow: /assets/
+
+Sitemap: /sitemap.xml

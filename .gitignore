@@ -1,0 +1,118 @@
+# ==============================
+# OS / Editor
+# ==============================
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+.cursor/
+
+# ==============================
+# Python
+# ==============================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# ==============================
+# Node / Frontend
+# ==============================
+node_modules/
+node_global/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build artifacts
+dist/
+build/
+.docusaurus/
+.cache/
+coverage/
+node_cache/
+
+# ==============================
+# Runtime / Temp / Logs
+# ==============================
+*.log
+logs/
+tmp/
+temp/
+md/
+.backend.pid
+.frontend.pid
+
+# ==============================
+# UGC / User-generated content（禁止入库）
+# ==============================
+uploads/excel_files/
+uploads/pptx_files/
+uploads/report_files/
+uploads/word_files/
+!uploads/demo/
+!uploads/demo/README.md
+!uploads/demo/.gitkeep
+backend/uploads/
+
+# ==============================
+# Environment / Secrets / Certs
+# ==============================
+.env
+.env.*
+!.env.example
+sync.local.env
+sync_config.jsonc
+certs/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# ==============================
+# Archives / binaries
+# ==============================
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.exe
+*.dll
+*.dylib
+
+# ==============================
+# Playwright / E2E artifacts
+# ==============================
+playwright-report/
+test-results/
+blob-report/
+
+# ==============================
+# Database dumps（禁止含用户数据）
+# ==============================
+db/*_all.sql
+db/*.dump
+db/*.sql.gz
+
+# ==============================
+# IDE / local tooling
+# ==============================
+frontend/public/help/

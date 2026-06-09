@@ -1,0 +1,99 @@
+/* ============================================================================
+ * 平台视图内嵌工具栏（顶栏下方、内容区顶部）
+ * ============================================================================ */
+
+.platform-view-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  box-sizing: border-box;
+  background: var(--bg-secondary, #FFFFFF);
+  border: 1px solid var(--border-primary, #E4E9EF);
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(15, 23, 42, 0.05));
+  flex-shrink: 0;
+}
+
+.platform-toolbar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--border-secondary, #D5DCE6);
+  border-radius: 8px;
+  background: var(--bg-primary, #F4F6F9);
+  color: var(--text-secondary, #334155);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.platform-toolbar-btn:hover:not(:disabled):not(.is-disabled) {
+  background: var(--hover-bg, #EEF2F6);
+  border-color: var(--accent-primary, #217346);
+  color: var(--text-primary, #0F172A);
+}
+
+.platform-toolbar-btn.is-active {
+  background: var(--accent-bg, rgba(33, 115, 70, 0.08));
+  border-color: var(--accent-primary, #217346);
+  color: var(--accent-primary, #217346);
+}
+
+.platform-toolbar-btn:disabled,
+.platform-toolbar-btn.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.report-content-inner > .platform-view-toolbar {
+  margin-bottom: 12px;
+}
+
+/* 各平台视图内：保留与截图1一致的圆角卡片，仅取消贴边拉伸 */
+.pres-view > .platform-view-toolbar,
+.collect-view > .platform-view-toolbar,
+.connect-view > .platform-view-toolbar {
+  margin: 0 0 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border-primary, #E4E9EF);
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(15, 23, 42, 0.05));
+  background: var(--bg-secondary, #FFFFFF);
+}
+
+.bw-view > .platform-view-toolbar {
+  flex-shrink: 0;
+  margin: 0;
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  box-shadow: none;
+  border-bottom: 1px solid var(--border-primary, #E4E9EF);
+}
+
+.platform-toolbar-btn {
+  background: var(--bg-secondary, #FFFFFF);
+  color: var(--text-secondary, #475569);
+  border-color: var(--border-secondary, #D5DCE6);
+}
+
+.platform-toolbar-btn:hover:not(:disabled):not(.is-disabled) {
+  background: var(--hover-bg, #F8FAFC);
+  border-color: #94A3B8;
+  color: var(--text-primary, #0F172A);
+}
+
+.platform-toolbar-btn.is-disabled,
+.platform-toolbar-btn:disabled {
+  background: var(--bg-primary, #F4F6F9);
+  color: var(--text-disabled, #94A3B8);
+  border-color: var(--border-secondary, #E4E9EF);
+  opacity: 1;
+}

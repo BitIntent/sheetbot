@@ -1,0 +1,100 @@
+/*
+ * SheetBot + Univer：Ribbon 外观微调（在 Univer 主题 CSS 之后加载）
+ * -------------------------------------------------------------------------- */
+
+/* ============================================================
+ * Ribbon 工具栏：永久深色锁定
+ *
+ * 仅锁定 header[data-u-comp="headerbar"]（Ribbon 按钮区）。
+ * 公式栏（formula-bar）不做强制覆盖：Univer 用 Canvas 渲染公式内
+ * 文本，CSS color 对 Canvas 无效；强制背景而不能改文字色会导致黑底
+ * 黑字。让公式栏跟随当前 darkMode 自然渲染（深色主题→浅字，浅色主
+ * 题→深字），两种状态都可读。
+ *
+ * 原理：CSS 自定义属性在元素范围内可覆盖 :root 继承值；
+ *       JS（forceToolbarAlwaysDark）在 Univer Steady 后为 headerbar
+ *       元素补加 .univer-dark，激活深色工具类。
+ * ============================================================ */
+header[data-u-comp="headerbar"] {
+  --univer-white:        #FFFFFF;
+  --univer-black:        #000000;
+  --univer-gray-50:      #F9FAFB;
+  --univer-gray-100:     #EEEFF1;
+  --univer-gray-200:     #E3E5EA;
+  --univer-gray-300:     #A8B0BD;
+  --univer-gray-400:     #7D8698;
+  --univer-gray-500:     #4E5565;
+  --univer-gray-600:     #31363F;
+  --univer-gray-700:     #272A2F;
+  --univer-gray-800:     #1F2124;
+  --univer-gray-900:     #1B1C1F;
+  --univer-primary-50:   #F3F5FF;
+  --univer-primary-100:  #E9EDFF;
+  --univer-primary-200:  #D2DAFA;
+  --univer-primary-300:  #BAC6F8;
+  --univer-primary-400:  #6280F9;
+  --univer-primary-500:  #466AF7;
+  --univer-primary-600:  #2C53F1;
+  --univer-primary-700:  #143EE3;
+  --univer-primary-800:  #083AD1;
+  --univer-primary-900:  #1033BF;
+}
+
+/* 字体族/字号选择器：硬约束最大宽度，与下拉菜单视觉等宽 */
+.univer-toolbar-button-selector-root,
+.univer-toolbar-selector-root {
+  max-width: 3.5rem !important;
+  overflow: hidden !important;
+}
+
+/* --------------------------------------------------------------------------
+ * 顶栏「保存」：与 Univer Ribbon 内图标按钮（h-8 / rounded-md）视觉对齐
+ * -------------------------------------------------------------------------- */
+html.sheetbot-univer-ribbon-embed
+  .header-action-bar.univer-ribbon-embed
+  > button.header-univer-toolbar-icon-btn {
+  box-sizing: border-box;
+  height: 32px;
+  width: 32px;
+  min-width: 32px;
+  padding: 0;
+  gap: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary, #475569);
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+html.sheetbot-univer-ribbon-embed
+  .header-action-bar.univer-ribbon-embed
+  > button.header-univer-toolbar-icon-btn:hover:not(:disabled) {
+  background: var(--hover-bg, #EEF2F6);
+  color: var(--text-primary, #0F172A);
+}
+
+html.sheetbot-univer-ribbon-embed
+  .header-action-bar.univer-ribbon-embed
+  > button.header-univer-toolbar-icon-btn:disabled,
+html.sheetbot-univer-ribbon-embed
+  .header-action-bar.univer-ribbon-embed
+  > button.header-univer-toolbar-icon-btn.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+ * 左上角交汇补丁：已废弃（2026-04-01）
+ *
+ * DOM overlay（box-shadow/border）的抗锯齿与 Canvas ctx.stroke() 使用不同
+ * 的亚像素对齐算法，导致两者在任何缩放倍率下都无法像素一致。
+ * Univer 引擎内部的 RowHeaderLayout / ColumnHeaderLayout 统一使用
+ * setLineWidthByPrecision(1) + FIX_ONE_PIXEL_BLUR_OFFSET 绘制 1px 分隔线，
+ * 与网格线线宽一致，无需额外 DOM 补丁。
+ * -------------------------------------------------------------------------- */

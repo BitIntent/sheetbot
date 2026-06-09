@@ -1,0 +1,527 @@
+/* ============================================================================
+ * 我要连接 - 主视图样式
+ * 深色主题，参照 collect.css 设计规范
+ * ============================================================================ */
+
+/* ── 根容器 ──────────────────────────────────────────────── */
+.connect-view {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg-primary, #111827);
+  color: var(--text-secondary, #ccc);
+}
+
+/* ── HOME 阶段 ──────────────────────────────────────────── */
+.connect-home {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 32px 16px;
+}
+
+.connect-home.is-file-selected {
+  padding-top: 0;
+}
+
+.connect-hero {
+  text-align: center;
+  padding: 8px 0 0;
+}
+
+.connect-hero-title {
+  font-size: 27px;
+  font-weight: 700;
+  color: var(--text-primary, #e5e5e5);
+  margin-bottom: 12px;
+}
+
+.connect-hero-desc {
+  font-size: 16px;
+  color: var(--text-primary, #e5e5e5);
+  margin-bottom: 0;
+  max-width: none;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.connect-file-note {
+  margin: 12px 0 0;
+  font-size: 16px;
+  color: var(--accent-primary, #4ECDC4);
+}
+
+.connect-selected-actions {
+  padding: 20px 0;
+}
+
+.connect-section-title {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text-primary, #e0e0e0);
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.connect-error {
+  color: #ef4444;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.connect-sync-msg {
+  padding: 0 20px;
+  font-size: 13px;
+  color: #86efac;
+}
+
+/* ── 连接器类型卡片网格 ──────────────────────────────────── */
+.connect-catalog {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+}
+
+.connect-catalog-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 130px;
+  padding: 24px 16px;
+  background: var(--bg-secondary, #1e1e1e);
+  border: 2px solid var(--border-primary, #333);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+  color: inherit;
+}
+
+.connect-catalog-card:hover {
+  border-color: var(--accent-primary, #217346);
+  background: rgba(33, 115, 70, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+}
+
+.connect-catalog-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.connect-catalog-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.connect-catalog-name {
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--text-primary, #e5e5e5);
+}
+
+.connect-catalog-desc {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-secondary, #b3b3b3);
+  text-align: center;
+}
+
+/* ── CONFIGURING 阶段 ───────────────────────────────────── */
+.connect-configuring {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.connect-configuring-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  overflow: hidden;
+}
+
+.connect-form-col {
+  overflow-y: auto;
+  padding: 20px;
+  border-right: 1px solid var(--border-primary, #333);
+}
+
+.connect-mapping-col {
+  overflow-y: auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* ── 配置表单 ────────────────────────────────────────────── */
+.connect-config-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.connect-config-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.connect-config-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-secondary, #aaa);
+}
+
+.connect-required {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+.connect-config-input,
+.connect-config-select,
+.connect-config-textarea {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--bg-secondary, #1e1e1e);
+  border: 1px solid var(--border-primary, #333);
+  border-radius: 6px;
+  color: var(--text-primary, #e0e0e0);
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.connect-config-input:focus,
+.connect-config-select:focus,
+.connect-config-textarea:focus {
+  border-color: var(--accent-primary, #217346);
+}
+
+.connect-config-textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.connect-config-hint {
+  font-size: 14px;
+  color: var(--text-tertiary, #666);
+}
+
+.connect-config-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.connect-webhook-hint {
+  padding: 12px;
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 8px;
+  font-size: 15px;
+  color: #c4b5fd;
+  line-height: 1.5;
+}
+
+.connect-db-guide {
+  padding: 10px 12px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 8px;
+  font-size: 14px;
+  color: #dbeafe;
+  line-height: 1.5;
+}
+
+.connect-db-guide-title {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.connect-db-guide-list {
+  margin: 0;
+  padding-left: 16px;
+}
+
+.connect-db-guide-list li {
+  margin: 3px 0;
+}
+
+.connect-db-guide-note {
+  color: #bfdbfe;
+}
+
+.connect-db-guide code {
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 4px;
+  padding: 0 4px;
+  color: #e2e8f0;
+}
+
+/* ── 测试结果 ────────────────────────────────────────────── */
+.connect-test-result {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.connect-config-actions .collect-btn-ghost,
+.connect-config-actions .collect-btn-primary {
+  font-size: 16px;
+}
+
+.connect-test-result span {
+  white-space: pre-wrap;
+}
+
+.connect-test-result.success {
+  background: rgba(34, 197, 94, 0.1);
+  color: #86efac;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.connect-test-result.error {
+  background: rgba(239, 68, 68, 0.1);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* ── 字段映射面板 ────────────────────────────────────────── */
+.connect-mapping-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.connect-mapping-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.connect-mapping-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary, #e5e5e5);
+}
+
+.connect-mapping-hint {
+  font-size: 14px;
+  color: var(--text-tertiary, #888);
+}
+
+.connect-mapping-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.connect-mapping-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.connect-mapping-input {
+  flex: 1;
+}
+
+.connect-mapping-arrow {
+  flex-shrink: 0;
+  color: var(--text-tertiary, #666);
+}
+
+.connect-mapping-remove {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border-primary, #333);
+  border-radius: 4px;
+  color: var(--text-tertiary, #888);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.connect-mapping-remove:hover {
+  border-color: #ef4444;
+  color: #f87171;
+}
+
+.connect-mapping-add {
+  align-self: flex-start;
+}
+
+/* ── ACTIVE / DETAIL 阶段 ───────────────────────────────── */
+.connect-detail {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.connect-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.connect-detail-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.connect-detail-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary, #e5e5e5);
+  margin: 0;
+}
+
+.connect-detail-status {
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.connect-detail-status.active {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.connect-detail-status.paused {
+  background: rgba(234, 179, 8, 0.15);
+  color: #eab308;
+}
+
+.connect-detail-status.error {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+.connect-detail-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.connect-detail-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  padding: 12px;
+  background: var(--bg-secondary, #1e1e1e);
+  border: 1px solid var(--border-primary, #333);
+  border-radius: 8px;
+}
+
+.connect-detail-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+}
+
+.connect-detail-info-label {
+  font-weight: 600;
+  color: var(--text-tertiary, #888);
+  font-size: 12px;
+}
+
+/* ── Webhook URL ─────────────────────────────────────────── */
+.connect-webhook-url-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.connect-webhook-url-row {
+  display: flex;
+  gap: 6px;
+}
+
+.connect-webhook-url-row .connect-config-input {
+  flex: 1;
+}
+
+/* ── 同步历史 ────────────────────────────────────────────── */
+.connect-jobs-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.connect-jobs-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary, #e5e5e5);
+  margin: 0;
+}
+
+.connect-job-error {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  color: #fca5a5;
+}
+
+/* ── 历史连接器列表 ──────────────────────────────────────── */
+.connect-history {
+  margin-top: 32px;
+}
+
+/* ── 响应式 ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .connect-home {
+    padding: 12px 16px;
+  }
+  .connect-catalog {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .connect-configuring-body {
+    grid-template-columns: 1fr;
+  }
+  .connect-mapping-col {
+    border-top: 1px solid var(--border-primary, #333);
+  }
+}
+
+@media (max-width: 640px) {
+  .connect-catalog {
+    grid-template-columns: 1fr;
+  }
+}

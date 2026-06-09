@@ -1,0 +1,84 @@
+/* ============================================================================
+ * 主题系统 - 浅色工作台 + 品牌绿强调色
+ * 面向企业用户的商业化 SaaS 视觉
+ * ============================================================================ */
+
+:root {
+  /* ===== 背景色系（浅灰偏冷，带微量绿调） ===== */
+  --bg-primary: #F4F6F9;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #FAFBFC;
+  --bg-elevated: #FFFFFF;
+
+  /* ===== 文字色系（WCAG AA 对比度优先） ===== */
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-tertiary: #475569;
+  --text-disabled: #94A3B8;
+
+  /* ===== 强调色（SheetBot 品牌绿） ===== */
+  --accent-primary: #217346;
+  --accent-hover: #1B5F3A;
+  --accent-active: #185A33;
+  --accent-bg: rgba(33, 115, 70, 0.08);
+  --accent-soft: rgba(33, 115, 70, 0.12);
+
+  /* ===== 边框/分隔线 ===== */
+  --border-primary: #E4E9EF;
+  --border-secondary: #D5DCE6;
+
+  /* ===== 交互状态 ===== */
+  --hover-bg: #EEF2F6;
+  --selected-bg: rgba(33, 115, 70, 0.10);
+
+  /* ===== 阴影 ===== */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+
+  /* ===== 侧边栏尺寸 ===== */
+  --sidebar-width: 240px;
+  --sidebar-collapsed-width: 56px;
+
+  /* ===== 顶栏首条分隔线对齐（侧栏 Logo 带 = 主区平台 Tab 行；搜索在灰线下方） ===== */
+  --layout-chrome-band-h: 56px;
+  --airtable-header-nav-pad-top: 8px;
+
+  /* ===== 过渡动画 ===== */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow: 0.3s ease;
+
+  /* ===== 滚动条（与 excel-container 一致） ===== */
+  --sheetbot-scrollbar-size: 8px;
+  --sheetbot-scrollbar-thumb: #C5CDD8;
+  --sheetbot-scrollbar-track: #F1F4F8;
+  --sheetbot-scrollbar-thumb-hover: #94A3B8;
+}
+
+/* ===== 亮色主题（Auth 页面） ===== */
+[data-theme="light"] {
+  --auth-bg-primary: #F8FAFC;
+  --auth-bg-card: #FFFFFF;
+  --auth-text-primary: #0F172A;
+  --auth-text-secondary: #475569;
+  --auth-text-muted: #94A3B8;
+  --auth-border: #E2E8F0;
+  --auth-input-bg: #FFFFFF;
+  --auth-input-border: #E2E8F0;
+  --auth-input-focus: #217346;
+  --auth-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* 认证页深色主题 */
+[data-theme="dark"] {
+  --auth-bg-primary: #0F0F0F;
+  --auth-bg-card: #1A1A1A;
+  --auth-text-primary: #F8FAFC;
+  --auth-text-secondary: #CBD5E1;
+  --auth-text-muted: #64748B;
+  --auth-border: #334155;
+  --auth-input-bg: #252525;
+  --auth-input-border: #334155;
+  --auth-input-focus: #34D399;
+  --auth-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}

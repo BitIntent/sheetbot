@@ -1,0 +1,204 @@
+/* ============================================================================
+ * 平台视图：历史清单 + 列表操作按钮（数据报表 / PPT汇报 / 收集 / 接入 / 批量Word）
+ * 浅色商业化：高对比、白底描边、语义色仅用于 hover / 危险操作
+ * ============================================================================ */
+
+/* ── 历史清单卡片容器（四角圆角，对齐 platform-view-toolbar） ── */
+.report-history-panel,
+.pres-history-panel,
+.form-history {
+  background: var(--bg-secondary, #FFFFFF) !important;
+  border: 1px solid var(--border-primary, #E4E9EF) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(15, 23, 42, 0.05)) !important;
+  padding: 16px 18px !important;
+}
+
+.report-history-header h3,
+.pres-history-title,
+.form-history .report-history-header h3 {
+  color: var(--text-primary, #0F172A) !important;
+  font-weight: 600 !important;
+}
+
+.report-history-refresh-link,
+.pres-history-refresh-link,
+.fh-refresh-link {
+  color: var(--accent-primary, #217346) !important;
+}
+
+.report-history-table th,
+.form-history .report-history-table th,
+.pres-history-panel .report-history-table th {
+  color: var(--text-tertiary, #64748B) !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  border-bottom: 1px solid var(--border-primary, #E4E9EF) !important;
+}
+
+.report-history-table td,
+.form-history .report-history-table td,
+.pres-history-panel .report-history-table td {
+  color: var(--text-secondary, #334155) !important;
+  font-size: 13px !important;
+  border-bottom: 1px solid var(--border-secondary, #EEF2F6) !important;
+}
+
+.report-history-empty,
+.form-history .report-history-empty,
+.pres-history-empty {
+  color: var(--text-tertiary, #64748B) !important;
+}
+
+.report-history-open-link,
+.form-history .report-history-open-link {
+  color: var(--accent-primary, #217346) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+.report-history-open-link:hover:not(:disabled),
+.form-history .report-history-open-link:hover:not(:disabled) {
+  color: #1a5c38 !important;
+  text-decoration: underline !important;
+}
+
+/* ── 列表行操作：打开 / 修改 / 删除 ── */
+.ui-history-action-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  min-width: 64px !important;
+  height: 32px !important;
+  padding: 0 12px !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--border-secondary, #D5DCE6) !important;
+  background: var(--bg-secondary, #FFFFFF) !important;
+  color: var(--text-secondary, #334155) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
+}
+
+.ui-history-action-btn svg {
+  flex-shrink: 0;
+  color: currentColor !important;
+  opacity: 0.85;
+}
+
+.ui-history-action-btn:hover:not(:disabled) {
+  transform: none !important;
+  background: var(--hover-bg, #F8FAFC) !important;
+  border-color: #94A3B8 !important;
+  color: var(--text-primary, #0F172A) !important;
+}
+
+.ui-history-action-btn:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(33, 115, 70, 0.2) !important;
+}
+
+.ui-history-action-btn:disabled {
+  opacity: 0.45 !important;
+  cursor: not-allowed !important;
+}
+
+/* 打开 */
+.ui-history-action-btn-open:hover:not(:disabled) {
+  border-color: var(--accent-primary, #217346) !important;
+  color: var(--accent-primary, #217346) !important;
+  background: var(--accent-bg, rgba(33, 115, 70, 0.06)) !important;
+}
+
+/* 修改 */
+.ui-history-action-btn-edit {
+  border-color: #BFDBFE !important;
+  color: #1D4ED8 !important;
+  background: #FFFFFF !important;
+}
+
+.ui-history-action-btn-edit:hover:not(:disabled) {
+  border-color: #3B82F6 !important;
+  color: #1E40AF !important;
+  background: #EFF6FF !important;
+}
+
+/* 删除 */
+.ui-history-action-btn-danger {
+  border-color: #FECACA !important;
+  color: #B91C1C !important;
+  background: #FFFFFF !important;
+}
+
+.ui-history-action-btn-danger:hover:not(:disabled) {
+  border-color: #F87171 !important;
+  color: #991B1B !important;
+  background: #FEF2F2 !important;
+}
+
+.report-history-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── 分页 ── */
+.report-history-pagination,
+.form-history .report-history-pagination,
+.pres-history-panel .report-history-pagination {
+  margin-top: 12px;
+}
+
+.report-history-page-btn,
+.form-history .report-history-page-btn,
+.pres-history-panel .report-history-page-btn {
+  border: 1px solid var(--border-secondary, #D5DCE6) !important;
+  background: var(--bg-secondary, #FFFFFF) !important;
+  color: var(--text-secondary, #334155) !important;
+  border-radius: 8px !important;
+  padding: 6px 12px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+}
+
+.report-history-page-btn:hover:not(:disabled),
+.form-history .report-history-page-btn:hover:not(:disabled) {
+  border-color: var(--accent-primary, #217346) !important;
+  color: var(--accent-primary, #217346) !important;
+  background: var(--accent-bg, rgba(33, 115, 70, 0.06)) !important;
+}
+
+.report-history-page-btn:disabled {
+  opacity: 0.45 !important;
+  cursor: not-allowed !important;
+}
+
+.report-history-page-info,
+.form-history .report-history-page-info {
+  color: var(--text-tertiary, #64748B) !important;
+  font-size: 13px !important;
+}
+
+/* ── 空状态页「点击开始」 ── */
+.view-start-action-btn {
+  border: 1px solid var(--accent-primary, #217346) !important;
+  background: var(--bg-secondary, #FFFFFF) !important;
+  color: var(--accent-primary, #217346) !important;
+  border-radius: 999px !important;
+  padding: 5px 16px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(15, 23, 42, 0.05)) !important;
+}
+
+.view-start-action-btn:hover {
+  background: var(--accent-bg, rgba(33, 115, 70, 0.08)) !important;
+  border-color: #1a5c38 !important;
+  color: #1a5c38 !important;
+}

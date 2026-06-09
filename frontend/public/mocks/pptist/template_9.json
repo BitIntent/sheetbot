@@ -1,0 +1,591 @@
+{
+  "title": "未命名演示文稿",
+  "width": 1000,
+  "height": 562.5,
+  "theme": {
+    "themeColors": ["#00E5FF", "#7C4DFF"],
+    "fontColor": "#E5E7EB",
+    "fontName": "Microsoft YaHei",
+    "backgroundColor": "#0B1020",
+    "shadow": { "h": 3, "v": 3, "blur": 2, "color": "#808080" },
+    "outline": { "width": 2, "color": "#525252", "style": "solid" }
+  },
+  "slides": [
+    {
+      "id": "t9-cover",
+      "type": "cover",
+      "background": { "type": "solid", "color": "#0B1020" },
+      "elements": [
+        {
+          "type": "image",
+          "id": "t9-cover-bg",
+          "src": "https://images.pexels.com/photos/35753334/pexels-photo-35753334.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "width": 1000,
+          "height": 562.5,
+          "left": 0,
+          "top": 0,
+          "fixedRatio": true,
+          "rotate": 0,
+          "filters": { "opacity": "28%", "blur": "1px" },
+          "imageType": "background",
+          "lock": true
+        },
+        {
+          "type": "shape",
+          "id": "t9-cover-overlay",
+          "left": 0,
+          "top": 0,
+          "width": 1000,
+          "height": 562.5,
+          "viewBox": [200, 200],
+          "path": "M 0 0 L 200 0 L 200 200 L 0 200 Z",
+          "fill": "rgba(11,16,32,0.82)",
+          "fixedRatio": false,
+          "rotate": 0,
+          "gradient": {
+            "type": "linear",
+            "rotate": 35,
+            "colors": [
+              { "pos": 0, "color": "rgba(124,77,255,0.18)" },
+              { "pos": 55, "color": "rgba(0,229,255,0.10)" },
+              { "pos": 100, "color": "rgba(11,16,32,0.82)" }
+            ]
+          },
+          "lock": true
+        },
+        {
+          "type": "shape",
+          "id": "t9-cover-accent",
+          "left": 48,
+          "top": 88,
+          "width": 10,
+          "height": 210,
+          "viewBox": [200, 200],
+          "path": "M 0 0 L 200 0 L 200 200 L 0 200 Z",
+          "fill": "#00E5FF",
+          "fixedRatio": false,
+          "rotate": 0,
+          "opacity": 0.95,
+          "lock": true
+        },
+        {
+          "type": "text",
+          "id": "t9-cover-title",
+          "left": 72,
+          "top": 128,
+          "width": 856,
+          "height": 120,
+          "content": "<p style=\"\"><span style=\"font-size: 56px;\"><span style=\"font-family: Microsoft YaHei;\"><strong><span style=\"color: #ffffff;\">经营分析汇报</span></strong></span></span></p><p style=\"\"><span style=\"font-size: 20px;\"><span style=\"font-family: Microsoft YaHei;\"><span style=\"color: #A5B4FC;\">Neon Insight • Data-driven Storytelling</span></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#ffffff",
+          "vertical": false,
+          "textType": "title"
+        },
+        {
+          "type": "line",
+          "id": "t9-cover-line",
+          "left": 72,
+          "top": 270,
+          "start": [0, 0],
+          "end": [460, 0],
+          "points": ["", ""],
+          "color": "rgba(0,229,255,0.65)",
+          "style": "solid",
+          "width": 4,
+          "lock": true
+        },
+        {
+          "type": "text",
+          "id": "t9-cover-meta",
+          "left": 560,
+          "top": 466,
+          "width": 368,
+          "height": 68,
+          "content": "<p style=\"text-align: right;\"><span style=\"font-size: 16px;\"><span style=\"font-family: Microsoft YaHei;\"><span style=\"color: rgba(229,231,235,0.85);\">汇报人：XXX&nbsp;&nbsp;|&nbsp;&nbsp;日期：YYYY-MM-DD</span></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#E5E7EB",
+          "vertical": false,
+          "textType": "content"
+        }
+      ]
+    },
+    {
+      "id": "t9-contents",
+      "type": "contents",
+      "background": { "type": "solid", "color": "#0B1020" },
+      "elements": [
+        {
+          "type": "shape",
+          "id": "t9-contents-bar",
+          "left": 0,
+          "top": 0,
+          "width": 56,
+          "height": 562.5,
+          "viewBox": [200, 200],
+          "path": "M 0 0 L 200 0 L 200 200 L 0 200 Z",
+          "fill": "#7C4DFF",
+          "fixedRatio": false,
+          "rotate": 0,
+          "gradient": {
+            "type": "linear",
+            "rotate": 90,
+            "colors": [
+              { "pos": 0, "color": "rgba(124,77,255,0.95)" },
+              { "pos": 100, "color": "rgba(0,229,255,0.95)" }
+            ]
+          },
+          "lock": true
+        },
+        {
+          "type": "text",
+          "id": "t9-contents-title",
+          "left": 92,
+          "top": 72,
+          "width": 820,
+          "height": 90,
+          "content": "<p style=\"\"><span style=\"font-size: 60px;\"><span style=\"font-family: Microsoft YaHei;\"><strong><span style=\"color: #ffffff;\">目录</span></strong></span></span></p><p style=\"\"><span style=\"font-size: 18px;\"><span style=\"font-family: Microsoft YaHei;\"><span style=\"color: rgba(165,180,252,0.9);\">CONTENTS</span></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#ffffff",
+          "vertical": false
+        },
+        {
+          "type": "shape",
+          "id": "t9-c-item-1-badge",
+          "left": 92,
+          "top": 208,
+          "width": 54,
+          "height": 54,
+          "viewBox": [54, 54],
+          "path": "M 8 0 L 46 0 Q 54 0 54 8 L 54 46 Q 54 54 46 54 L 8 54 Q 0 54 0 46 L 0 8 Q 0 0 8 0 Z",
+          "fill": "#00E5FF",
+          "fixedRatio": true,
+          "rotate": 0,
+          "gradient": {
+            "type": "linear",
+            "rotate": 45,
+            "colors": [
+              { "pos": 0, "color": "rgba(0,229,255,1)" },
+              { "pos": 100, "color": "rgba(124,77,255,1)" }
+            ]
+          },
+          "text": {
+            "content": "<p style=\"text-align: center;\"><strong><span style=\"font-size: 22px;\"><span style=\"color: #0B1020;\">01</span></span></strong></p>",
+            "defaultFontName": "Microsoft YaHei",
+            "defaultColor": "#0B1020",
+            "align": "middle",
+            "type": "itemNumber"
+          },
+          "groupId": "t9-c-item-1"
+        },
+        {
+          "type": "text",
+          "id": "t9-c-item-1-text",
+          "left": 158,
+          "top": 208,
+          "width": 760,
+          "height": 54,
+          "content": "<p style=\"\"><span style=\"font-size: 26px;\"><span style=\"font-family: Microsoft YaHei;\"><span style=\"color: #E5E7EB;\">经营概览与关键指标</span></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#E5E7EB",
+          "vertical": false,
+          "groupId": "t9-c-item-1",
+          "textType": "item"
+        },
+        {
+          "type": "shape",
+          "id": "t9-c-item-2-badge",
+          "left": 92,
+          "top": 292,
+          "width": 54,
+          "height": 54,
+          "viewBox": [54, 54],
+          "path": "M 8 0 L 46 0 Q 54 0 54 8 L 54 46 Q 54 54 46 54 L 8 54 Q 0 54 0 46 L 0 8 Q 0 0 8 0 Z",
+          "fill": "#00E5FF",
+          "fixedRatio": true,
+          "rotate": 0,
+          "gradient": {
+            "type": "linear",
+            "rotate": 45,
+            "colors": [
+              { "pos": 0, "color": "rgba(0,229,255,1)" },
+              { "pos": 100, "color": "rgba(124,77,255,1)" }
+            ]
+          },
+          "text": {
+            "content": "<p style=\"text-align: center;\"><strong><span style=\"font-size: 22px;\"><span style=\"color: #0B1020;\">02</span></span></strong></p>",
+            "defaultFontName": "Microsoft YaHei",
+            "defaultColor": "#0B1020",
+            "align": "middle",
+            "type": "itemNumber"
+          },
+          "groupId": "t9-c-item-2"
+        },
+        {
+          "type": "text",
+          "id": "t9-c-item-2-text",
+          "left": 158,
+          "top": 292,
+          "width": 760,
+          "height": 54,
+          "content": "<p style=\"\"><span style=\"font-size: 26px;\"><span style=\"font-family: Microsoft YaHei;\"><span style=\"color: #E5E7EB;\">趋势拆解与波动原因</span></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#E5E7EB",
+          "vertical": false,
+          "groupId": "t9-c-item-2",
+          "textType": "item"
+        },
+        {
+          "type": "shape",
+          "id": "t9-c-item-3-badge",
+          "left": 92,
+          "top": 376,
+          "width": 54,
+          "height": 54,
+          "viewBox": [54, 54],
+          "path": "M 8 0 L 46 0 Q 54 0 54 8 L 54 46 Q 54 54 46 54 L 8 54 Q 0 54 0 46 L 0 8 Q 0 0 8 0 Z",
+          "fill": "#00E5FF",
+          "fixedRatio": true,
+          "rotate": 0,
+          "gradient": {
+            "type": "linear",
+            "rotate": 45,
+            "colors": [
+              { "pos": 0, "color": "rgba(0,229,255,1)" },
+              { "pos": 100, "color": "rgba(124,77,255,1)" }
+            ]
+          },
+          "text": {
+            "content": "<p style=\"text-align: center;\"><strong><span style=\"font-size: 22px;\"><span style=\"color: #0B1020;\">03</span></span></strong></p>",
+            "defaultFontName": "Microsoft YaHei",
+            "defaultColor": "#0B1020",
+            "align": "middle",
+            "type": "itemNumber"
+          },
+          "groupId": "t9-c-item-3"
+        },
+        {
+          "type": "text",
+          "id": "t9-c-item-3-text",
+          "left": 158,
+          "top": 376,
+          "width": 760,
+          "height": 54,
+          "content": "<p style=\"\"><span style=\"font-size: 26px;\"><span style=\"font-family: Microsoft YaHei;\"><span style=\"color: #E5E7EB;\">机会点与行动建议</span></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#E5E7EB",
+          "vertical": false,
+          "groupId": "t9-c-item-3",
+          "textType": "item"
+        },
+        {
+          "type": "line",
+          "id": "t9-contents-footline",
+          "left": 92,
+          "top": 486,
+          "start": [0, 0],
+          "end": [820, 0],
+          "points": ["", ""],
+          "color": "rgba(148,163,184,0.25)",
+          "style": "solid",
+          "width": 1,
+          "lock": true
+        },
+        {
+          "type": "text",
+          "id": "t9-contents-note",
+          "left": 92,
+          "top": 502,
+          "width": 820,
+          "height": 40,
+          "content": "<p style=\"\"><span style=\"font-size: 14px;\"><span style=\"font-family: Microsoft YaHei;\"><span style=\"color: rgba(148,163,184,0.9);\">提示：可在编辑器中直接替换标题与目录项文本</span></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#94A3B8",
+          "vertical": false
+        }
+      ]
+    },
+    {
+      "id": "t9-transition",
+      "type": "transition",
+      "background": { "type": "solid", "color": "#0B1020" },
+      "elements": [
+        {
+          "type": "image",
+          "id": "t9-tr-bg",
+          "src": "https://images.pexels.com/photos/35753334/pexels-photo-35753334.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "width": 1000,
+          "height": 562.5,
+          "left": 0,
+          "top": 0,
+          "fixedRatio": true,
+          "rotate": 0,
+          "filters": { "opacity": "16%", "blur": "1px" },
+          "imageType": "background",
+          "lock": true
+        },
+        {
+          "type": "text",
+          "id": "t9-tr-num",
+          "left": 60,
+          "top": 64,
+          "width": 880,
+          "height": 210,
+          "content": "<p style=\"\"><span style=\"font-size: 160px;\"><span style=\"font-family: Microsoft YaHei;\"><strong><span style=\"color: rgba(124,77,255,0.22);\">01</span></strong></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#7C4DFF",
+          "vertical": false,
+          "textType": "partNumber",
+          "lock": true
+        },
+        {
+          "type": "text",
+          "id": "t9-tr-title",
+          "left": 60,
+          "top": 252,
+          "width": 880,
+          "height": 90,
+          "content": "<p style=\"\"><span style=\"font-size: 54px;\"><span style=\"font-family: Microsoft YaHei;\"><strong><span style=\"color: #ffffff;\">趋势拆解</span></strong></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#ffffff",
+          "vertical": false,
+          "textType": "title"
+        },
+        {
+          "type": "line",
+          "id": "t9-tr-line",
+          "left": 60,
+          "top": 340,
+          "start": [0, 0],
+          "end": [520, 0],
+          "points": ["", ""],
+          "color": "rgba(0,229,255,0.60)",
+          "style": "solid",
+          "width": 4,
+          "lock": true
+        },
+        {
+          "type": "text",
+          "id": "t9-tr-sub",
+          "left": 60,
+          "top": 360,
+          "width": 880,
+          "height": 70,
+          "content": "<p style=\"\"><span style=\"font-size: 16px;\"><span style=\"font-family: Microsoft YaHei;\"><span style=\"color: rgba(229,231,235,0.85);\">将关键指标拆成可解释的结构，找出驱动与异常。</span></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#E5E7EB",
+          "vertical": false,
+          "textType": "content"
+        }
+      ]
+    },
+    {
+      "id": "t9-content-2col",
+      "type": "content",
+      "background": { "type": "solid", "color": "#0B1020" },
+      "elements": [
+        {
+          "type": "text",
+          "id": "t9-c2-title",
+          "left": 60,
+          "top": 44,
+          "width": 880,
+          "height": 64,
+          "content": "<p style=\"\"><span style=\"font-size: 34px;\"><span style=\"font-family: Microsoft YaHei;\"><strong><span style=\"color: #ffffff;\">核心结论</span></strong></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#ffffff",
+          "vertical": false,
+          "textType": "title"
+        },
+        {
+          "type": "line",
+          "id": "t9-c2-title-line",
+          "left": 60,
+          "top": 108,
+          "start": [0, 0],
+          "end": [880, 0],
+          "points": ["", ""],
+          "color": "rgba(148,163,184,0.25)",
+          "style": "solid",
+          "width": 1,
+          "lock": true
+        },
+        {
+          "type": "shape",
+          "id": "t9-c2-card-a",
+          "left": 60,
+          "top": 142,
+          "width": 420,
+          "height": 340,
+          "viewBox": [420, 340],
+          "path": "M 18 0 L 402 0 Q 420 0 420 18 L 420 322 Q 420 340 402 340 L 18 340 Q 0 340 0 322 L 0 18 Q 0 0 18 0 Z",
+          "fill": "rgba(15,23,42,0.55)",
+          "fixedRatio": false,
+          "rotate": 0,
+          "opacity": 1,
+          "lock": false,
+          "shadow": { "h": 2, "v": 2, "blur": 8, "color": "rgba(0,0,0,0.35)" }
+        },
+        {
+          "type": "shape",
+          "id": "t9-c2-card-b",
+          "left": 520,
+          "top": 142,
+          "width": 420,
+          "height": 340,
+          "viewBox": [420, 340],
+          "path": "M 18 0 L 402 0 Q 420 0 420 18 L 420 322 Q 420 340 402 340 L 18 340 Q 0 340 0 322 L 0 18 Q 0 0 18 0 Z",
+          "fill": "rgba(15,23,42,0.55)",
+          "fixedRatio": false,
+          "rotate": 0,
+          "opacity": 1,
+          "lock": false,
+          "shadow": { "h": 2, "v": 2, "blur": 8, "color": "rgba(0,0,0,0.35)" }
+        },
+        {
+          "type": "text",
+          "id": "t9-c2-card-a-title",
+          "left": 84,
+          "top": 168,
+          "width": 372,
+          "height": 48,
+          "content": "<p style=\"\"><span style=\"font-size: 22px;\"><span style=\"font-family: Microsoft YaHei;\"><strong><span style=\"color: #00E5FF;\">结论 A</span></strong></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#00E5FF",
+          "vertical": false,
+          "textType": "itemTitle"
+        },
+        {
+          "type": "text",
+          "id": "t9-c2-card-a-body",
+          "left": 84,
+          "top": 220,
+          "width": 372,
+          "height": 240,
+          "content": "<p style=\"\"><span style=\"font-size: 16px;\"><span style=\"font-family: Microsoft YaHei;\"><span style=\"color: rgba(229,231,235,0.92);\">- 关键指标同比/环比显著改善</span></span></span></p><p style=\"\"><span style=\"font-size: 16px;\"><span style=\"font-family: Microsoft YaHei;\"><span style=\"color: rgba(229,231,235,0.92);\">- 高价值客群贡献提升</span></span></span></p><p style=\"\"><span style=\"font-size: 16px;\"><span style=\"font-family: Microsoft YaHei;\"><span style=\"color: rgba(229,231,235,0.92);\">- 渠道结构更健康</span></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#E5E7EB",
+          "vertical": false,
+          "textType": "item",
+          "lineHeight": 1.4
+        },
+        {
+          "type": "text",
+          "id": "t9-c2-card-b-title",
+          "left": 544,
+          "top": 168,
+          "width": 372,
+          "height": 48,
+          "content": "<p style=\"\"><span style=\"font-size: 22px;\"><span style=\"font-family: Microsoft YaHei;\"><strong><span style=\"color: #7C4DFF;\">结论 B</span></strong></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#7C4DFF",
+          "vertical": false,
+          "textType": "itemTitle"
+        },
+        {
+          "type": "text",
+          "id": "t9-c2-card-b-body",
+          "left": 544,
+          "top": 220,
+          "width": 372,
+          "height": 240,
+          "content": "<p style=\"\"><span style=\"font-size: 16px;\"><span style=\"font-family: Microsoft YaHei;\"><span style=\"color: rgba(229,231,235,0.92);\">- 波动集中在少数维度</span></span></span></p><p style=\"\"><span style=\"font-size: 16px;\"><span style=\"font-family: Microsoft YaHei;\"><span style=\"color: rgba(229,231,235,0.92);\">- 建议加大结构优化投入</span></span></span></p><p style=\"\"><span style=\"font-size: 16px;\"><span style=\"font-family: Microsoft YaHei;\"><span style=\"color: rgba(229,231,235,0.92);\">- 风险点需要预警机制</span></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#E5E7EB",
+          "vertical": false,
+          "textType": "item",
+          "lineHeight": 1.4
+        }
+      ]
+    },
+    {
+      "id": "t9-end",
+      "type": "end",
+      "background": { "type": "solid", "color": "#0B1020" },
+      "elements": [
+        {
+          "type": "image",
+          "id": "t9-end-bg",
+          "src": "https://images.pexels.com/photos/28860864/pexels-photo-28860864.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "width": 1000,
+          "height": 562.5,
+          "left": 0,
+          "top": 0,
+          "fixedRatio": true,
+          "rotate": 0,
+          "filters": { "opacity": "20%", "blur": "1px" },
+          "imageType": "background",
+          "lock": true
+        },
+        {
+          "type": "shape",
+          "id": "t9-end-overlay",
+          "left": 0,
+          "top": 0,
+          "width": 1000,
+          "height": 562.5,
+          "viewBox": [200, 200],
+          "path": "M 0 0 L 200 0 L 200 200 L 0 200 Z",
+          "fill": "rgba(11,16,32,0.78)",
+          "fixedRatio": false,
+          "rotate": 0,
+          "lock": true
+        },
+        {
+          "type": "text",
+          "id": "t9-end-title",
+          "left": 140,
+          "top": 208,
+          "width": 720,
+          "height": 110,
+          "content": "<p style=\"text-align: center;\"><span style=\"font-size: 72px;\"><span style=\"font-family: Microsoft YaHei;\"><strong><span style=\"color: #ffffff;\">谢谢</span></strong></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#ffffff",
+          "vertical": false,
+          "textType": "title"
+        },
+        {
+          "type": "line",
+          "id": "t9-end-line",
+          "left": 250,
+          "top": 318,
+          "start": [0, 0],
+          "end": [500, 0],
+          "points": ["", ""],
+          "color": "rgba(0,229,255,0.65)",
+          "style": "solid",
+          "width": 4,
+          "lock": true
+        },
+        {
+          "type": "text",
+          "id": "t9-end-meta",
+          "left": 240,
+          "top": 356,
+          "width": 520,
+          "height": 56,
+          "content": "<p style=\"text-align: center;\"><span style=\"font-size: 16px;\"><span style=\"font-family: Microsoft YaHei;\"><span style=\"color: rgba(229,231,235,0.85);\">汇报人：XXX</span></span></span></p>",
+          "rotate": 0,
+          "defaultFontName": "Microsoft YaHei",
+          "defaultColor": "#E5E7EB",
+          "vertical": false
+        }
+      ]
+    }
+  ]
+}

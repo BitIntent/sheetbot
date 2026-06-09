@@ -1,0 +1,934 @@
+/* ============================================================================
+ * "我要汇报" PPTX 模块样式
+ * ============================================================================ */
+
+/* ── 主容器 ────────────────────────────────────────────── */
+.pres-view {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  overflow-y: auto;
+  padding: 12px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+/* ── 首页 ──────────────────────────────────────────────── */
+.pres-home {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.pres-home-hero {
+  text-align: center;
+  padding: 8px 20px 0;
+}
+.pres-home-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary, #0F172A);
+  margin: 0 0 12px;
+}
+.pres-home-desc {
+  font-size: 16px;
+  color: var(--text-secondary, #334155);
+  margin: 0;
+}
+.pres-home-hint {
+  font-size: 16px;
+  color: var(--accent-primary, #217346);
+  margin: 12px 0 0;
+}
+
+.pres-home .pres-history-panel {
+  margin-top: 32px;
+}
+
+/* ── 模板画廊（圆角卡片容器） ── */
+.pres-template-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--bg-secondary, #FFFFFF);
+  border: 1px solid var(--border-primary, #E4E9EF);
+  border-radius: 12px;
+  padding: 20px 24px 24px;
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(15, 23, 42, 0.05));
+  overflow: visible;
+  flex-shrink: 0;
+}
+.pres-section-title {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text-primary, #0F172A);
+  text-align: center;
+  margin: 0;
+}
+.pres-tpl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  gap: 14px;
+  width: 100%;
+  min-height: 108px;
+}
+@media (min-width: 1200px) {
+  .pres-tpl-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+@media (max-width: 1200px) {
+  .pres-tpl-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .pres-tpl-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── 模板卡片 ──────────────────────────────────────────── */
+.pres-tpl-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  min-height: 108px;
+  border: 1px solid var(--border-primary, #E4E9EF);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--bg-secondary, #FFFFFF);
+  box-sizing: border-box;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.pres-tpl-card:hover {
+  transform: translateY(-2px);
+  border-color: #94A3B8;
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(15, 23, 42, 0.08));
+}
+.pres-tpl-card.selected {
+  border-color: var(--accent-primary, #217346);
+  box-shadow: 0 0 0 1px var(--accent-primary, #217346), var(--shadow-md, 0 4px 12px rgba(33, 115, 70, 0.12));
+}
+
+/* 预览区 */
+.pres-tpl-preview {
+  position: relative;
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 默认保持清晰彩色（浅色工作台）；选中/悬停仅加强边框与阴影 */
+.pres-tpl-preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: none;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+.pres-tpl-card:hover .pres-tpl-preview-image {
+  filter: brightness(1.02);
+}
+.pres-tpl-card.selected .pres-tpl-preview-image {
+  filter: none;
+}
+
+/* 预览区：未选中仅极淡描边感，避免整块压暗 */
+.pres-tpl-preview::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.06);
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.pres-tpl-card:hover .pres-tpl-preview::after,
+.pres-tpl-card.selected .pres-tpl-preview::after {
+  opacity: 0;
+}
+
+.pres-tpl-accent-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+}
+.pres-tpl-card.selected .pres-tpl-accent-bar {
+  opacity: 1;
+  height: 4px;
+}
+
+.pres-tpl-preview-icon {
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+  filter: none;
+}
+.pres-tpl-card:hover .pres-tpl-preview-icon,
+.pres-tpl-card.selected .pres-tpl-preview-icon {
+  opacity: 1;
+}
+
+/* 信息区 */
+.pres-tpl-info {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.pres-tpl-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary, #0F172A);
+  transition: color 0.2s ease;
+}
+.pres-tpl-card.selected .pres-tpl-name {
+  color: var(--accent-primary, #217346);
+}
+.pres-tpl-desc {
+  font-size: 11px;
+  color: var(--text-tertiary, #64748B);
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+.pres-tpl-card.selected .pres-tpl-desc {
+  color: var(--text-secondary, #334155);
+}
+
+/* ── 自定义提示（独立圆角卡片） ────────────────────────── */
+.pres-custom-prompt {
+  width: 100%;
+  margin-top: 4px;
+  background: var(--bg-secondary, #FFFFFF);
+  border: 1px solid var(--border-primary, #E4E9EF);
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(15, 23, 42, 0.05));
+}
+.pres-prompt-divider {
+  display: none;
+}
+.pres-prompt-content-wrapper {
+  max-width: none;
+  margin: 0 auto;
+  width: 100%;
+}
+.pres-prompt-panel {
+  display: grid;
+  grid-template-columns: minmax(0, calc(58% + 10px)) minmax(0, calc(42% - 10px));
+  gap: 14px;
+  align-items: stretch;
+}
+.pres-prompt-panel-left,
+.pres-prompt-panel-right {
+  background: var(--bg-primary, #F8FAFC);
+  border: 1px solid var(--border-secondary, #E4E9EF);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.pres-prompt-panel-title {
+  font-size: 14px;
+  color: var(--text-primary, #0F172A);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.pres-prompt-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 0;
+  align-content: flex-start;
+  max-height: 176px;
+  overflow: auto;
+}
+.pres-prompt-preset-item {
+  padding: 6px 10px;
+  background: var(--bg-primary, #F4F6F9);
+  border: 1px solid var(--border-secondary, #D5DCE6);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-secondary, #334155);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  line-height: 1.35;
+  flex: 1 1 calc(50% - 8px);
+  max-width: calc(50% - 4px);
+  min-height: 34px;
+}
+.pres-prompt-preset-item:hover {
+  background: var(--accent-bg, rgba(33, 115, 70, 0.08));
+  border-color: var(--accent-primary, #217346);
+  color: var(--text-primary, #0F172A);
+}
+.pres-prompt-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary, #0F172A);
+  margin-bottom: 8px;
+  display: block;
+}
+.pres-prompt-input {
+  width: 100%;
+  background: var(--bg-secondary, #FFFFFF);
+  border: 1px solid var(--border-secondary, #D5DCE6);
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-primary, #0F172A);
+  resize: vertical;
+}
+.pres-prompt-input::placeholder {
+  font-size: 13px;
+  color: var(--text-disabled, #94A3B8);
+}
+.pres-prompt-input:focus {
+  border-color: var(--accent-primary, #4ECDC4);
+  outline: none;
+}
+
+.pres-prompt-input-row {
+  width: 100%;
+}
+.pres-prompt-input-row .pres-prompt-input {
+  width: 100%;
+  min-height: 140px;
+  resize: none;
+}
+.pres-prompt-actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.pres-generate-inline-btn {
+  flex: 0 0 auto;
+  min-width: 132px;
+  padding: 10px 16px;
+  align-self: stretch;
+  justify-content: center;
+}
+
+@media (max-width: 760px) {
+  .pres-prompt-panel {
+    grid-template-columns: 1fr;
+  }
+  .pres-prompt-input-row {
+    width: 100%;
+  }
+  .pres-prompt-presets {
+    max-height: none;
+  }
+  .pres-generate-inline-btn {
+    width: 100%;
+  }
+  .pres-prompt-actions {
+    justify-content: center;
+  }
+}
+
+/* ── 生成按钮 ──────────────────────────────────────────── */
+.pres-generate-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.pres-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  background: var(--accent-primary, #4ECDC4);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.pres-btn-primary svg {
+  color: currentColor;
+}
+.pres-btn-primary:hover { opacity: 0.9; }
+.pres-btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.pres-btn-sm {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: var(--bg-tertiary, #2a2a2a);
+  color: var(--text-primary, #ccc);
+  border: 1px solid var(--border-primary, #333);
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.pres-btn-sm:hover { background: var(--bg-hover, #333); }
+
+/* 与“历史报表清单”刷新按钮视觉保持一致 */
+.pres-history-refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, var(--accent-primary, #217346), #2A9058);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.pres-history-refresh-btn:hover:not(:disabled) {
+  box-shadow: 0 4px 12px rgba(33, 115, 70, 0.4);
+}
+
+.pres-history-refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pres-btn-xs {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px;
+  background: transparent;
+  color: var(--text-secondary, #999);
+  border: 1px solid var(--border-primary, #333);
+  border-radius: 3px;
+  font-size: 11px;
+  cursor: pointer;
+}
+.pres-btn-xs:hover { background: var(--bg-hover, #333); }
+.pres-btn-danger { color: #e57373; border-color: #e5737366; }
+.pres-btn-danger:hover { background: #e5737322; }
+
+/* ── 生成进度 ──────────────────────────────────────────── */
+.pres-generating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 60px 20px;
+}
+.pres-spinner {
+  animation: presSpinAnim 1s linear infinite;
+}
+@keyframes presSpinAnim {
+  to { transform: rotate(360deg); }
+}
+.pres-generating-msg {
+  font-size: 15px;
+  color: var(--text-primary, #ccc);
+}
+.pres-progress-bar {
+  width: 320px;
+  height: 4px;
+  background: var(--bg-tertiary, #2a2a2a);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.pres-progress-fill {
+  height: 100%;
+  background: var(--accent-primary, #4ECDC4);
+  transition: width 0.5s ease;
+}
+
+/* ── 预览布局 ──────────────────────────────────────────── */
+.pres-preview-layout {
+  display: flex;
+  gap: 16px;
+  height: 100%;
+  min-height: 0;
+}
+.pres-thumb-panel {
+  width: 160px;
+  min-width: 160px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 8px;
+}
+.pres-thumb-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  background: none;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.pres-thumb-item.active {
+  border-color: var(--accent-primary, #4ECDC4);
+}
+.pres-thumb-item:hover {
+  border-color: var(--border-hover, #555);
+}
+.pres-thumb-number {
+  font-size: 11px;
+  color: var(--text-secondary, #888);
+  min-width: 16px;
+  text-align: right;
+  padding-top: 2px;
+}
+.pres-thumb-card {
+  flex: 1;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+/* ── 主舞台 ────────────────────────────────────────────── */
+.pres-main-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+/* ── 幻灯片渲染 ────────────────────────────────────────── */
+.pres-slide {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.pres-slide-mini {
+  border-radius: 2px;
+  font-size: 4px;
+}
+.pres-slide-content {
+  flex: 1;
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+}
+.pres-slide-mini .pres-slide-content {
+  padding: 6px 8px;
+}
+
+/* ── 封面页 ────────────────────────────────────────────── */
+.pres-slide-cover {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.pres-cover-center {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pres-cover-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+.pres-slide-mini .pres-cover-title { font-size: 8px; }
+.pres-cover-subtitle {
+  font-size: 16px;
+  margin: 0;
+}
+.pres-slide-mini .pres-cover-subtitle { font-size: 5px; }
+.pres-cover-accent-line {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  border-radius: 2px;
+}
+.pres-slide-mini .pres-cover-accent-line { display: none; }
+
+/* ── 通用标题 ──────────────────────────────────────────── */
+.pres-slide-heading {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 20px;
+}
+.pres-slide-mini .pres-slide-heading { font-size: 6px; margin-bottom: 4px; }
+.pres-slide-subtitle {
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+
+/* ── 目录页 ────────────────────────────────────────────── */
+.pres-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pres-toc-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+}
+.pres-slide-mini .pres-toc-item { font-size: 5px; gap: 3px; }
+.pres-toc-number {
+  font-size: 20px;
+  font-weight: 700;
+  min-width: 32px;
+}
+.pres-slide-mini .pres-toc-number { font-size: 6px; min-width: 10px; }
+
+/* ── KPI 页 ────────────────────────────────────────────── */
+.pres-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+.pres-slide-mini .pres-kpi-grid {
+  gap: 3px;
+  grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+}
+.pres-kpi-card {
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pres-slide-mini .pres-kpi-card { padding: 3px; border-radius: 2px; }
+.pres-kpi-label { font-size: 12px; }
+.pres-kpi-value { font-size: 28px; font-weight: 700; }
+.pres-kpi-unit { font-size: 11px; }
+.pres-slide-mini .pres-kpi-label { font-size: 3px; }
+.pres-slide-mini .pres-kpi-value { font-size: 6px; }
+.pres-slide-mini .pres-kpi-unit { font-size: 3px; }
+
+/* ── 图表/表格占位 ────────────────────────────────────── */
+.pres-chart-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.pres-slide-mini .pres-chart-placeholder { font-size: 4px; border-radius: 2px; }
+.pres-chart-mini-svg {
+  width: 94%;
+  height: 86%;
+  display: block;
+}
+.pres-chart-preview-img {
+  width: 96%;
+  height: 92%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+.pres-slide-stock-image-wrap {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.pres-slide-stock-image {
+  width: 38%;
+  max-height: 110px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+/* ── 要点列表 ──────────────────────────────────────────── */
+.pres-slide-bullets {
+  list-style: disc;
+  padding-left: 24px;
+  margin: 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+}
+.pres-slide-mini .pres-slide-bullets { font-size: 4px; gap: 2px; padding-left: 8px; }
+
+/* ── 总结页 ────────────────────────────────────────────── */
+.pres-summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.pres-summary-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+}
+.pres-slide-mini .pres-summary-list li { font-size: 4px; gap: 3px; }
+.pres-summary-bullet {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+.pres-slide-mini .pres-summary-bullet { width: 3px; height: 3px; min-width: 3px; margin-top: 1px; }
+
+/* ── 表格页 ────────────────────────────────────────────── */
+.pres-table-wrap {
+  overflow: auto;
+  flex: 1;
+}
+.pres-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.pres-data-table th,
+.pres-data-table td {
+  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  text-align: left;
+}
+.pres-slide-mini .pres-data-table { font-size: 3px; }
+.pres-slide-mini .pres-data-table th,
+.pres-slide-mini .pres-data-table td { padding: 1px 2px; }
+
+/* ── 编辑器布局 ────────────────────────────────────────── */
+.pres-editor-layout {
+  display: flex;
+  gap: 16px;
+  height: 100%;
+}
+.pres-editor-preview {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pres-editor-props {
+  width: 280px;
+  min-width: 280px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  background: var(--bg-secondary, #1e1e1e);
+  border-radius: 8px;
+  border: 1px solid var(--border-primary, #333);
+}
+.pres-props-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary, #e0e0e0);
+}
+.pres-prop-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.pres-prop-label {
+  font-size: 13px;
+  color: var(--text-secondary, #999);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pres-prop-input,
+.pres-prop-select,
+.pres-prop-textarea {
+  width: 100%;
+  padding: 6px 10px;
+  background: var(--bg-tertiary, #2a2a2a);
+  border: 1px solid var(--border-primary, #333);
+  border-radius: 4px;
+  color: var(--text-primary, #e0e0e0);
+  font-size: 14px;
+}
+.pres-prop-input:focus,
+.pres-prop-select:focus,
+.pres-prop-textarea:focus {
+  border-color: var(--accent-primary, #4ECDC4);
+  outline: none;
+}
+.pres-bullet-row {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.pres-bullet-row .pres-prop-input {
+  flex: 1;
+}
+
+/* ── 播放模式 ──────────────────────────────────────────── */
+.pres-player-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+}
+.pres-player-stage {
+  width: 100vw;
+  height: 100vh;
+}
+.pres-player-stage .pres-slide {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+.pres-player-progress {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.1);
+  z-index: 10000;
+}
+.pres-player-progress-fill {
+  height: 100%;
+  background: var(--accent-primary, #4ECDC4);
+  transition: width 0.3s ease;
+}
+.pres-player-page-indicator {
+  position: fixed;
+  bottom: 12px;
+  right: 16px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  z-index: 10000;
+  cursor: default;
+}
+.pres-player-left-zone {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 20%;
+  height: 100%;
+  z-index: 10001;
+  cursor: pointer;
+}
+
+/* ── 历史面板 ──────────────────────────────────────────── */
+.pres-history-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin: 24px auto 0;
+}
+.pres-history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pres-history-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary, #0F172A);
+  margin: 0;
+}
+.pres-history-refresh-link {
+  margin-left: 8px;
+  border: none;
+  background: transparent;
+  color: var(--accent-primary, #217346);
+  font-size: 15px;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+}
+.pres-history-refresh-link:hover:not(:disabled) {
+  text-decoration: underline;
+}
+.pres-history-refresh-link:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.pres-history-empty {
+  font-size: 13px;
+  color: var(--text-secondary, #888);
+  text-align: center;
+  padding: 20px;
+}
+
+/* 历史表与连接器/批量 Word / 报表共用 report-history-*，避免操作列挤压导致「打开」「删除」竖排 */
+.pres-history-panel .report-history-table th:last-child,
+.pres-history-panel .report-history-table td:last-child {
+  white-space: nowrap;
+  min-width: 168px;
+  vertical-align: middle;
+}
+.pres-history-panel .ui-history-action-btn {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  min-width: 72px;
+}
+.pres-history-panel .ui-history-action-btn span {
+  white-space: nowrap;
+}
+.pres-history-panel .report-history-page-btn,
+.pres-history-panel .report-history-page-info {
+  font-size: 12px;
+}
+
+/* ── 空状态 ────────────────────────────────────────────── */
+.pres-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-secondary, #888);
+  font-size: 15px;
+}
+
+/* ── PPTist 编辑器全尺寸容器 ────────────────────────────── */
+.pres-editor-fullsize {
+  padding: 0 !important;
+  margin: 0 !important;
+  gap: 0 !important;
+  overflow: hidden !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: var(--bg-primary, #F4F6F9) !important;
+}
+
+.pres-editor-fullsize .pptist-bridge-container {
+  width: 99%;
+  margin: 0 auto;
+  flex: 1;
+  min-height: 0;
+  height: auto;
+}

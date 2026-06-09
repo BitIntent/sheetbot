@@ -1,0 +1,1059 @@
+// ============================================================================
+// PPTist SheetBot 工作台主题 — 浅色商业化
+// 通过 .pptist-wrapper 将编辑器壳层适配为与 SheetBot 一致的浅色风格
+// 画布内幻灯片内容保持原色（白底等）不受影响
+// ============================================================================
+
+// ── SheetBot 设计令牌（浅色） ──
+$sb-bg-primary: #F4F6F9;
+$sb-bg-secondary: #FFFFFF;
+$sb-bg-tertiary: #EEF2F6;
+$sb-bg-hover: #E4E9EF;
+$sb-border: #E4E9EF;
+$sb-text-primary: #0F172A;
+$sb-text-secondary: #475569;
+$sb-text-muted: #94A3B8;
+$sb-accent: #217346;
+$sb-accent-hover: #2A9058;
+$sb-accent-active: #1A5C38;
+$sb-scrollbar-thumb: #C5CDD8;
+$sb-scrollbar-track: #F1F4F8;
+$sb-panel-control-bg: #FFFFFF;
+$sb-panel-control-border: #D5DCE6;
+$sb-panel-control-label-bg: #F1F5F9;
+$sb-panel-control-text: #0F172A;
+$sb-panel-control-muted: #64748B;
+$sb-panel-disabled-bg: #F8FAFC;
+$sb-panel-disabled-text: #94A3B8;
+
+// ── 样式分层：基础语义混入（减少重复规则）──
+@mixin sb-surface($bg: $sb-bg-secondary) {
+  background-color: $bg !important;
+  color: $sb-text-primary !important;
+  border-color: $sb-border !important;
+}
+
+@mixin sb-control-surface {
+  background: $sb-bg-tertiary !important;
+  border-color: $sb-border !important;
+  color: $sb-text-primary !important;
+}
+
+.pptist-wrapper {
+  background-color: $sb-bg-primary;
+  color: $sb-text-primary;
+
+  // 强制根层配色，覆盖 scoped 白底/灰字
+  .thumbnails,
+  .toolbar,
+  .canvas-tool,
+  .remark,
+  .remark-editor,
+  .layout-content-left,
+  .layout-content-right,
+  .center-top,
+  .center-bottom {
+    @include sb-surface($sb-bg-secondary);
+  }
+
+  .toolbar .content,
+  .thumbnails .thumbnail-list,
+  .canvas-tool .left-handler,
+  .canvas-tool .more {
+    color: $sb-text-primary !important;
+  }
+
+  // CanvasTool 顶部工具栏
+  .canvas-tool .insert-handler-item,
+  .canvas-tool .group-btn-main,
+  .canvas-tool .arrow,
+  .canvas-tool .handler-item,
+  .canvas-tool .text,
+  .canvas-tool .icon {
+    color: $sb-text-secondary !important;
+  }
+
+  .canvas-tool .insert-handler-item:not(.group-btn):hover,
+  .canvas-tool .insert-handler-item.active,
+  .canvas-tool .insert-handler-item.group-btn:hover,
+  .canvas-tool .insert-handler-item.group-btn.active,
+  .canvas-tool .group-btn-main:hover,
+  .canvas-tool .arrow:hover,
+  .canvas-tool .left-handler .handler-item.active,
+  .canvas-tool .left-handler .handler-item:not(.disable):hover,
+  .canvas-tool .right-handler .handler-item:not(.disable):hover {
+    background: $sb-bg-hover !important;
+    color: $sb-text-primary !important;
+  }
+
+  .canvas-tool .insert-handler-item.group-btn:hover .icon,
+  .canvas-tool .group-btn-main:hover .icon,
+  .canvas-tool .arrow:hover .icon {
+    color: $sb-accent !important;
+  }
+
+  .canvas-tool .handler-item.disable {
+    color: $sb-text-muted !important;
+    opacity: 0.55 !important;
+  }
+
+  // 汇报顶部动作按钮：与线条等工具项保持一致风格
+  .canvas-tool .presentation-actions .presentation-action-item {
+    background: transparent !important;
+    border: none !important;
+    color: $sb-text-primary !important;
+  }
+  .canvas-tool .presentation-actions .presentation-action-item:hover:not(:disabled) {
+    background: $sb-bg-hover !important;
+    color: $sb-text-primary !important;
+  }
+  .canvas-tool .presentation-actions .presentation-action-item:disabled {
+    opacity: 0.45 !important;
+    color: $sb-text-muted !important;
+  }
+
+  // ── 缩略图面板 ──
+  .layout-content-left {
+    background-color: $sb-bg-secondary;
+    border-right: 1px solid $sb-border;
+  }
+
+  // ── CanvasTool 工具栏 ──
+  .center-top {
+    background-color: $sb-bg-secondary;
+    border-bottom: 1px solid $sb-border;
+  }
+
+  // ── 右侧属性面板 ──
+  .layout-content-right {
+    background-color: $sb-bg-secondary;
+    border-left: 1px solid $sb-border;
+  }
+
+  // ── 备注区域 ──
+  .center-bottom {
+    background-color: $sb-bg-secondary;
+    border-top: 1px solid $sb-border;
+  }
+
+  // ── 画布外围区域（浅灰衬底，幻灯片内容保持白底）──
+  .center-body {
+    background-color: #e8ecf1;
+  }
+
+  .canvas {
+    background-color: #e8ecf1 !important;
+  }
+
+  // 右侧/左侧文字可读性增强
+  .label,
+  .text,
+  .name,
+  .title,
+  .sub-title,
+  .tab,
+  .menu-item,
+  .btn,
+  .content,
+  .tip {
+    color: $sb-text-primary !important;
+  }
+
+  // ── 通用面板/弹窗背景 ──
+  .panel,
+  .moveable-panel,
+  .modal-mask .modal-body {
+    background-color: $sb-bg-secondary;
+    border-color: $sb-border;
+    color: $sb-text-primary;
+  }
+
+  // ── 按钮 ──
+  .ppt-button {
+    &.default {
+      background-color: $sb-bg-tertiary;
+      border-color: $sb-border;
+      color: $sb-text-primary;
+
+      &:hover {
+        background-color: $sb-bg-hover;
+        border-color: $sb-accent;
+      }
+    }
+
+    &.primary {
+      background-color: $sb-accent;
+      border-color: $sb-accent;
+      color: #fff;
+
+      &:hover {
+        background-color: $sb-accent-hover;
+      }
+    }
+  }
+
+  // ── 输入框 ──
+  .ppt-input,
+  .ppt-textarea {
+    @include sb-control-surface;
+
+    &:focus {
+      border-color: $sb-accent;
+    }
+
+    &::placeholder {
+      color: $sb-text-muted;
+    }
+  }
+
+  // ── 选择器 ──
+  .ppt-select {
+    @include sb-control-surface;
+
+    .options {
+      background-color: $sb-bg-secondary;
+      border-color: $sb-border;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+      .option {
+        color: $sb-text-primary;
+
+        &:hover {
+          background-color: $sb-bg-hover;
+        }
+
+        &.active {
+          background-color: $sb-accent;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  // ── 标签页 ──
+  .tabs .tab {
+    color: $sb-text-secondary;
+    border-bottom-color: transparent;
+
+    &.active {
+      color: $sb-accent;
+      border-bottom-color: $sb-accent;
+    }
+
+    &:hover {
+      color: $sb-text-primary;
+    }
+  }
+
+  // 右侧设计面板顶部卡片标签（对齐官方浅色卡片样式）
+  .layout-content-right .tabs.card {
+    height: 40px !important;
+    display: flex !important;
+    align-items: stretch !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    background: #f3f3f3 !important;
+    border-top: 1px solid #dddddd !important;
+    border-bottom: 1px solid #dddddd !important;
+  }
+
+  .layout-content-right .tabs.card .tab {
+    flex: 1 1 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: relative !important;
+    min-width: 0 !important;
+    padding: 0 8px !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    line-height: 1 !important;
+    color: #222222 !important;
+    background: #f3f3f3 !important;
+    border-bottom: 1px solid #dddddd !important;
+    border-left: 1px solid #dddddd !important;
+  }
+
+  .layout-content-right .tabs.card .tab:first-child {
+    border-left: none !important;
+  }
+
+  .layout-content-right .tabs.card .tab + .tab::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: #d7d7d7;
+  }
+
+  .layout-content-right .tabs.card .tab.active {
+    background: #ffffff !important;
+    color: #111111 !important;
+    border-bottom: 1px solid #ffffff !important;
+  }
+
+  .layout-content-right .tabs.card .tab:not(.active):hover {
+    color: #111111 !important;
+    background: #ececec !important;
+  }
+
+  // 右侧三大功能区可读性兜底
+  .layout-content-right .content,
+  .layout-content-right .content * {
+    color: $sb-text-primary !important;
+  }
+  .layout-content-right input,
+  .layout-content-right textarea,
+  .layout-content-right select,
+  .layout-content-right .input,
+  .layout-content-right .select,
+  .layout-content-right .handler,
+  .layout-content-right .unit-handler,
+  .layout-content-right .color-picker-item {
+    @include sb-control-surface;
+  }
+
+  // 右侧属性区 - 表单控件统一对比度
+  .layout-content-right .input,
+  .layout-content-right .number-input,
+  .layout-content-right .select,
+  .layout-content-right .textarea {
+    background: $sb-panel-control-bg !important;
+    border: 1px solid $sb-panel-control-border !important;
+    color: $sb-panel-control-text !important;
+  }
+
+  .layout-content-right .input input,
+  .layout-content-right .number-input input,
+  .layout-content-right .textarea {
+    background: transparent !important;
+    color: $sb-panel-control-text !important;
+  }
+
+  .layout-content-right .input input::placeholder,
+  .layout-content-right .number-input input::placeholder,
+  .layout-content-right .textarea::placeholder {
+    color: $sb-panel-control-muted !important;
+  }
+
+  .layout-content-right .number-input {
+    padding: 0 !important;
+  }
+
+  .layout-content-right .number-input .input-wrap {
+    padding-left: 0 !important;
+  }
+
+  .layout-content-right .number-input .prefix,
+  .layout-content-right .number-input .suffix,
+  .layout-content-right .input .prefix,
+  .layout-content-right .input .suffix {
+    background: $sb-panel-control-label-bg !important;
+    color: $sb-panel-control-text !important;
+    padding: 0 8px !important;
+  }
+
+  .layout-content-right .number-input .prefix + .input-wrap,
+  .layout-content-right .input .prefix + input {
+    border-left: 1px solid $sb-panel-control-border !important;
+  }
+
+  .layout-content-right .number-input .handlers {
+    background: $sb-panel-control-bg !important;
+    color: $sb-panel-control-muted !important;
+    opacity: 1 !important;
+  }
+
+  .layout-content-right .number-input .handlers .handler {
+    border-left: 1px solid $sb-panel-control-border !important;
+  }
+
+  .layout-content-right .number-input .handlers .handler + .handler {
+    border-top: 1px solid $sb-panel-control-border !important;
+  }
+
+  .layout-content-right .select .selector,
+  .layout-content-right .select .icon {
+    color: $sb-panel-control-text !important;
+  }
+
+  .layout-content-right .select .icon,
+  .layout-content-right .color-btn-icon {
+    color: $sb-panel-control-muted !important;
+  }
+
+  .layout-content-right .button.default,
+  .layout-content-right .button.checkbox,
+  .layout-content-right .button.radio {
+    background: $sb-panel-control-bg !important;
+    border: 1px solid $sb-panel-control-border !important;
+    color: $sb-panel-control-text !important;
+  }
+
+  .layout-content-right .button.default:hover,
+  .layout-content-right .button.checkbox:hover,
+  .layout-content-right .button.radio:hover {
+    border-color: $sb-accent !important;
+    color: #ffffff !important;
+  }
+
+  .layout-content-right .button.primary {
+    background: $sb-accent !important;
+    border-color: $sb-accent !important;
+    color: #ffffff !important;
+  }
+
+  .layout-content-right .button.disabled,
+  .layout-content-right .input.disabled,
+  .layout-content-right .number-input.disabled,
+  .layout-content-right .select.disabled,
+  .layout-content-right .textarea.disabled {
+    background: $sb-panel-disabled-bg !important;
+    border-color: $sb-panel-control-border !important;
+    color: $sb-panel-disabled-text !important;
+    opacity: 1 !important;
+  }
+
+  .layout-content-right .text-btn {
+    background: $sb-panel-control-bg !important;
+    border: 1px solid $sb-panel-control-border !important;
+    color: $sb-panel-control-text !important;
+    border-radius: 6px !important;
+  }
+
+  .layout-content-right .text-btn:hover {
+    border-color: $sb-accent !important;
+    color: $sb-accent !important;
+    background: rgba(33, 115, 70, 0.06) !important;
+  }
+
+  .layout-content-right .icon-btn {
+    color: $sb-panel-control-muted !important;
+  }
+
+  .layout-content-right .slider .bar {
+    background-color: #E2E8F0 !important;
+  }
+
+  .layout-content-right .slider .track {
+    background-color: $sb-accent !important;
+  }
+
+  .layout-content-right .slider .thumb {
+    background-color: #ffffff !important;
+    outline: 2px solid $sb-accent !important;
+  }
+
+  .layout-content-right .options {
+    background: $sb-bg-secondary !important;
+    border: 1px solid $sb-panel-control-border !important;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+  }
+
+  .layout-content-right .option {
+    color: $sb-panel-control-text !important;
+  }
+
+  .layout-content-right .option.selected {
+    color: $sb-accent !important;
+    background: rgba(33, 115, 70, 0.08) !important;
+  }
+
+  .layout-content-right .checkbox {
+    color: $sb-text-primary !important;
+  }
+
+  .layout-content-right .checkbox .checkbox-input {
+    background: $sb-bg-secondary !important;
+    border-color: $sb-panel-control-border !important;
+  }
+
+  .layout-content-right .checkbox .checkbox-label {
+    color: $sb-text-secondary !important;
+    font-weight: 500 !important;
+  }
+
+  .layout-content-right .checkbox.checked .checkbox-label {
+    color: $sb-text-primary !important;
+  }
+
+  .layout-content-right .checkbox.disabled .checkbox-label {
+    color: $sb-text-muted !important;
+  }
+
+  // ── 滚动条 ──
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: $sb-scrollbar-thumb;
+    border-radius: 3px;
+
+    &:hover {
+      background-color: lighten($sb-scrollbar-thumb, 10%);
+    }
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: $sb-scrollbar-track;
+  }
+
+  // ── 右键菜单 ──
+  .contextmenu {
+    background-color: $sb-bg-secondary;
+    border: 1px solid $sb-border;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+    .menu-item {
+      color: $sb-text-primary;
+
+      &:hover {
+        background-color: $sb-bg-hover;
+      }
+
+      &.divider {
+        border-bottom-color: $sb-border;
+      }
+    }
+  }
+
+  // ── Popover 弹出层 ──
+  .popover-content {
+    background-color: $sb-bg-secondary;
+    border-color: $sb-border;
+    color: $sb-text-primary;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  // ── Tooltip ──
+  .tooltip-content {
+    background-color: $sb-bg-hover;
+    color: $sb-text-primary;
+  }
+
+  // ── 模态框 ──
+  .modal-mask {
+    .modal-body {
+      background-color: $sb-bg-secondary;
+      color: $sb-text-primary;
+
+      .modal-close {
+        color: $sb-text-secondary;
+
+        &:hover {
+          color: $sb-text-primary;
+        }
+      }
+    }
+  }
+
+  // ── 分隔线 ──
+  .divider {
+    background-color: $sb-border;
+  }
+
+  // ── 缩略图项 ──
+  .thumbnail-item {
+    border-color: transparent;
+
+    &.active {
+      border-color: $sb-accent;
+    }
+
+    &:hover {
+      border-color: $sb-accent-hover;
+    }
+  }
+
+  // ── 文字颜色：链接 ──
+  a {
+    color: $sb-accent;
+
+    &:hover {
+      color: $sb-accent-hover;
+    }
+  }
+
+  // ── 开关 ──
+  .ppt-switch {
+    background-color: $sb-bg-hover;
+
+    &.active {
+      background-color: $sb-accent;
+    }
+  }
+
+  // ── 复选框 ──
+  .ppt-checkbox {
+    .checkbox-box {
+      border-color: $sb-border;
+      background-color: $sb-bg-tertiary;
+
+      &.checked {
+        background-color: $sb-accent;
+        border-color: $sb-accent;
+      }
+    }
+
+    .checkbox-label {
+      color: $sb-text-primary;
+    }
+  }
+
+  // ── 滑块 ──
+  .ppt-slider {
+    .slider-track {
+      background-color: $sb-bg-hover;
+    }
+
+    .slider-fill {
+      background-color: $sb-accent;
+    }
+
+    .slider-thumb {
+      background-color: $sb-accent;
+      border-color: $sb-accent;
+    }
+  }
+
+  // ── 颜色选择器 ──
+  .color-picker {
+    background-color: $sb-bg-secondary;
+    border-color: $sb-border;
+  }
+
+  // ── 图标颜色继承 ──
+  .i-icon {
+    color: inherit;
+  }
+}
+
+// ── 全屏放映模式：不覆盖（保持幻灯片原色）──
+.pptist-screen-bridge {
+  // 放映模式不应用深色主题
+}
+
+// ============================================================================
+// Teleport / Tippy 弹层全局覆盖（不在 .pptist-wrapper 作用域内）
+// 解决动画选择弹窗、颜色面板等浮层的低对比可读性问题
+// ============================================================================
+
+.tippy-box[data-theme~='popover'] .popover-content {
+  background: #252a31 !important;
+  border: 1px solid #404854 !important;
+  color: #e9edf2 !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .45) !important;
+}
+
+.tippy-box[data-theme~='popover'] .popover-content .tabs {
+  border-bottom: 1px solid #404854 !important;
+}
+
+.tippy-box[data-theme~='popover'] .popover-content .tabs .tab {
+  color: #c7cfd9 !important;
+  background: transparent !important;
+}
+
+.tippy-box[data-theme~='popover'] .popover-content .tabs .tab.active {
+  color: #e9edf2 !important;
+  border-bottom: 2px solid #217346 !important;
+}
+
+.tippy-box[data-theme~='popover'] .element-animation-panel .animation-pool {
+  background: #252a31 !important;
+  color: #e9edf2 !important;
+}
+
+.tippy-box[data-theme~='popover'] .element-animation-panel .type-title {
+  color: #f4f7fb !important;
+  border-left-width: 4px !important;
+  border-left-style: solid !important;
+  background: #353d48 !important;
+}
+
+.tippy-box[data-theme~='popover'] .element-animation-panel .animation-box {
+  background: #2f3640 !important;
+  color: #f4f7fb !important;
+  border: 1px solid #4a5160 !important;
+}
+
+.tippy-box[data-theme~='popover'] .element-animation-panel .animation-box:hover {
+  border-color: #217346 !important;
+  background: #384350 !important;
+}
+
+.tippy-box[data-theme~='popover'] .options {
+  background: #252a31 !important;
+  border: 1px solid #404854 !important;
+}
+
+.tippy-box[data-theme~='popover'] .option {
+  color: #e9edf2 !important;
+}
+
+.tippy-box[data-theme~='popover'] .option:hover:not(.disabled):not(.selected) {
+  background: #323a45 !important;
+}
+
+.tippy-box[data-theme~='popover'] .option.selected {
+  color: #ffffff !important;
+  background: rgba(33, 115, 70, .3) !important;
+}
+
+.modal .modal-content {
+  background: #252a31 !important;
+  border: 1px solid #404854 !important;
+  color: #e9edf2 !important;
+}
+
+.modal .modal-content .close-btn {
+  color: #c7cfd9 !important;
+}
+
+.modal .modal-content .close-btn:hover {
+  color: #ffffff !important;
+}
+
+// Popover 菜单项（Teleport 到 body）
+.tippy-box[data-theme~='popover'] .popover-menu-item {
+  color: #e9edf2 !important;
+}
+
+.tippy-box[data-theme~='popover'] .popover-menu-item:hover {
+  background: #323a45 !important;
+}
+
+// Modal 内通用控件兜底（公式编辑/图表编辑/主题设置等）
+.modal .modal-content .input,
+.modal .modal-content .number-input,
+.modal .modal-content .select,
+.modal .modal-content .textarea {
+  background: #2f3640 !important;
+  border: 1px solid #4a5160 !important;
+  color: #eef2f7 !important;
+}
+
+.modal .modal-content .input input,
+.modal .modal-content .number-input input,
+.modal .modal-content .textarea {
+  background: transparent !important;
+  color: #eef2f7 !important;
+}
+
+.modal .modal-content .input input::placeholder,
+.modal .modal-content .number-input input::placeholder,
+.modal .modal-content .textarea::placeholder {
+  color: #b7c0cc !important;
+}
+
+.modal .modal-content .button.default,
+.modal .modal-content .button.checkbox,
+.modal .modal-content .button.radio {
+  background: #2f3640 !important;
+  border: 1px solid #4a5160 !important;
+  color: #eef2f7 !important;
+}
+
+.modal .modal-content .button.primary {
+  background: #217346 !important;
+  border-color: #217346 !important;
+  color: #ffffff !important;
+}
+
+.modal .modal-content .button.disabled,
+.modal .modal-content .input.disabled,
+.modal .modal-content .number-input.disabled,
+.modal .modal-content .select.disabled,
+.modal .modal-content .textarea.disabled {
+  background: #3a3f46 !important;
+  border-color: #4a5160 !important;
+  color: #a0a8b3 !important;
+  opacity: 1 !important;
+}
+
+// Modal 内复选框说明文字可读性
+.modal .modal-content .checkbox {
+  color: #e9edf2 !important;
+}
+
+.modal .modal-content .checkbox .checkbox-input {
+  background: #2f3640 !important;
+  border-color: #4a5160 !important;
+}
+
+.modal .modal-content .checkbox .checkbox-label {
+  color: #e9edf2 !important;
+}
+
+.modal .modal-content .checkbox.disabled .checkbox-label {
+  color: #b2bbc7 !important;
+}
+
+// ============================================================================
+// MoveablePanel / 符号面板 / 公式面板 / 图表数据编辑器
+// ============================================================================
+
+.pptist-wrapper .moveable-panel {
+  background: #252a31 !important;
+  border: 1px solid #404854 !important;
+  color: #e9edf2 !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .45) !important;
+}
+
+.pptist-wrapper .moveable-panel .header {
+  border-bottom: 1px solid #404854 !important;
+  color: #e9edf2 !important;
+}
+
+.pptist-wrapper .moveable-panel .title,
+.pptist-wrapper .moveable-panel .close-btn {
+  color: #d8dee7 !important;
+}
+
+.pptist-wrapper .moveable-panel .content {
+  color: #e9edf2 !important;
+}
+
+.pptist-wrapper .symbol-panel .emoji-type {
+  color: #c9d1dc !important;
+}
+
+.pptist-wrapper .symbol-panel .emoji-type.active {
+  color: #ffffff !important;
+  background: rgba(33, 115, 70, .28) !important;
+}
+
+.pptist-wrapper .symbol-panel .symbol-group + .symbol-group {
+  border-top: 1px solid #3e4652 !important;
+}
+
+.pptist-wrapper .symbol-panel .symbol-item {
+  border-color: #4a5160 !important;
+}
+
+.pptist-wrapper .symbol-panel .symbol-item .symbol {
+  background: #2f3640 !important;
+  color: #eef2f7 !important;
+}
+
+.pptist-wrapper .symbol-panel .close-btn {
+  color: #c9d1dc !important;
+}
+
+.pptist-wrapper .symbol-panel .close-btn:hover,
+.pptist-wrapper .symbol-panel .symbol-item:hover {
+  color: #ffffff !important;
+  border-color: #217346 !important;
+}
+
+.pptist-wrapper .latex-editor .preview,
+.pptist-wrapper .latex-editor .right,
+.pptist-wrapper .latex-editor .formula-item-content {
+  background: #2a313a !important;
+  border-color: #404854 !important;
+  color: #e9edf2 !important;
+}
+
+.pptist-wrapper .latex-editor .placeholder,
+.pptist-wrapper .latex-editor .formula-title {
+  color: #d5dce6 !important;
+}
+
+.pptist-wrapper .latex-editor .symbol-item:hover {
+  background: #353f4b !important;
+}
+
+.pptist-wrapper .latex-editor .footer .btn.button.default {
+  background: #2f3640 !important;
+  border-color: #4a5160 !important;
+  color: #e9edf2 !important;
+}
+
+// 公式编辑器（Modal 内）完整覆盖：避免 scoped 白底灰字残留
+.modal .modal-content .latex-editor,
+.modal .modal-content .latex-editor * {
+  color: #e9edf2 !important;
+}
+
+.modal .modal-content .latex-editor .right,
+.modal .modal-content .latex-editor .preview,
+.modal .modal-content .latex-editor .formula-item-content {
+  background: #2a313a !important;
+  border: 1px solid #404854 !important;
+}
+
+.modal .modal-content .latex-editor .placeholder {
+  color: #b7c0cc !important;
+}
+
+.modal .modal-content .latex-editor .tabs.card {
+  background: #232830 !important;
+  border-bottom: 1px solid #404854 !important;
+}
+
+.modal .modal-content .latex-editor .tabs.card .tab {
+  background: #2a313a !important;
+  color: #c8d0db !important;
+  border-left: 1px solid #404854 !important;
+  border-bottom: 1px solid #404854 !important;
+}
+
+.modal .modal-content .latex-editor .tabs.card .tab:first-child {
+  border-left: none !important;
+}
+
+.modal .modal-content .latex-editor .tabs.card .tab.active {
+  background: #1f242c !important;
+  color: #ffffff !important;
+  border-bottom: 2px solid #217346 !important;
+}
+
+.modal .modal-content .latex-editor .tabs:not(.card) {
+  border-bottom: 1px solid #404854 !important;
+}
+
+.modal .modal-content .latex-editor .tabs:not(.card) .tab {
+  color: #c8d0db !important;
+}
+
+.modal .modal-content .latex-editor .tabs:not(.card) .tab.active {
+  color: #ffffff !important;
+  border-bottom-color: #217346 !important;
+}
+
+.modal .modal-content .latex-editor .symbol-item:hover {
+  background: #353f4b !important;
+  border-radius: 4px !important;
+}
+
+.modal .modal-content .latex-editor .preview-content {
+  background: #232830 !important;
+}
+
+.pptist-wrapper .rich-text-base .list-wrap {
+  color: #d5dce6 !important;
+}
+
+.pptist-wrapper .rich-text-base .list {
+  background: #2f3640 !important;
+  border: 1px solid #4a5160 !important;
+}
+
+.pptist-wrapper .rich-text-base .list-item span {
+  background: #aeb7c3 !important;
+}
+
+.pptist-wrapper .chart-data-editor .editor-content,
+.pptist-wrapper .chart-data-editor table td,
+.pptist-wrapper .chart-data-editor .col-header,
+.pptist-wrapper .chart-data-editor .row-header,
+.pptist-wrapper .chart-data-editor .all-header {
+  border-color: #4a5160 !important;
+}
+
+.pptist-wrapper .chart-data-editor .editor-content {
+  background: #252a31 !important;
+}
+
+.pptist-wrapper .chart-data-editor .item {
+  color: #e9edf2 !important;
+}
+
+.pptist-wrapper .chart-data-editor table td.head {
+  background: rgba(33, 115, 70, .22) !important;
+}
+
+.pptist-wrapper .chart-data-editor .col-header,
+.pptist-wrapper .chart-data-editor .row-header,
+.pptist-wrapper .chart-data-editor .all-header {
+  background: #2f3640 !important;
+}
+
+.pptist-wrapper .chart-data-editor .col-key,
+.pptist-wrapper .chart-data-editor .row-key,
+.pptist-wrapper .chart-data-editor .left,
+.pptist-wrapper .chart-data-editor .change {
+  color: #d5dce6 !important;
+}
+
+// 图表数据编辑器（Modal 内）覆盖
+.modal .modal-content .chart-data-editor,
+.modal .modal-content .chart-data-editor * {
+  color: #e7ecf2 !important;
+}
+
+.modal .modal-content .chart-data-editor .editor-content {
+  background: #252a31 !important;
+  border-right: 1px solid #4a5160 !important;
+  border-bottom: 1px solid #4a5160 !important;
+}
+
+.modal .modal-content .chart-data-editor .col-header,
+.modal .modal-content .chart-data-editor .row-header,
+.modal .modal-content .chart-data-editor .all-header {
+  background: #2f3640 !important;
+  border-color: #4a5160 !important;
+}
+
+.modal .modal-content .chart-data-editor table td {
+  border-color: #4a5160 !important;
+}
+
+.modal .modal-content .chart-data-editor table td.head {
+  background: rgba(33, 115, 70, .22) !important;
+}
+
+.modal .modal-content .chart-data-editor .item {
+  color: #eef2f7 !important;
+}
+
+.modal .modal-content .chart-data-editor .change {
+  color: #c8d0db !important;
+}
+
+// 导出窗口（PPTX）文字与控件对比度
+.modal .modal-content .export-pptx-dialog .configs .title {
+  color: #e9edf2 !important;
+}
+
+.modal .modal-content .export-pptx-dialog .configs .title::after {
+  color: #c2c9d3 !important;
+}
+
+.modal .modal-content .export-pptx-dialog .configs .tip {
+  color: #c2c9d3 !important;
+}
+
+.modal .modal-content .export-pptx-dialog .radio-button {
+  color: #edf2f8 !important;
+}
+
+.modal .modal-content .export-img-dialog .configs .title,
+.modal .modal-content .export-pdf-dialog .configs .title {
+  color: #e9edf2 !important;
+}
+
+.modal .modal-content .export-img-dialog .configs .title::after {
+  color: #c2c9d3 !important;
+}
+
+.modal .modal-content .export-img-dialog .configs .tip,
+.modal .modal-content .export-pdf-dialog .configs .tip {
+  color: #c2c9d3 !important;
+}
+
+.modal .modal-content .export-img-dialog .radio-button,
+.modal .modal-content .export-pdf-dialog .radio-button,
+.modal .modal-content .export-pdf-dialog .select .selector,
+.modal .modal-content .export-pdf-dialog .select .icon {
+  color: #edf2f8 !important;
+}

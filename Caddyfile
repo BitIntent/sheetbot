@@ -1,0 +1,50 @@
+# SheetBot 开源版 Caddy 配置（本地 / 自托管）
+# 用法：caddy run --config Caddyfile
+
+:80 {
+	encode gzip zstd
+
+	# 帮助文档站点（Docusaurus 构建产物）
+	handle_path /help/* {
+		root * ./docs-site/build
+		try_files {path} /index.html
+		file_server
+	}
+
+	route {
+		@api path /api/*
+		reverse_proxy @api localhost:8080
+
+		@sse path /sse/*
+		reverse_proxy @sse localhost:8080
+
+		@docs path /docs /docs/* /openapi.json /redoc
+		reverse_proxy @docs localhost:8080
+
+		# 根路径重定向到营销落地页
+		@rootLanding path / /index.html
+		redir @rootLanding /landing.html 302
+
+		@landingPage path /landing.html
+		handle @landingPage {
+			root * ./frontend/public
+			header Cache-Control "public, max-age=60"
+			file_server
+		}
+
+		handle {
+			root * ./frontend/dist
+
+			@static {
+				path *.js *.css *.png *.jpg *.jpeg *.gif *.svg *.woff *.woff2 *.ttf *.eot *.ico *.webp
+			}
+			header @static Cache-Control "public, max-age=31536000, immutable"
+
+			@html path *.html
+			header @html Cache-Control "public, max-age=60"
+
+			try_files {path} /index.html
+			file_server
+		}
+	}
+}
