@@ -1,6 +1,6 @@
 # SheetBot
 
-**企业级 AI Excel 与数据工作台**
+**企业级 智能表格工作台**
 
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-green.svg)](https://fastapi.tiangolo.com/)
@@ -12,7 +12,7 @@
 
 ## 项目简介
 
-SheetBot 是一款 **企业级 AI Excel 与数据工作台**。以 Excel 为入口，整合自然语言操控、百万行大文件分析、智能报表、PPT 汇报、批量 Word、在线表单、外部系统连接与技能自动化，帮助团队把分散在表格、系统与文档里的数据转化为可执行、可复盘、可交付的业务流程。
+SheetBot 是一款 **企业级智能表格工作台**。以在线 Excel 为入口，整合自然语言操控、百万行大文件分析、智能报表、PPT 汇报、批量 Word、在线表单、外部系统连接与技能自动化，帮助团队把分散在表格、系统与文档里的数据转化为可执行、可复盘、可交付的业务流程。
 
 本项目由 **深圳市比特意图科技有限公司（BitIntent）** 开源维护。比特意图聚焦企业级 AI Native 产品研发与落地，旗下产品包括 SheetBot、GeoOps 与 AtlasBot。
 
