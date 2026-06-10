@@ -17,6 +17,21 @@ SheetBot 是一款面向企业数据场景的 **AI Excel 与数据工作台**。
 - 公司官网：[https://www.eeebit.com/index.html](https://www.eeebit.com/index.html)
 - SheetBot 官网：[https://sheetbot.eeebit.com/](https://sheetbot.eeebit.com/)
 
+<table align="center">
+  <tr>
+    <td align="center" width="320">
+      <img src="docs-site/static/img/contact_me_qr.png" alt="业务合作群" width="220"><br>
+      <b>业务合作群</b><br>
+      企业咨询、私有化部署、商务合作与定制方案，欢迎扫码添加。
+    </td>
+    <td align="center" width="320">
+      <img src="docs-site/static/img/SheetBot_users.png" alt="SheetBot 技术交流群" width="220"><br>
+      <b>SheetBot 技术交流群</b><br>
+      开源部署、二次开发、问题反馈与使用交流，欢迎开发者与用户加入。
+    </td>
+  </tr>
+</table>
+
 适合以下场景：
 
 - 企业内部私有化部署 AI 表格与数据工作台
