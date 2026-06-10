@@ -40,6 +40,7 @@ SheetBot 是一款面向企业数据场景的 **AI Excel 与数据工作台**。
 
 ### 主要功能
 
+- **企业系统集成**：API / AI 窗口 / 嵌入式三种模式，快速接入 ERP、CRM、OA 等现有系统，详见 [集成手册](https://mini-sheetbot.eeebit.com/integration-manual.html)。
 - **AI 自然语言编辑**：中文对话驱动 70+ 表格操作，多轮上下文 + SSE 实时执行。
 - **双模式 Excel 引擎**：小文件浏览器 Univer 编辑，大文件服务端 DuckDB，支持百万行分析。
 - **智能报表**：自动提炼指标与业务洞察，生成图表/KPI，支持 PDF/PNG 导出分享。
