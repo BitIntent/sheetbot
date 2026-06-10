@@ -4,7 +4,7 @@
  */
 import { useState, useEffect, useRef, useCallback } from 'react'
 
-const DEFAULT_WS_HOST = 'localhost:8000'
+const DEFAULT_WS_HOST = 'localhost:8080'
 
 const getWsBaseUrl = () => {
   if (import.meta.env.VITE_WS_URL) {

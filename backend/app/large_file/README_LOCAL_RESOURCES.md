@@ -11,7 +11,7 @@
 首次使用前，需要运行准备脚本将 ECharts 库复制到本地：
 
 ```bash
-cd /usr1/python/excel-ai/backend/app/large_file
+cd 项目根目录（sheetbot/）/backend/app/large_file
 node prepare_local_resources.js
 ```
 
@@ -24,7 +24,7 @@ node prepare_local_resources.js
 检查文件是否存在：
 
 ```bash
-ls -lh /usr1/python/excel-ai/frontend/public/lib/echarts.min.js
+ls -lh 项目根目录（sheetbot/）/frontend/public/lib/echarts.min.js
 ```
 
 如果文件存在且大小合理（通常 > 500KB），说明准备成功。
@@ -62,22 +62,22 @@ ls -lh /usr1/python/excel-ai/frontend/public/lib/echarts.min.js
 
 1. **检查字体文件是否存在**：
    ```bash
-   ls -lh /usr1/python/excel-ai/frontend/public/fonts/
+   ls -lh 项目根目录（sheetbot/）/frontend/public/fonts/
    ```
 
 2. **如果字体文件不存在或大小为 0**，尝试以下方法：
 
    **方法 A：使用手动下载脚本（推荐）**
    ```bash
-   cd /usr1/python/excel-ai/backend/app/large_file
+   cd 项目根目录（sheetbot/）/backend/app/large_file
    chmod +x download_fonts_manual.sh
    ./download_fonts_manual.sh
    ```
 
    **方法 B：使用 curl 手动下载**
    ```bash
-   mkdir -p /usr1/python/excel-ai/frontend/public/fonts
-   cd /usr1/python/excel-ai/frontend/public/fonts
+   mkdir -p 项目根目录（sheetbot/）/frontend/public/fonts
+   cd 项目根目录（sheetbot/）/frontend/public/fonts
    
    # 下载 Regular 字体
    curl -L -o NotoSansSC-Regular.woff2 \
@@ -99,7 +99,7 @@ ls -lh /usr1/python/excel-ai/frontend/public/lib/echarts.min.js
 
 3. **验证字体文件**：
    ```bash
-   ls -lh /usr1/python/excel-ai/frontend/public/fonts/
+   ls -lh 项目根目录（sheetbot/）/frontend/public/fonts/
    # 应该看到两个文件，每个文件大小应该 > 100KB
    ```
 

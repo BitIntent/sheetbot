@@ -31,7 +31,7 @@
 ### 生产环境清理
 
 ```bash
-cd /usr1/python/excel-ai/backend/app/large_file
+cd 项目根目录（sheetbot/）/backend/app/large_file
 
 # 删除验证工具（可选）
 rm -f verify_modules.sh

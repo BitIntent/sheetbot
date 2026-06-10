@@ -50,11 +50,11 @@ ENV_DIR = os.getenv("ENV_DIR")
 
 
 
-# 服务配置
+# 服务配置（默认值；须在 load_env_file() 后调用 reload_runtime_config() 刷新）
 
 HOST = os.getenv("HOST", "0.0.0.0")
 
-PORT = int(os.getenv("PORT", 8000))
+PORT = int(os.getenv("PORT", 8080))
 
 WORKERS = int(os.getenv("WORKERS", 1))
 
@@ -71,6 +71,26 @@ PROD_MODE = os.getenv("PROD_MODE", "true").lower() == "true"  # SSE 连接保持
 FRONTEND_REBUILD_ON_RESTART = (
     os.getenv("FRONTEND_REBUILD_ON_RESTART", "true").lower() == "true"
 )
+
+
+def reload_runtime_config():
+    """从 os.environ 重新加载运行配置（须在 load_env_file() 之后调用）。"""
+    global HOST, PORT, WORKERS, RELOAD, ACCESS_LOG
+    global FRONTEND_HOST, FRONTEND_PORT, TIMEOUT_KEEP_ALIVE
+    global PROD_MODE, FRONTEND_REBUILD_ON_RESTART
+
+    HOST = os.getenv("HOST", "0.0.0.0")
+    PORT = int(os.getenv("PORT", 8080))
+    WORKERS = int(os.getenv("WORKERS", 1))
+    RELOAD = os.getenv("RELOAD", "false").lower() == "true"
+    ACCESS_LOG = os.getenv("ACCESS_LOG", "false").lower() == "true"
+    FRONTEND_HOST = os.getenv("FRONTEND_HOST", "0.0.0.0")
+    FRONTEND_PORT = int(os.getenv("FRONTEND_PORT", 80))
+    TIMEOUT_KEEP_ALIVE = int(os.getenv("TIMEOUT_KEEP_ALIVE", 300))
+    PROD_MODE = os.getenv("PROD_MODE", "true").lower() == "true"
+    FRONTEND_REBUILD_ON_RESTART = (
+        os.getenv("FRONTEND_REBUILD_ON_RESTART", "true").lower() == "true"
+    )
 
 
 
@@ -492,6 +512,8 @@ def start():
 
     load_env_file()
 
+    reload_runtime_config()
+
     start_backend()
 
     start_frontend()
@@ -883,7 +905,7 @@ def main():
 
         print("  HOST     - 监听地址 (默认: 0.0.0.0)")
 
-        print("  PORT     - 监听端口 (默认: 8000)")
+        print("  PORT     - 监听端口 (默认: 8080)")
 
         print("  FRONTEND_HOST - 前端监听地址 (默认: 0.0.0.0)")
 

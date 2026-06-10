@@ -37,7 +37,7 @@ export const resolveApiBaseUrl = () => {
 
   // 开发环境优先使用显式配置，便于本地联调。
   if (import.meta.env.DEV) {
-    return envApi || envWs || 'http://localhost:8000'
+    return envApi || envWs || 'http://localhost:8080'
   }
 
   // 生产环境优先同源，避免换 IP 后旧构建把请求打到历史地址导致登录态失效。

@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 # 1. 项目根目录（优先，用于部署环境）
 # 2. backend/app 目录（本地开发）
 env_paths = [
-    Path(__file__).parent.parent.parent.parent / ".env",  # /usr1/python/excel-ai/.env
+    Path(__file__).parent.parent.parent.parent / ".env",  # 项目根目录 .env
     Path(__file__).parent / ".env",                        # backend/app/.env
 ]
 

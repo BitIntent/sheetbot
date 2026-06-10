@@ -7,7 +7,7 @@
  * 验证 (S3):         workbookJsonAdapter charts 白名单保留
  *
  * 测试运行（远程）：
- *   cd /usr1/python/excel-ai/frontend && npx vitest run src/utils/__tests__/chartRobustness.test.js
+ *   cd frontend && npx vitest run src/utils/__tests__/chartRobustness.test.js
  */
 import { describe, it, expect } from 'vitest'
 import { executeOperation } from '../excelOperations'

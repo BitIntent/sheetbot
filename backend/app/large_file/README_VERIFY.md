@@ -5,7 +5,7 @@
 在服务器上运行以下命令：
 
 ```bash
-cd /usr1/python/excel-ai/backend/app/large_file
+cd 项目根目录（sheetbot/）/backend/app/large_file
 chmod +x verify_modules.sh
 ./verify_modules.sh
 ```
@@ -16,16 +16,16 @@ chmod +x verify_modules.sh
 
 ```bash
 # 检查 node_modules 是否存在
-ls -la /usr1/python/excel-ai/frontend/node_modules | head -20
+ls -la 项目根目录（sheetbot/）/frontend/node_modules | head -20
 
 # 检查三个关键模块
-ls -d /usr1/python/excel-ai/frontend/node_modules/{puppeteer,docx,sharp}
+ls -d 项目根目录（sheetbot/）/frontend/node_modules/{puppeteer,docx,sharp}
 ```
 
 ### 2. 检查 puppeteer
 
 ```bash
-cd /usr1/python/excel-ai/frontend
+cd 项目根目录（sheetbot/）/frontend
 
 # 查看 package.json 中的入口文件
 cat node_modules/puppeteer/package.json | grep -E '"main"|"exports"'
@@ -39,7 +39,7 @@ ls -la node_modules/puppeteer/index.js
 ### 3. 检查 docx
 
 ```bash
-cd /usr1/python/excel-ai/frontend
+cd 项目根目录（sheetbot/）/frontend
 
 # 查看 package.json 中的入口文件
 cat node_modules/docx/package.json | grep -E '"main"|"exports"'
@@ -53,7 +53,7 @@ ls -la node_modules/docx/index.js
 ### 4. 检查 sharp
 
 ```bash
-cd /usr1/python/excel-ai/frontend
+cd 项目根目录（sheetbot/）/frontend
 
 # 查看 package.json 中的入口文件
 cat node_modules/sharp/package.json | grep -E '"main"|"exports"'
@@ -66,7 +66,7 @@ ls -la node_modules/sharp/index.js
 ### 5. 测试 Node.js 导入（从 frontend 目录）
 
 ```bash
-cd /usr1/python/excel-ai/frontend
+cd 项目根目录（sheetbot/）/frontend
 
 # 测试 puppeteer
 node -e "import('puppeteer').then(p => console.log('✅ puppeteer:', typeof p.default)).catch(e => console.log('❌', e.message))"
@@ -81,7 +81,7 @@ node -e "import('sharp').then(s => console.log('✅ sharp:', typeof s.default)).
 ### 6. 测试脚本路径解析
 
 ```bash
-cd /usr1/python/excel-ai/backend/app/large_file
+cd 项目根目录（sheetbot/）/backend/app/large_file
 
 # 测试脚本能否找到 frontend/node_modules
 node -e "
@@ -118,15 +118,15 @@ for (let i = 0; i < 5; i++) {
 
 ### puppeteer 导入失败
 - 检查是否安装了 puppeteer: `npm list puppeteer`（在 frontend 目录）
-- 如果未安装，运行: `cd /usr1/python/excel-ai/frontend && npm install`
+- 如果未安装，运行: `cd 项目根目录（sheetbot/）/frontend && npm install`
 
 ### docx 导入失败
 - 检查是否安装了 docx: `npm list docx`（在 frontend 目录）
-- 如果未安装，运行: `cd /usr1/python/excel-ai/frontend && npm install`
+- 如果未安装，运行: `cd 项目根目录（sheetbot/）/frontend && npm install`
 
 ### sharp 导入失败
 - 检查是否安装了 sharp: `npm list sharp`（在 frontend 目录）
-- 如果未安装，运行: `cd /usr1/python/excel-ai/frontend && npm install`
+- 如果未安装，运行: `cd 项目根目录（sheetbot/）/frontend && npm install`
 
 ### 路径找不到
 - 确认 frontend 目录结构正确

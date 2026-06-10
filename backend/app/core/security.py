@@ -15,6 +15,18 @@ from ..utils.logger import get_logger
 
 logger = get_logger('security')
 
+_INSECURE_JWT_SECRETS = frozenset({
+    "your-secret-key-change-in-production",
+    "your-secret-key-change-in-production-use-openssl-rand-hex-32",
+})
+
+
+def is_jwt_secret_insecure(secret: str) -> bool:
+    """检测 JWT 密钥是否为示例默认值或过短。"""
+    normalized = (secret or "").strip()
+    return not normalized or normalized in _INSECURE_JWT_SECRETS or len(normalized) < 32
+
+
 # bcrypt 最大支持 72 字节，超长密码先做 SHA256 再 bcrypt
 BCRYPT_MAX_LENGTH = 72
 

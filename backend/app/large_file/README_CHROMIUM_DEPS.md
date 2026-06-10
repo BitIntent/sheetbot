@@ -3,7 +3,7 @@
 ## 快速安装
 
 ```bash
-cd /usr1/python/excel-ai/backend/app/large_file
+cd 项目根目录（sheetbot/）/backend/app/large_file
 chmod +x install_chromium_deps.sh
 ./install_chromium_deps.sh
 ```

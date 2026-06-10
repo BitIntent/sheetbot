@@ -11,7 +11,7 @@ const getApiBaseUrl = () => {
   if (typeof window !== 'undefined' && window.location?.origin) {
     return window.location.origin
   }
-  return 'http://localhost:8000'
+  return 'http://localhost:8080'
 }
 
 export function useSSE({ sessionId, accessToken, onMessage, onConnect, onDisconnect }) {

@@ -1,11 +1,13 @@
 #!/bin/bash
 # 验证 Node.js 模块安装和路径
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+NODE_MODULES_PATH="$PROJECT_ROOT/frontend/node_modules"
+
 echo "=========================================="
 echo "验证 Node.js 模块安装"
 echo "=========================================="
-
-NODE_MODULES_PATH="/usr1/python/excel-ai/frontend/node_modules"
 
 if [ ! -d "$NODE_MODULES_PATH" ]; then
     echo "❌ node_modules 目录不存在: $NODE_MODULES_PATH"
@@ -101,7 +103,7 @@ echo "=========================================="
 echo "测试 Node.js 模块导入（从 frontend 目录）"
 echo "=========================================="
 
-cd /usr1/python/excel-ai/frontend
+cd "$PROJECT_ROOT/frontend"
 
 echo "测试 puppeteer 导入..."
 node -e "

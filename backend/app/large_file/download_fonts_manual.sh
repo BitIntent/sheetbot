@@ -4,7 +4,9 @@
 # 如果 prepare_local_resources.js 下载失败，可以使用此脚本
 # ============================================================================
 
-FONTS_DIR="/usr1/python/excel-ai/frontend/public/fonts"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+FONTS_DIR="$PROJECT_ROOT/frontend/public/fonts"
 
 # 创建字体目录
 mkdir -p "$FONTS_DIR"

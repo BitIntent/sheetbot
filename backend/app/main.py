@@ -21,7 +21,7 @@ from .core.config import settings
 from .core.dependencies import get_current_user, get_optional_user, get_optional_user_info
 from .core.quota import QuotaGuard, get_user_quota, get_user_plan_name
 from .core.usage_service import increment_usage
-from .core.security import verify_token
+from .core.security import verify_token, is_jwt_secret_insecure
 from .utils.logger import get_logger, bind_log_user_tag
 from .utils.access_logger import write_access_log
 from .auth.models import User, PasswordResetToken  # noqa: F401 - 确保 ORM 建表
@@ -191,7 +191,16 @@ if not settings.ANTHROPIC_CREDENTIAL:
 async def lifespan(app: FastAPI):
     """应用生命周期管理"""
     logger.info(f"Excel AI Assistant 后端正在启动... (v{settings.APP_VERSION})")
-    
+
+    if is_jwt_secret_insecure(settings.JWT_SECRET_KEY):
+        jwt_msg = (
+            "JWT_SECRET_KEY 未配置为强密钥，请在 .env 中设置（例如：openssl rand -hex 32）"
+        )
+        if settings.DEBUG:
+            logger.warning(jwt_msg)
+        else:
+            raise RuntimeError(jwt_msg)
+
     # 初始化数据库
     try:
         await init_db()
@@ -880,53 +889,11 @@ async def get_large_file_status(file_id: str):
         raise HTTPException(status_code=404, detail="文件不存在")
     
     # 获取结果文件列表
-    import json
-    import time as _time
-    import os as _os
-    def _write_debug_log(data: dict):
-        try:
-            log_path = "/usr1/python/excel-ai/logs/debug.log"
-            _os.makedirs(_os.path.dirname(log_path), exist_ok=True)
-            with open(log_path, 'a', encoding='utf-8') as f:
-                f.write(json.dumps(data, ensure_ascii=False) + '\n')
-        except Exception:
-            if _os.name == "nt":
-                try:
-                    with open(r'd:\dev\python\excel-ai\.cursor\debug.log', 'a', encoding='utf-8') as f:
-                        f.write(json.dumps(data, ensure_ascii=False) + '\n')
-                except Exception:
-                    pass
-    _write_debug_log({
-        "sessionId": "debug-session",
-        "runId": "run1",
-        "hypothesisId": "A",
-        "location": "main.py:324",
-        "message": "调用 get_result_files 前",
-        "data": {"file_id": file_id, "has_method": hasattr(large_file_storage, 'get_result_files')},
-        "timestamp": _time.time() * 1000
-    })
     try:
         result_files = large_file_storage.get_result_files(file_id)
-        _write_debug_log({
-            "sessionId": "debug-session",
-            "runId": "run1",
-            "hypothesisId": "A",
-            "location": "main.py:327",
-            "message": "调用 get_result_files 成功",
-            "data": {"file_id": file_id, "result_count": len(result_files)},
-            "timestamp": _time.time() * 1000
-        })
     except AttributeError as e:
-        _write_debug_log({
-            "sessionId": "debug-session",
-            "runId": "run1",
-            "hypothesisId": "A",
-            "location": "main.py:330",
-            "message": "AttributeError 异常",
-            "data": {"file_id": file_id, "error": str(e), "methods": dir(large_file_storage)[:20]},
-            "timestamp": _time.time() * 1000
-        })
-        result_files = []  # 临时返回空列表避免崩溃
+        large_file_log.warning(f"get_result_files 不可用: file_id={file_id}, error={e}")
+        result_files = []
     
     # 计算 DuckDB 加载耗时
     duckdb_load_time_seconds = None
@@ -1179,38 +1146,6 @@ async def execute_large_file_operation_stream(
             extra = ', '.join([f"{k}={v}" for k, v in kwargs.items()])
             large_file_log.info(f"{LARGE_FILE_LOG_PREFIX} {msg} ({extra})")
 
-        # region agent log helper
-        def _debug_log_to_file(hypothesis_id: str, location: str, message: str, data: dict) -> None:
-            try:
-                import time as _time
-                import os as _os
-                payload = {
-                    "sessionId": "debug-session",
-                    "runId": "run1",
-                    "hypothesisId": hypothesis_id,
-                    "location": location,
-                    "message": message,
-                    "data": data,
-                    "timestamp": int(_time.time() * 1000)
-                }
-                # 优先写入远程环境约定路径，其次写本地调试路径
-                try:
-                    log_path = "/usr1/python/excel-ai/logs/debug.log"
-                    _os.makedirs(_os.path.dirname(log_path), exist_ok=True)
-                    with open(log_path, "a", encoding="utf-8") as f:
-                        f.write(json.dumps(payload, ensure_ascii=False) + "\n")
-                except Exception:
-                    pass
-                if _os.name == "nt":
-                    try:
-                        with open(r"d:\dev\python\excel-ai\.cursor\debug.log", "a", encoding="utf-8") as f:
-                            f.write(json.dumps(payload, ensure_ascii=False) + "\n")
-                    except Exception:
-                        pass
-            except Exception:
-                pass
-        # endregion
-        
         def sse_event(event_type: str, data: dict) -> str:
             """格式化 SSE 事件"""
             debug_log("SSE事件生成", event_type=event_type, data_size=len(str(data)))
@@ -1263,15 +1198,7 @@ async def execute_large_file_operation_stream(
         try:
             large_file_log.info(f"[流式] event_generator 开始执行")
             debug_log("event_generator 入口", file_id=file_id, session_id=session_id, command_length=len(command))
-            # region agent log H1
-            _debug_log_to_file(
-                "H1",
-                "main.py:event_generator:entry",
-                "event_generator_entry",
-                {"file_id": file_id, "session_id": session_id, "command_length": len(command)}
-            )
-            # endregion
-            
+
             # 更新状态
             large_file_storage.update_status(file_id, FileStatus.PROCESSING)
             large_file_log.info(f"[流式] 即将 yield status=processing")
@@ -1318,26 +1245,10 @@ async def execute_large_file_operation_stream(
                         msg_type, msg_data = await asyncio.wait_for(message_queue.get(), timeout=1800.0)
                     except asyncio.TimeoutError:
                         large_file_log.warning("[流式] 消息队列超时，结束循环")
-                        # region agent log H2
-                        _debug_log_to_file(
-                            "H2",
-                            "main.py:event_generator:queue_timeout",
-                            "message_queue_timeout",
-                            {"msg_count": msg_count, "loop_exited_normally": loop_exited_normally}
-                        )
-                        # endregion
                         break
                     
                     if msg_type == "done":
                         loop_exited_normally = True
-                        # region agent log H2
-                        _debug_log_to_file(
-                            "H2",
-                            "main.py:event_generator:done_received",
-                            "message_done_received",
-                            {"msg_count": msg_count, "loop_exited_normally": loop_exited_normally}
-                        )
-                        # endregion
                         break
                     elif msg_type == "heartbeat":
                         try:
@@ -1441,15 +1352,7 @@ async def execute_large_file_operation_stream(
                             # 继续处理，不中断流
                 
                 large_file_log.info(f"[流式] 命令处理完成，共收到 {msg_count} 条消息，正常退出={loop_exited_normally}")
-                # region agent log H2
-                _debug_log_to_file(
-                    "H2",
-                    "main.py:event_generator:loop_exit",
-                    "loop_exit",
-                    {"msg_count": msg_count, "loop_exited_normally": loop_exited_normally}
-                )
-                # endregion
-            
+
             finally:
                 # 确保任务被清理
                 heartbeat.cancel()
@@ -1498,28 +1401,12 @@ async def execute_large_file_operation_stream(
             try:
                 done_message = text_content or ("操作完成（有错误发生）" if has_error else "操作完成")
                 large_file_log.info(f"[流式] 准备发送完成事件: file_id={file_id}, has_error={has_error}, message_length={len(done_message)}")
-                # region agent log H3
-                _debug_log_to_file(
-                    "H3",
-                    "main.py:event_generator:done_before_yield",
-                    "done_before_yield",
-                    {"has_error": has_error, "message_length": len(done_message)}
-                )
-                # endregion
                 yield sse_event("done", {
                     "success": not has_error,
                     "message": done_message
                 })
                 done_sent = True
                 large_file_log.info(f"[流式] 完成事件已发送: file_id={file_id}, has_error={has_error}")
-                # region agent log H3
-                _debug_log_to_file(
-                    "H3",
-                    "main.py:event_generator:done_after_yield",
-                    "done_after_yield",
-                    {"done_sent": done_sent, "has_error": has_error}
-                )
-                # endregion
             except GeneratorExit:
                 large_file_log.warning(f"[流式] 生成器被关闭（客户端断开连接）: file_id={file_id}, done_sent={done_sent}")
                 return
@@ -1538,14 +1425,6 @@ async def execute_large_file_operation_stream(
             import traceback
             large_file_log.error(f"[流式] 严重错误: {str(e)}")
             large_file_log.debug(traceback.format_exc())
-            # region agent log H4
-            _debug_log_to_file(
-                "H4",
-                "main.py:event_generator:outer_exception",
-                "outer_exception",
-                {"error": str(e)}
-            )
-            # endregion
             try:
                 large_file_storage.update_status(file_id, FileStatus.ERROR, str(e))
             except Exception as status_error:

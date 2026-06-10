@@ -65,7 +65,7 @@ SheetBot 采用「接入部署层、前端工作台层、后端业务层、AI Ha
 | 接入与部署层 | Caddy / Nginx 承载静态资源、API 反向代理、SSE 代理，可用于本地或企业私有化部署 |
 | 前端工作台层 | React 主应用负责路由、权限和业务 UI；Univer 承载 Excel Canvas；PPTist 承载在线 PPT 编辑 |
 | 后端业务模块层 | FastAPI 挂载认证、套餐、普通模式 Agent、大文件、报表、PPT、批量 Word、表单、连接器等模块 |
-| AI Harness Engineering 层 | 意图理解与确定性执行分离：Prompt Expander 做无 LLM 的元数据增强；Claude Agent 经受限工具（`submit_analysis_plan` 唯一入口）产出结构化计划；Plan Contract 校验、Plan Compiler 确定性编译、Operation Registry 统一 70+ 操作真相源；辅以沙箱预览/回滚与 QuotaGuard / JSON Guard 护栏 |
+| AI Harness Engineering 层 | 意图理解与确定性执行分离：Prompt Expander 做无 LLM 的元数据增强；Claude Agent 经受限工具（`submit_analysis_plan` 唯一入口）产出结构化计划；Plan Contract 校验、Plan Compiler 确定性编译、Operation Registry 统一 70+ 操作真相源；辅以沙箱预览/回滚与配额限流/JSON输出护栏 |
 | 数据与外部系统层 | MySQL 保存业务数据与配置，DuckDB 支撑大文件查询，uploads 存储用户生成文件，对接 Claude API、SMTP 与第三方系统 |
 
 ### Harness Engineering 核心能力
@@ -132,6 +132,7 @@ cp backend/app/.env.example .env
 至少填写：
 
 ```env
+PORT=8080
 JWT_SECRET_KEY=<openssl rand -hex 32>
 ANTHROPIC_API_KEY=<your-claude-api-key>
 DB_HOST=localhost
@@ -429,10 +430,10 @@ uploads/
 ### 测试
 
 ```bash
-# 后端单元测试
-cd backend && pytest tests/ -v
+# 前端单元测试（Vitest）
+cd frontend && npm test
 
-# 前端 E2E（Playwright）
+# 前端 E2E（Playwright，需先启动服务）
 cd frontend && npm run e2e:smoke
 ```
 
