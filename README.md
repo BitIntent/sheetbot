@@ -1,5 +1,7 @@
 # SheetBot
 
+**企业级 AI Excel 与数据工作台**
+
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-green.svg)](https://fastapi.tiangolo.com/)
 [![React](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev/)
@@ -10,7 +12,7 @@
 
 ## 项目简介
 
-SheetBot 是一款面向企业数据场景的 **AI Excel 与数据工作台**。它以 Excel 为入口，把自然语言操控、百万行大文件分析、智能报表、PPT 汇报、批量 Word、在线表单、外部系统连接与技能自动化整合到一个统一工作台中，帮助团队把分散在表格、系统与文档里的数据转化为可执行、可复盘、可交付的业务流程。
+SheetBot 是一款 **企业级 AI Excel 与数据工作台**。以 Excel 为入口，整合自然语言操控、百万行大文件分析、智能报表、PPT 汇报、批量 Word、在线表单、外部系统连接与技能自动化，帮助团队把分散在表格、系统与文档里的数据转化为可执行、可复盘、可交付的业务流程。
 
 本项目由 **深圳市比特意图科技有限公司（BitIntent）** 开源维护。比特意图聚焦企业级 AI Native 产品研发与落地，旗下产品包括 SheetBot、GeoOps 与 AtlasBot。
 
@@ -19,7 +21,7 @@ SheetBot 是一款面向企业数据场景的 **AI Excel 与数据工作台**。
 
 适合以下场景：
 
-- 企业内部私有化部署 AI 表格与数据工作台
+- 企业内部私有化部署企业级 AI Excel 与数据工作台
 - 将 AI 分析、报表、汇报能力集成到现有 ERP / CRM / OA / HR 系统
 - 面向财务、销售、运营、HR、教育、医疗等团队搭建自动化数据交付流程
 - 开发者基于 FastAPI + React + Univer + PPTist 二次开发企业级办公应用
@@ -449,8 +451,8 @@ cd frontend && npm run e2e:smoke
 
 ### v1.0.0（开源版）
 
-- 发布 SheetBot 开源代码库。
-- 支持 AI 表格、大文件分析、报表、PPT、批量 Word、表单收集、外部连接、技能编排。
+- 发布 SheetBot 开源代码库（企业级 AI Excel 与数据工作台）。
+- 支持 AI 自然语言表格、大文件分析、报表、PPT、批量 Word、表单收集、外部连接、技能编排。
 - 移除管理后台、独立官网静态站、微信支付与数据库迁移历史。
 - 数据库初始化统一使用 `db/schema.sql`。
 
@@ -469,7 +471,7 @@ cd frontend && npm run e2e:smoke
 
 ## 公司与产品
 
-SheetBot 是深圳市比特意图科技有限公司（BitIntent）旗下产品之一。比特意图围绕企业 AI Native 落地提供数据执行、品牌增长与知识工程产品体系。
+SheetBot 是深圳市比特意图科技有限公司（BitIntent）旗下的 **企业级 AI Excel 与数据工作台** 产品。比特意图围绕企业 AI Native 落地提供数据执行、品牌增长与知识工程产品体系。
 
 - 官方网站：[https://www.eeebit.com/index.html](https://www.eeebit.com/index.html)
 - SheetBot 产品官网：[https://sheetbot.eeebit.com/](https://sheetbot.eeebit.com/)
