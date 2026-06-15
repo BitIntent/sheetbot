@@ -1,6 +1,8 @@
 # SheetBot
 
-**企业级 智能表格工作台**
+English | [中文](README_CN.md)
+
+**Enterprise Intelligent Spreadsheet Workbench**
 
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-green.svg)](https://fastapi.tiangolo.com/)
@@ -10,120 +12,120 @@
 
 ---
 
-## 项目简介
+## Overview
 
-SheetBot 是一款 **企业级智能表格工作台**。以在线 Excel 为入口，整合自然语言操控、百万行大文件分析、智能报表、PPT 汇报、批量 Word、在线表单、外部系统连接与技能自动化，帮助团队把分散在表格、系统与文档里的数据转化为可执行、可复盘、可交付的业务流程。
+SheetBot is an **enterprise intelligent spreadsheet workbench**. Built around online Excel, it unifies natural-language control, million-row large-file analytics, smart reports, AI presentations, batch Word generation, online forms, external system connectors, and skill automation—helping teams turn data scattered across spreadsheets, systems, and documents into executable, auditable, and deliverable workflows.
 
-本项目由 **深圳市比特意图科技有限公司（BitIntent）** 开源维护。比特意图聚焦企业级 AI Native 产品研发与落地，旗下产品包括 SheetBot、GeoOps 与 AtlasBot。
+This project is open-sourced and maintained by **Shenzhen BitIntent Technology Co., Ltd. (BitIntent)**. BitIntent focuses on enterprise AI-native product R&D and delivery. Its product portfolio includes SheetBot, GeoOps, and AtlasBot.
 
-- 公司官网：[https://www.eeebit.com/index.html](https://www.eeebit.com/index.html)
-- SheetBot 官网：[https://sheetbot.eeebit.com/](https://sheetbot.eeebit.com/)
+- Company website: [https://www.eeebit.com/index.html](https://www.eeebit.com/index.html)
+- SheetBot website: [https://sheetbot.eeebit.com/](https://sheetbot.eeebit.com/)
 
-适合以下场景：
+**Ideal for:**
 
-- 企业内部私有化部署企业级 AI Excel 与数据工作台
-- 将 AI 分析、报表、汇报能力集成到现有 ERP / CRM / OA / HR 系统
-- 面向财务、销售、运营、HR、教育、医疗等团队搭建自动化数据交付流程
-- 开发者基于 FastAPI + React + Univer + PPTist 二次开发企业级办公应用
+- Private deployment of an enterprise AI spreadsheet and data workbench
+- Embedding AI analytics, reporting, and presentation into existing ERP / CRM / OA / HR systems
+- Building automated data delivery pipelines for finance, sales, operations, HR, education, healthcare, and more
+- Extending enterprise office apps on FastAPI + React + Univer + PPTist
 
-### 平台演示
+### Platform Demo
 
-下方视频展示 SheetBot 从自然语言操控表格、大文件分析到报表与汇报交付的核心流程。完整在线体验请访问 [SheetBot 官网](https://sheetbot.eeebit.com/)。
+The video below shows SheetBot’s core flow—from natural-language spreadsheet control and large-file analytics to report and presentation delivery. For a full online experience, visit the [SheetBot website](https://sheetbot.eeebit.com/).
 
-[![SheetBot 平台演示](docs-site/static/img/sheetbot_video.png)](https://www.bilibili.com/video/BV1iyEX6ZEc3/)
+[![SheetBot Platform Demo](docs-site/static/img/sheetbot_video.png)](https://www.bilibili.com/video/BV1iyEX6ZEc3/)
 
-### 主要功能
+### Key Features
 
-- **企业系统集成**：API / AI 窗口 / 嵌入式三种模式，快速接入 ERP、CRM、OA 等现有系统。
-- **AI 自然语言编辑**：中文对话驱动 70+ 表格操作，多轮上下文 + SSE 实时执行。
-- **双模式 Excel 引擎**：小文件浏览器 Univer 编辑，大文件服务端 DuckDB，支持百万行分析。
-- **智能报表**：自动提炼指标与业务洞察，生成图表/KPI，支持 PDF/PNG 导出分享。
-- **AI 汇报 PPT**：数据自动规划汇报结构，在线编辑，一键导出 PPTX。
-- **批量转 Word**：模板 + Excel 按行批量生成文档，支持占位符替换与 ZIP 下载。
-- **在线数据收集**：表头转表单，外链填写，数据自动回流工作簿。
-- **外部系统连接**：Shopify/钉钉/企微/数据库/Webhook 等，字段映射定时同步。
-- **Skill 技能编排**：60+ 预置技能拖拽编排，沙箱预览后写回，沉淀团队 SOP。
-
----
-
-## 系统架构
-
-SheetBot 采用「接入部署层、前端工作台层、后端业务层、AI Harness Engineering 执行护栏层、数据与外部系统层」的分层架构。核心工程理念是 **Harness Engineering**：LLM 只负责理解意图并产出受约束的结构化计划，最终的表格操作由计划契约、确定性编译器与操作注册表生成，保证相同输入产出稳定一致、可校验、可回滚的执行结果。普通 Excel 模式与大文件模式在后端模块、数据存储和 API 通信方式上严格隔离。
-
-![SheetBot 系统架构图](docs-site/static/img/sheetbot-architecture.svg)
-
-### 分层说明
-
-| 层级 | 说明 |
-|------|------|
-| 接入与部署层 | Caddy / Nginx 承载静态资源、API 反向代理、SSE 代理，可用于本地或企业私有化部署 |
-| 前端工作台层 | React 主应用负责路由、权限和业务 UI；Univer 承载 Excel Canvas；PPTist 承载在线 PPT 编辑 |
-| 后端业务模块层 | FastAPI 挂载认证、套餐、普通模式 Agent、大文件、报表、PPT、批量 Word、表单、连接器等模块 |
-| AI Harness Engineering 层 | 意图理解与确定性执行分离：Prompt Expander 做无 LLM 的元数据增强；Claude Agent 经受限工具（`submit_analysis_plan` 唯一入口）产出结构化计划；Plan Contract 校验、Plan Compiler 确定性编译、Operation Registry 统一 70+ 操作真相源；辅以沙箱预览/回滚与配额限流/JSON输出护栏 |
-| 数据与外部系统层 | MySQL 保存业务数据与配置，DuckDB 支撑大文件查询，uploads 存储用户生成文件，对接 Claude API、SMTP 与第三方系统 |
-
-### Harness Engineering 核心能力
-
-- **受限工具调用**：分析类任务只能经 `submit_analysis_plan` 提交结构化计划，LLM 无法直接操作数据。
-- **确定性编译**：plan → operations 由编译器生成，不依赖模型自由发挥，相同输入产出稳定布局。
-- **单一真相源**：前后端共用操作注册表，70+ 操作的参数契约一一对应，杜绝幻觉操作。
-- **安全护栏**：Schema 校验、配额限流、JSON 输出修复兜底、沙箱预览与一键回滚。
+- **Enterprise system integration**: API, AI window, and embedded modes to connect ERP, CRM, OA, and more.
+- **AI natural-language editing**: Chinese dialogue drives 70+ spreadsheet operations with multi-turn context and SSE real-time execution.
+- **Dual-mode Excel engine**: Univer in the browser for small files; server-side DuckDB for million-row analytics on large files.
+- **Smart reports**: Auto-extract metrics and insights, generate charts/KPIs, export and share as PDF/PNG.
+- **AI presentation PPT**: Auto-plan deck structure from data, edit online, export PPTX in one click.
+- **Batch Word generation**: Template + Excel rows to bulk-generate documents with placeholder replacement and ZIP download.
+- **Online data collection**: Turn sheet headers into public forms; submissions flow back into the workbook.
+- **External connectors**: Shopify, DingTalk, WeCom, databases, Webhooks, etc., with field mapping and scheduled sync.
+- **Skill orchestration**: 60+ preset skills, drag-and-drop pipelines, sandbox preview before write-back, team SOP reuse.
 
 ---
 
-## 技术栈
+## System Architecture
 
-| 层级 | 技术 |
-|------|------|
-| 前端 | React 19 + Vite 5 + Univer Canvas + PPTist（Vue 3 / veaury） |
-| 后端 | FastAPI + Uvicorn + SQLAlchemy（async） |
+SheetBot uses a layered design: **edge/deployment**, **frontend workbench**, **backend business modules**, **AI Harness Engineering guardrails**, and **data & external systems**. The core idea is **Harness Engineering**: the LLM only understands intent and produces constrained structured plans; final spreadsheet operations are generated by plan contracts, a deterministic compiler, and an operation registry—so the same input yields stable, verifiable, rollback-friendly results. Normal Excel mode and large-file mode are strictly isolated in backend modules, data storage, and API transport.
+
+![SheetBot Architecture](docs-site/static/img/sheetbot-architecture.svg)
+
+### Layer Overview
+
+| Layer | Description |
+|-------|-------------|
+| Edge & deployment | Caddy / Nginx for static assets, API reverse proxy, SSE proxy—local or private enterprise deployment |
+| Frontend workbench | React app for routing, auth, and business UI; Univer for Excel canvas; PPTist for online PPT editing |
+| Backend modules | FastAPI mounts auth, plans, normal-mode agent, large-file, reports, PPT, batch Word, forms, connectors, etc. |
+| AI Harness Engineering | Intent vs. deterministic execution: Prompt Expander (metadata, no LLM); Claude Agent with restricted tools (`submit_analysis_plan` only); Plan Contract, Plan Compiler, Operation Registry (70+ ops); sandbox preview/rollback, quota limits, JSON output guards |
+| Data & external systems | MySQL for business data; DuckDB for large-file queries; `uploads/` for user files; Claude API, SMTP, third-party integrations |
+
+### Harness Engineering Highlights
+
+- **Restricted tool calls**: Analytics tasks must submit structured plans via `submit_analysis_plan`; the LLM cannot touch data directly.
+- **Deterministic compilation**: plan → operations via compiler, not free-form model output—stable layouts for identical inputs.
+- **Single source of truth**: Shared operation registry across frontend and backend; 70+ operations with matched parameter contracts.
+- **Safety guardrails**: Schema validation, quota limits, JSON repair fallback, sandbox preview, and one-click rollback.
+
+---
+
+## Tech Stack
+
+| Layer | Technologies |
+|-------|----------------|
+| Frontend | React 19 + Vite 5 + Univer Canvas + PPTist (Vue 3 / veaury) |
+| Backend | FastAPI + Uvicorn + SQLAlchemy (async) |
 | AI | Claude Agent |
-| 数据库 | MySQL 8.0 |
-| 大文件引擎 | DuckDB + pandas + openpyxl |
-| 文档处理 | python-pptx / python-docx / ExcelJS |
-| 图表与导出 | ECharts / html2canvas / jsPDF |
-| 生产部署 | Caddy 2.x（静态资源 + API/SSE 反向代理，可选） |
+| Database | MySQL 8.0 |
+| Large-file engine | DuckDB + pandas + openpyxl |
+| Documents | python-pptx / python-docx / ExcelJS |
+| Charts & export | ECharts / html2canvas / jsPDF |
+| Production | Caddy 2.x (static + API/SSE reverse proxy, optional) |
 
 ---
 
-## 第三方服务与组件
+## Third-Party Services & Components
 
-部署或二次开发前，请确认以下外部依赖是否就绪：
+Confirm these dependencies before deployment or customization:
 
-| 类型 | 组件 / 服务 | 用途 | 是否必需 |
-|------|-------------|------|----------|
-| AI | Anthropic Claude API 或兼容网关 | AI 表格助手、智能报表、PPT 汇报、批量 Word 标注 | 必需 |
-| 数据库 | MySQL 8.0+ | 用户、套餐配额、文件、表单、连接器、技能等业务数据 | 必需 |
-| 邮件 | SMTP（企业邮箱、QQ 企业邮箱等） | 忘记密码、注册邮件、商务咨询通知 | 可选 |
-| 连接器 | Shopify / 钉钉 / 企业微信 / PostgreSQL / Webhook | 外部系统数据同步 | 按功能选用 |
-| 前端构建 | Node.js 18+ | 安装依赖、构建前端产物 | 构建期必需 |
-| 反向代理 | Caddy / Nginx | 统一入口、静态资源托管、API 与 SSE 转发 | 生产推荐 |
+| Type | Service / Component | Purpose | Required |
+|------|---------------------|---------|----------|
+| AI | Anthropic Claude API or compatible gateway | Spreadsheet assistant, reports, PPT, batch Word | Yes |
+| Database | MySQL 8.0+ | Users, plans/quotas, files, forms, connectors, skills | Yes |
+| Email | SMTP (enterprise mail, etc.) | Password reset, registration, business inquiries | Optional |
+| Connectors | Shopify / DingTalk / WeCom / PostgreSQL / Webhook | External data sync | As needed |
+| Frontend build | Node.js 18+ | Install deps, build frontend | Build-time |
+| Reverse proxy | Caddy / Nginx | Unified entry, static hosting, API/SSE | Recommended |
 
-内置开源组件：
+Bundled open-source components:
 
-- [Univer](https://github.com/dream-num/univer)：在线表格 Canvas 与电子表格能力
-- [PPTist](https://github.com/pipipi-pikachu/PPTist)：在线 PPT 编辑与演示文稿能力
-- [ECharts](https://echarts.apache.org/)：图表渲染
-- [DuckDB](https://duckdb.org/)：服务端大文件 OLAP 查询
+- [Univer](https://github.com/dream-num/univer): Online spreadsheet canvas
+- [PPTist](https://github.com/pipipi-pikachu/PPTist): Online PPT editing
+- [ECharts](https://echarts.apache.org/): Chart rendering
+- [DuckDB](https://duckdb.org/): Server-side OLAP for large files
 
 ---
 
-## 安装与启动
+## Installation & Startup
 
-### 1. 克隆仓库
+### 1. Clone the repository
 
 ```bash
 git clone <your-repo-url> sheetbot
 cd sheetbot
 ```
 
-### 2. 配置环境变量
+### 2. Configure environment variables
 
 ```bash
 cp backend/app/.env.example .env
 ```
 
-至少填写：
+Minimum required settings:
 
 ```env
 PORT=8080
@@ -136,7 +138,7 @@ DB_USER=sheetbot_user
 DB_PASS=your-db-password
 ```
 
-### 3. 初始化数据库
+### 3. Initialize the database
 
 ```sql
 CREATE DATABASE sheetbot_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -149,7 +151,7 @@ FLUSH PRIVILEGES;
 mysql -h localhost -u sheetbot_user -p sheetbot_db < db/schema.sql
 ```
 
-### 4. 安装后端依赖
+### 4. Install backend dependencies
 
 ```bash
 python -m venv .venv
@@ -163,7 +165,7 @@ source .venv/bin/activate
 pip install -r backend/requirements.txt
 ```
 
-### 5. 构建前端
+### 5. Build the frontend
 
 ```bash
 cd frontend
@@ -172,26 +174,26 @@ npm run build
 cd ..
 ```
 
-### 6. 启动服务
+### 6. Start services
 
 ```bash
-# 开发模式（前后端热更新）
+# Development (hot reload)
 PROD_MODE=false python manage.py restart
 
-# 生产模式（需先完成 npm run build）
+# Production (requires npm run build first)
 python manage.py restart
 ```
 
-### 7. 访问地址
+### 7. Access URLs
 
-| 地址 | 说明 |
-|------|------|
-| http://localhost:5173 | 前端开发服务器（`PROD_MODE=false`） |
-| http://localhost:8080/docs | 后端 Swagger API 文档 |
-| http://localhost/workspace | 工作台（生产模式经 Caddy 反代） |
-| http://localhost/landing.html | 营销落地页 |
+| URL | Description |
+|-----|-------------|
+| http://localhost:5173 | Frontend dev server (`PROD_MODE=false`) |
+| http://localhost:8080/docs | Backend Swagger API docs |
+| http://localhost/workspace | Workbench (production via Caddy) |
+| http://localhost/landing.html | Marketing landing page |
 
-生产环境可使用项目根目录 [`Caddyfile`](Caddyfile)：
+For production, use the root [`Caddyfile`](Caddyfile):
 
 ```bash
 caddy run --config Caddyfile
@@ -199,200 +201,200 @@ caddy run --config Caddyfile
 
 ---
 
-## 项目结构
+## Project Structure
 
 ```text
 sheetbot/
 ├── backend/
 │   └── app/
-│       ├── main.py           # FastAPI 入口
-│       ├── agent/            # 普通模式 AI Agent + 分析编译器
-│       ├── large_file/       # 大文件 DuckDB 管线
-│       ├── report/           # 智能报表引擎
-│       ├── pptx/             # PPT 汇报
-│       ├── batch_word/       # 批量转 Word
-│       ├── collect/          # 在线表单收集
-│       ├── connect/          # 外部系统连接器
-│       ├── auth/             # 用户认证 JWT
-│       ├── plans/            # 套餐与配额（只读，无在线支付）
-│       ├── formula/          # 自定义公式
-│       └── skill/            # 技能库
+│       ├── main.py           # FastAPI entry
+│       ├── agent/            # Normal-mode AI agent + analysis compiler
+│       ├── large_file/       # Large-file DuckDB pipeline
+│       ├── report/           # Smart report engine
+│       ├── pptx/             # PPT presentations
+│       ├── batch_word/       # Batch Word export
+│       ├── collect/          # Online form collection
+│       ├── connect/          # External connectors
+│       ├── auth/             # JWT authentication
+│       ├── plans/            # Plans & quotas (read-only, no online payment)
+│       ├── formula/          # Custom formulas
+│       └── skill/            # Skill library
 ├── frontend/
 │   ├── src/
-│   │   ├── App.jsx           # 主应用与模式切换
-│   │   ├── univer/           # Univer Canvas 宿主
-│   │   ├── pptist-vue/       # PPTist 子系统
-│   │   ├── components/       # 业务 UI 组件
-│   │   └── utils/            # excelOperations / skillExecutor 等
-│   └── public/landing.html   # 营销落地页
+│   │   ├── App.jsx           # Main app & mode switching
+│   │   ├── univer/           # Univer canvas host
+│   │   ├── pptist-vue/       # PPTist subsystem
+│   │   ├── components/       # Business UI
+│   │   └── utils/            # excelOperations / skillExecutor, etc.
+│   └── public/landing.html   # Marketing landing page
 ├── db/
-│   ├── schema.sql            # 数据库结构（初始化用）
+│   ├── schema.sql            # Database schema (initialization)
 │   └── README.md
-├── docs-site/                # Docusaurus 帮助中心与架构图资源
-├── uploads/                  # UGC 存储（不入库）
-├── manage.py                 # 启停脚本
-├── Caddyfile                 # 自托管反向代理配置
-└── LICENSE                   # Apache-2.0 许可证
+├── docs-site/                # Docusaurus help center & architecture assets
+├── uploads/                  # User-generated files (not in git)
+├── manage.py                 # Start/stop script
+├── Caddyfile                 # Self-hosted reverse proxy
+└── LICENSE                   # Apache-2.0
 ```
 
 ---
 
-## 主要功能说明
+## Feature Details
 
-### 1. AI 表格助手（普通模式）
+### 1. AI Spreadsheet Assistant (Normal Mode)
 
-普通模式面向常规 Excel 文件，核心体验是「对话即操作」。用户上传 `.xlsx` 后，SheetBot 会在浏览器中用 Univer Canvas 展示完整工作簿，AI 根据用户指令生成操作计划并实时执行。
+Normal mode targets regular Excel files with a **“chat is the operation”** experience. After uploading `.xlsx`, SheetBot renders the full workbook in the browser via Univer Canvas; the AI generates and executes operation plans in real time.
 
-亮点：
+**Highlights:**
 
-- 支持公式计算、字段清洗、排序筛选、条件格式、数据条、图表、汇总表、列宽行高、单元格样式等 70+ 操作。
-- SSE 实时推送执行进度，用户可以看到 AI 正在做什么，而不是等待一个黑盒结果。
-- 支持多轮上下文，例如先完成销售汇总，再继续要求「把前三名高亮」「生成摘要」「插入图表」。
-- 操作通过前端表格引擎落地，可即时看到结果，适合业务人员在熟悉的 Excel 语境里使用 AI。
+- 70+ operations: formulas, cleaning, sort/filter, conditional formatting, data bars, charts, pivot summaries, sizing, styles, and more.
+- SSE streams execution progress so users see what the AI is doing—not a black box.
+- Multi-turn context: e.g. summarize sales, then “highlight top 3”, “add summary”, “insert chart”.
+- Operations run in the frontend spreadsheet engine for instant feedback in a familiar Excel context.
 
-### 2. 大文件分析
+### 2. Large-File Analytics
 
-大文件模式解决浏览器无法承载超大 Excel 的问题。上传超过阈值的文件后，SheetBot 会把数据加载到服务端 DuckDB，前端只展示预览、查询结果和操作反馈。
+Large-file mode handles spreadsheets too big for the browser. Above the threshold, data loads into server-side DuckDB; the frontend shows previews, query results, and operation feedback.
 
-亮点：
+**Highlights:**
 
-- 适合 50MB+、几十万到百万行级 Excel 文件，避免浏览器内存溢出和页面卡死。
-- DuckDB 负责聚合、筛选、分组、排序等高性能查询，openpyxl 保留 Excel 样式与导出能力。
-- 支持自然语言生成分析查询，不需要业务人员手写 SQL。
-- 普通模式与大文件模式在后端模块、API 和数据存储上隔离，便于维护和扩展。
+- Suited for 50MB+, hundreds of thousands to millions of rows—avoids browser OOM and freezes.
+- DuckDB for fast aggregate/filter/group/sort; openpyxl preserves Excel styling and export.
+- Natural-language queries—no SQL required from business users.
+- Isolated from normal mode in modules, APIs, and storage for maintainability.
 
-### 3. 智能报表
+### 3. Smart Reports
 
-智能报表不是简单截图或图表导出，而是把数据分析过程组织成可读、可分享、可复盘的报告。
+Reports organize the analytics process into readable, shareable, auditable deliverables—not just screenshots or chart exports.
 
-亮点：
+**Highlights:**
 
-- 自动识别指标、维度、趋势、异常、排名和占比，生成 KPI 卡片与多类型图表。
-- 结合业务语境输出专家解读，指出可能问题、风险点和下一步优化建议。
-- 支持报表任务、快照缓存、分享链接、PDF / PNG 导出，方便团队汇报和归档。
-- 可从普通模式或大文件分析结果进入报表流程，形成「分析 → 洞察 → 交付」闭环。
+- Auto-detect metrics, dimensions, trends, anomalies, rankings, and ratios; KPI cards and multi-chart layouts.
+- Business-context expert commentary with risks and next-step suggestions.
+- Tasks, snapshot cache, share links, PDF/PNG export for team reporting and archives.
+- Chain from normal or large-file analysis: **analyze → insight → deliver**.
 
-### 4. AI 汇报 PPT
+### 4. AI Presentation PPT
 
-PPT 汇报模块面向月报、经营复盘、项目总结等场景，从表格数据自动生成可编辑演示文稿。
+Generates editable decks from spreadsheet data for monthly reviews, business retrospectives, project summaries, and more.
 
-亮点：
+**Highlights:**
 
-- AI 先规划汇报结构，再生成页面内容，避免只堆图表没有叙事逻辑。
-- 内置 PPTist 在线编辑能力，生成后可继续修改文本、图表、布局和主题。
-- 支持 KPI、图表和分析结论二阶段注入，让页面既有数据也有可口播的业务解释。
-- 支持 PPTX 导出，适合管理层汇报、销售复盘、财务月报等正式交付。
+- AI plans narrative structure before page content—not charts without story.
+- Built-in PPTist for post-generation editing of text, charts, layout, and theme.
+- Two-phase injection of KPIs, charts, and spoken-ready conclusions.
+- PPTX export for executive, sales, and finance deliverables.
 
-### 5. 批量转 Word
+### 5. Batch Word Export
 
-批量转 Word 面向「一张数据表生成多份标准文档」的高频办公场景，如准考证、通知书、合同附件、证明、报价单等。
+One data table → many standardized documents: certificates, notices, contracts, proofs, quotes, etc.
 
-亮点：
+**Highlights:**
 
-- 上传 Word 模板后，可 AI 辅助识别占位符并映射 Excel 字段。
-- 支持文本、日期、数字和图片替换，减少逐份复制粘贴的错误。
-- 每行数据生成一份文档，支持自定义文件命名并打包 ZIP 下载。
-- 适合教育、HR、销售、行政等需要大量标准化文档交付的团队。
+- AI-assisted placeholder detection and Excel field mapping on Word templates.
+- Text, date, number, and image replacement—fewer copy-paste errors.
+- One document per row, custom naming, ZIP download.
+- Ideal for education, HR, sales, and admin teams with high-volume document output.
 
-### 6. 在线数据收集
+### 6. Online Data Collection
 
-在线收集把表格列头转换成外部可填写的表单，解决「让多人填表，再手工汇总」的问题。
+Turn sheet column headers into public fillable forms—no more manual merge of many submissions.
 
-亮点：
+**Highlights:**
 
-- 可根据当前工作表快速生成表单字段，支持文本、数字、选项、日期等常见类型。
-- 发布公开链接后，外部用户无需登录即可填写。
-- 提交记录实时回流到工作表，减少导出、复制、合并数据的流程。
-- 适用于报名登记、信息采集、门店上报、问卷调研、客户资料收集等场景。
+- Quick form fields from the current sheet: text, number, options, dates, etc.
+- Public links; external users can submit without login.
+- Submissions flow back into the workbook in real time.
+- Registrations, surveys, store reporting, lead capture, and more.
 
-### 7. 外部连接
+### 7. External Connectors
 
-连接器模块用于把企业现有系统的数据接入 SheetBot，让 AI 分析不再局限于手工上传的文件。
+Bring enterprise system data into SheetBot so AI analysis is not limited to manual uploads.
 
-亮点：
+**Highlights:**
 
-- 支持 Shopify、钉钉、企业微信、MySQL、PostgreSQL、Webhook、自定义 API 等多种来源。
-- 提供字段映射、同步任务和连接状态管理，便于把外部数据规范化写入工作台。
-- 支持定时同步和 Webhook 入站，适合订单、客户、员工、门店、运营数据的持续更新。
-- 同步后的数据可直接进入 AI 分析、报表、PPT 和技能流水线。
+- Shopify, DingTalk, WeCom, MySQL, PostgreSQL, Webhook, custom APIs, and more.
+- Field mapping, sync jobs, and connection health for normalized workbench data.
+- Scheduled sync and inbound Webhooks for orders, customers, staff, stores, ops data.
+- Synced data feeds AI analysis, reports, PPT, and skill pipelines.
 
-### 8. Skill 技能编排
+### 8. Skill Orchestration
 
-Skill 技能箱把常见数据操作封装成可视化步骤，让团队把经验沉淀为标准流程。
+Package common data steps into visual workflows and team SOPs.
 
-亮点：
+**Highlights:**
 
-- 预置 60+ 数据处理技能，覆盖格式化、清洗、统计、分析、可视化等常见任务。
-- 支持拖拽组合步骤，形成面向某个业务场景的自动化流水线。
-- 沙箱预览后再写回，降低误操作风险。
-- 支持变量引用与团队复用，让「某个同事会做」变成「团队都能复用」。
-
----
-
-## 双模式架构（重要）
-
-| 维度 | 普通模式 | 大文件模式 |
-|------|----------|------------|
-| 适用场景 | 小型 Excel（<50MB） | 大型 Excel（>50MB） |
-| 数据存储 | 浏览器内存（Univer） | 服务端 DuckDB |
-| 后端模块 | `agent/` | `large_file/` |
-| 通信方式 | SSE | HTTP REST API |
-| API 前缀 | `/api/excel/*`、`/sse/*` | `/api/large-file/*` |
-
-普通模式强调实时编辑体验，大文件模式强调服务端高性能计算。二者的后端模块、前端入口、API 前缀和数据存储方式保持独立，避免小文件交互逻辑与大文件计算管线互相影响。
+- 60+ preset skills: formatting, cleaning, stats, analysis, visualization.
+- Drag-and-drop pipelines for business scenarios.
+- Sandbox preview before write-back to reduce risk.
+- Variables and team reuse—turn individual know-how into shared practice.
 
 ---
 
-## 数据库结构（简要）
+## Dual-Mode Architecture (Important)
 
-| 分组 | 主要表 |
-|------|--------|
-| 认证 | `users` `refresh_tokens` `password_reset_tokens` |
-| 套餐 | `subscription_plans` `user_subscriptions` `usage_records` |
-| 业务 | `custom_formulas` `skills` `forms` `connectors` `sync_jobs` |
-| 报表 | `report_cache` `shared_reports` `report_tasks` |
-| 配置 | `user_preferences` `platform_settings` `system_announcements` |
+| Dimension | Normal mode | Large-file mode |
+|-----------|-------------|-----------------|
+| Use case | Small Excel (<50MB) | Large Excel (>50MB) |
+| Data storage | Browser memory (Univer) | Server DuckDB |
+| Backend module | `agent/` | `large_file/` |
+| Transport | SSE | HTTP REST API |
+| API prefix | `/api/excel/*`, `/sse/*` | `/api/large-file/*` |
 
-完整 DDL 见 [`db/schema.sql`](db/schema.sql)。
-
----
-
-## API 接口（部分）
-
-| 端点 | 说明 |
-|------|------|
-| `POST /api/auth/register` | 用户注册 |
-| `POST /api/auth/login` | 登录获取 Token |
-| `POST /api/excel/command` | 发送 AI 指令（普通模式） |
-| `GET /sse/{session_id}` | SSE 实时事件流 |
-| `POST /api/large-file/upload` | 大文件上传 |
-| `GET /api/large-file/preview/{id}` | 大文件预览 |
-| `POST /api/report/generate` | 智能报表生成 |
-| `POST /api/pptx/generate` | PPT 汇报生成 |
-| `POST /api/batch-word/upload-template` | 批量转 Word 模板上传 |
-| `GET /api/public/plans` | 公开套餐定价（landing 页） |
-| `GET /api/plans/my` | 当前用户套餐（需认证） |
-
-启动后端后访问 **http://localhost:8080/docs** 查看完整 OpenAPI 文档。
+Normal mode optimizes live editing; large-file mode optimizes server-side compute. Modules, entry points, API prefixes, and storage stay separate so small-file UX does not entangle with large-file pipelines.
 
 ---
 
-## 环境变量
+## Database Schema (Summary)
 
-| 变量 | 必填 | 说明 |
-|------|------|------|
-| `JWT_SECRET_KEY` | 是 | `openssl rand -hex 32` |
-| `ANTHROPIC_API_KEY` | 是 | Claude API Key |
-| `DB_HOST` / `DB_PORT` / `DB_NAME` / `DB_USER` / `DB_PASS` | 是 | MySQL 连接 |
-| `SHEETBOT_PUBLIC_BASE_URL` | 否 | 公网地址，用于密码重置链接 |
-| `SMTP_*` | 否 | 注册/找回密码邮件 |
-| `ANTHROPIC_BASE_URL` | 否 | 自定义 API 网关地址 |
+| Group | Main tables |
+|-------|-------------|
+| Auth | `users` `refresh_tokens` `password_reset_tokens` |
+| Plans | `subscription_plans` `user_subscriptions` `usage_records` |
+| Business | `custom_formulas` `skills` `forms` `connectors` `sync_jobs` |
+| Reports | `report_cache` `shared_reports` `report_tasks` |
+| Config | `user_preferences` `platform_settings` `system_announcements` |
+
+Full DDL: [`db/schema.sql`](db/schema.sql).
 
 ---
 
-## UGC 存储规范
+## API Endpoints (Partial)
 
-用户上传与生成文件统一存放在项目根 `uploads/`，按类型与日期分区：
+| Endpoint | Description |
+|----------|-------------|
+| `POST /api/auth/register` | User registration |
+| `POST /api/auth/login` | Login and obtain tokens |
+| `POST /api/excel/command` | Send AI command (normal mode) |
+| `GET /sse/{session_id}` | SSE event stream |
+| `POST /api/large-file/upload` | Large-file upload |
+| `GET /api/large-file/preview/{id}` | Large-file preview |
+| `POST /api/report/generate` | Generate smart report |
+| `POST /api/pptx/generate` | Generate presentation |
+| `POST /api/batch-word/upload-template` | Upload batch Word template |
+| `GET /api/public/plans` | Public plan pricing (landing) |
+| `GET /api/plans/my` | Current user plan (auth required) |
+
+After starting the backend, open **http://localhost:8080/docs** for full OpenAPI documentation.
+
+---
+
+## Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `JWT_SECRET_KEY` | Yes | `openssl rand -hex 32` |
+| `ANTHROPIC_API_KEY` | Yes | Claude API key |
+| `DB_HOST` / `DB_PORT` / `DB_NAME` / `DB_USER` / `DB_PASS` | Yes | MySQL connection |
+| `SHEETBOT_PUBLIC_BASE_URL` | No | Public base URL for password-reset links |
+| `SMTP_*` | No | Registration / password-reset email |
+| `ANTHROPIC_BASE_URL` | No | Custom API gateway URL |
+
+---
+
+## UGC Storage
+
+User uploads and generated files live under project root `uploads/`, partitioned by type and date:
 
 ```text
 uploads/
@@ -403,84 +405,85 @@ uploads/
 └── demo/
 ```
 
-禁止在 `backend/uploads/` 下存储用户数据。
+Do **not** store user data under `backend/uploads/`.
 
 ---
 
-## 开发指南
+## Development Guide
 
-### 后端
+### Backend
 
-- Python 3.11+，遵循 PEP 8，建议保留类型注解和清晰日志。
-- AI 能力统一经 Claude Agent 接入，业务模块不要绕过统一调用入口。
-- 普通模式与大文件模式保持模块隔离，修改前确认 API 前缀、数据存储和执行路径。
+- Python 3.11+, PEP 8, type hints and clear logging recommended.
+- Route all AI calls through Claude Agent—do not bypass the unified entry.
+- Keep normal and large-file modes isolated; verify API prefix, storage, and execution path before changes.
 
-### 前端
+### Frontend
 
-- React 19 + Vite 5；PPTist 为 Vue 3 子系统，通过 veaury 桥接。
-- 普通模式表格操作由前端执行引擎落地，新增操作时需同步考虑前后端契约。
-- 生产构建命令：`cd frontend && npm run build`。
+- React 19 + Vite 5; PPTist is Vue 3 via veaury.
+- Normal-mode spreadsheet ops run in the frontend engine—sync contracts when adding operations.
+- Production build: `cd frontend && npm run build`.
 
-### 测试
+### Testing
 
 ```bash
-# 前端单元测试（Vitest）
+# Frontend unit tests (Vitest)
 cd frontend && npm test
 
-# 前端 E2E（Playwright，需先启动服务）
+# Frontend E2E (Playwright; start services first)
 cd frontend && npm run e2e:smoke
 ```
 
-### 贡献建议
+### Contributing
 
-1. Fork 仓库，基于功能分支开发。
-2. 保持普通模式与大文件模式隔离。
-3. 提交 PR 时附带变更说明、截图或必要测试结果。
-
----
-
-## 更新日志
-
-### v1.0.0（开源版）
-
-- 发布 SheetBot 开源代码库（企业级 AI Excel 与数据工作台）。
-- 支持 AI 自然语言表格、大文件分析、报表、PPT、批量 Word、表单收集、外部连接、技能编排。
-- 移除管理后台、独立官网静态站、微信支付与数据库迁移历史。
-- 数据库初始化统一使用 `db/schema.sql`。
+1. Fork and work on a feature branch.
+2. Preserve normal vs. large-file mode isolation.
+3. Include change notes, screenshots, or test results in PRs.
 
 ---
 
-## 文档索引
+## Changelog
 
-| 文档 | 用途 |
-|------|------|
-| [README.md](README.md) | 本文件：快速了解、构建与二次开发 |
-| [db/README.md](db/README.md) | 数据库初始化说明 |
-| [backend/app/.env.example](backend/app/.env.example) | 环境变量模板 |
-| [docs-site/docs/00-目录.md](docs-site/docs/00-目录.md) | 使用文档目录 |
+### v1.0.0 (Open Source)
+
+- Initial open-source release of SheetBot (enterprise intelligent spreadsheet workbench).
+- AI natural-language spreadsheets, large-file analytics, reports, PPT, batch Word, forms, connectors, skills.
+- Removed admin panel, standalone marketing site, WeChat Pay, and Alembic migration history.
+- Database initialization via `db/schema.sql` only.
 
 ---
 
-## 公司与产品
+## Documentation Index
 
-SheetBot 是深圳市比特意图科技有限公司（BitIntent）旗下的 **企业级 AI Excel 与数据工作台** 产品。比特意图围绕企业 AI Native 落地提供数据执行、品牌增长与知识工程产品体系。
+| Document | Purpose |
+|----------|---------|
+| [README.md](README.md) | English: overview, build, and customization |
+| [README_CN.md](README_CN.md) | 中文: overview, build, and customization |
+| [db/README.md](db/README.md) | Database initialization |
+| [backend/app/.env.example](backend/app/.env.example) | Environment variable template |
+| [docs-site/docs/00-目录.md](docs-site/docs/00-目录.md) | User guide index (Chinese) |
 
-- 官方网站：[https://www.eeebit.com/index.html](https://www.eeebit.com/index.html)
-- SheetBot 产品官网：[https://sheetbot.eeebit.com/](https://sheetbot.eeebit.com/)
+---
 
-| 业务合作群 | SheetBot 技术交流群 |
+## Company & Product
+
+SheetBot is an **enterprise intelligent spreadsheet workbench** from **Shenzhen BitIntent Technology Co., Ltd. (BitIntent)**. BitIntent delivers an AI-native product stack spanning data execution, brand growth, and knowledge engineering.
+
+- Company website: [https://www.eeebit.com/index.html](https://www.eeebit.com/index.html)
+- SheetBot product site: [https://sheetbot.eeebit.com/](https://sheetbot.eeebit.com/)
+
+| Business cooperation | SheetBot community |
 | :---: | :---: |
-| ![业务合作群](docs-site/static/img/contact_me_qr.png) | ![SheetBot 技术交流群](docs-site/static/img/SheetBot_users.png) |
-| 企业咨询、私有化部署、商务合作与定制方案，欢迎扫码添加。 | 开源部署、二次开发、问题反馈与使用交流，欢迎开发者与用户加入。 |
+| ![Business cooperation](docs-site/static/img/contact_me_qr.png) | ![SheetBot community](docs-site/static/img/SheetBot_users.png) |
+| Enterprise consulting, private deployment, partnerships, and custom solutions. | Open-source deployment, development, feedback, and user discussion. |
 
 ---
 
-## 贡献与反馈
+## Contributing & Feedback
 
-欢迎提交 Issue、Pull Request 与使用反馈。若希望了解商业版、私有化部署、企业集成或试点方案，可通过公司官网或 SheetBot 官网联系团队。
+Issues, pull requests, and usage feedback are welcome. For commercial editions, private deployment, enterprise integration, or pilot programs, contact us via the company or SheetBot website.
 
 ---
 
-## 许可证
+## License
 
-本项目采用 [Apache License 2.0](LICENSE) 开源协议。
+This project is licensed under the [Apache License 2.0](LICENSE).
