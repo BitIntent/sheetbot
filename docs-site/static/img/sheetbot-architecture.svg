@@ -98,7 +98,7 @@
   <text x="230" y="531" text-anchor="middle" class="hl-title">Prompt Expander 指令扩展</text>
   <text x="230" y="549" text-anchor="middle" class="hl-text">元数据增强 · 不经过 LLM</text>
   <rect x="430" y="510" width="340" height="52" rx="6" fill="#312e81" stroke="#312e81"/>
-  <text x="600" y="531" text-anchor="middle" class="dark-title">Claude Agent</text>
+  <text x="600" y="531" text-anchor="middle" class="dark-title">Claude Agent Runtime</text>
   <text x="600" y="549" text-anchor="middle" class="dark-text">意图理解 · 受限工具调用</text>
   <rect x="800" y="510" width="340" height="52" rx="6" class="node-hl"/>
   <text x="970" y="531" text-anchor="middle" class="hl-title">工具约束 submit_analysis_plan</text>
@@ -122,7 +122,7 @@
   <text x="821" y="613" text-anchor="middle" class="hl-title">沙箱预览 / 回滚</text>
   <text x="821" y="631" text-anchor="middle" class="hl-text">Skill 沙箱 · 操作可撤销</text>
   <rect x="944" y="592" width="196" height="52" rx="6" class="node-hl"/>
-  <text x="1042" y="613" text-anchor="middle" class="hl-title">QuotaGuard / JSON Guard</text>
+  <text x="1042" y="613" text-anchor="middle" class="hl-title">配额限流 / JSON Guard</text>
   <text x="1042" y="631" text-anchor="middle" class="hl-text">配额护栏 · 输出修复兜底</text>
 
   <!-- ===================== L5 数据与外部系统层 ===================== -->
